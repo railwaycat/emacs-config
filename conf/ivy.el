@@ -24,7 +24,7 @@
 (el-get-bundle counsel-gtags
   :type github
   :pkgname "FelipeLema/emacs-counsel-gtags"
+  (customize-set-variable 'counsel-gtags-use-suggested-key-map t)
+  (customize-set-variable 'counsel-gtags-prefix-key "\C-ct")
   (with-eval-after-load 'counsel-gtags
-    (setq counsel-gtags-prefix-key "\C-ct")
-    (setq counsel-gtags-use-suggested-key-map t)
     (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)))
