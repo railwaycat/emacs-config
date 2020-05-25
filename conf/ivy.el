@@ -1,6 +1,6 @@
 (el-get-bundle smex)
 
-(el-get-bundle swiper :features (ivy counsel)
+(el-get-bundle swiper :features (ivy counsel) :checkout "0.13.0"
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
