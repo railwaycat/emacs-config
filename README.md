@@ -1,3 +1,3 @@
 My Emacs configuration
 
-Inpressed by <https://github.com/typester/emacs-config>
+Impressed by <https://github.com/typester/emacs-config>
