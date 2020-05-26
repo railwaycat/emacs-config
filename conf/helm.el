@@ -11,9 +11,10 @@
 
 (el-get-bundle helm-gtags
   (require 'helm-gtags)
-  (customize-set-variable 'helm-gtags-prefix-key "\C-ct")
   (customize-set-variable 'helm-gtags-suggested-key-mapping t)
-  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
+  (customize-set-variable 'helm-gtags-prefix-key "\C-ct")
+  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim))
 
 (el-get-bundle helm-ag
   (require 'helm-ag)
