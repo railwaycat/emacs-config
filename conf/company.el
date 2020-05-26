@@ -35,12 +35,21 @@
   (setq company-idle-delay 0.2
         ;; cancel selections by typing non-matching characters
         company-require-match 'never
-        ;; company-dabbrev-other-buffers 'all
-        ;; company-dabbrev-code-everywhere t
-        ;; company-dabbrev-code-other-buffers 'all
-        ;; company-dabbrev-downcase nil
+        company-dabbrev-other-buffers 'all
+        company-dabbrev-code-everywhere t
+        company-dabbrev-code-other-buffers 'all
+        company-dabbrev-downcase nil
         company-tooltip-align-annotations t
-        company-minimum-prefix-length 2)
+        company-minimum-prefix-length 2
+        company-backends '(company-semantic
+                           company-cmake
+                           (company-capf
+                            :with company-dabbrev-code)
+                           company-files
+                           (company-dabbrev-code
+                            company-gtags
+                            company-keywords)
+                           company-dabbrev))
   ;; no completion for Chinese
   (advice-add 'company-dabbrev--prefix :around
               (lambda (orig-fun)
