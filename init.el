@@ -40,7 +40,7 @@
                 "elpa.el"
                 "el-get.el"
                 "org.el"
-                "ivy.el"
+                "helm.el"
                 "flyspell.el"
                 "flycheck.el"
                 "company.el"

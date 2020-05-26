@@ -11,5 +11,5 @@
 
 (el-get-bundle flyspell-correct
   (with-eval-after-load 'flyspell
-    (require 'flyspell-correct-ivy)
+    (require 'flyspell-correct-helm)
     (define-key flyspell-mode-map (kbd "M-p") 'flyspell-correct-wrapper)))

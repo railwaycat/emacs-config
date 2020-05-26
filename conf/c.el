@@ -2,7 +2,7 @@
   (setq c-default-style "linux")
   (define-key c-mode-base-map (kbd "C-c C-c") 'align)
   (which-func-mode t)
-  (counsel-gtags-mode 1)
+  (helm-gtags-mode 1)
   (subword-mode 1)
   (display-line-numbers-mode 1)
   (yas-minor-mode 1)
