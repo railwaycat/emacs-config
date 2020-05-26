@@ -1,3 +1,5 @@
+(el-get-bundle org-mode :checkout "release_9.3.6")
+
 (customize-set-variable
  'org-emphasis-regexp-components
  ;; markup 记号前后允许中文
