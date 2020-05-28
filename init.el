@@ -58,7 +58,8 @@
 (when (file-exists-p "~/.m_aka")
   (my/load-conf '("aka.el")))
 
-;; window system specific config
+;; window/no-window system specific config
+;; could be optimized, but I'm too lazy
 (if (null window-system)
     (my/load-conf '("nw-common.el"))
   (my/load-conf '("ws-common.el")))
@@ -68,6 +69,9 @@
   (my/load-conf '("mac-common.el"
                   "mac-key.el"
                   "mac-font.el")))
+
+(when (equal window-system 'x)
+  (my/load-conf '("x-font.el")))
 
 (load custom-file)
 
