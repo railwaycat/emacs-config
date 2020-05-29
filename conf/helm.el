@@ -21,7 +21,8 @@
   (custom-set-variables
    '(helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
    `(helm-ag-success-exit-status '(0 2)))
-  (define-key global-map (kbd "C-c k") 'helm-ag))
+  (define-key global-map (kbd "C-c k") 'helm-ag)
+  (define-key global-map (kbd "C-c C-k") 'helm-do-ag))
 
 (el-get-bundle helm-ls-git
   (require 'helm-ls-git)
