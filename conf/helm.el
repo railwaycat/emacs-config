@@ -19,7 +19,7 @@
 (el-get-bundle helm-ag
   (require 'helm-ag)
   (custom-set-variables
-   '(helm-ag-base-command "rg --no-heading")
+   '(helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
    `(helm-ag-success-exit-status '(0 2)))
   (define-key global-map (kbd "C-c k") 'helm-ag))
 
