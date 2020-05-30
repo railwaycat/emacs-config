@@ -27,3 +27,7 @@
 (el-get-bundle helm-ls-git
   (require 'helm-ls-git)
   (define-key global-map (kbd "C-c g") 'helm-ls-git-ls))
+
+(el-get-bundle helm-swoop
+  (require 'helm-swoop)
+  (define-key global-map [remap isearch-forward] 'helm-swoop))
