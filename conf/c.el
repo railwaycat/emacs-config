@@ -5,7 +5,7 @@
   (helm-gtags-mode 1)
   (subword-mode 1)
   (display-line-numbers-mode 1)
-  (yas-minor-mode 1)
+  ;; (yas-minor-mode 1)
   )
 (add-hook 'c-mode-common-hook 'my/c-mode-common-hook)
 

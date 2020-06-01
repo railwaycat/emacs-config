@@ -38,7 +38,6 @@
                 "flycheck.el"
                 "company.el"
                 "hippie.el"
-                "yasnippet.el"
                 "c.el"
                 "misc.el"
                 "magit.el"
