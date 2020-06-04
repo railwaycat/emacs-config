@@ -137,6 +137,36 @@
     (setq delete-by-moving-to-trash t
           trash-directory "~/.Trash/emacs"))
 
+;; ibuffer
+(add-hook 'ibuffer-mode-hook (lambda ()
+                                (ibuffer-switch-to-saved-filter-groups "Default")))
+(setq
+ ibuffer-show-empty-filter-groups nil
+ ibuffer-saved-filter-groups
+  '(("Default"
+     ("Emacs" (or (name . "\\*scratch\\*")
+                  (name . "\\*dashboard\\*")
+                  (name . "\\*compilation\\*")
+                  (name . "\\*Backtrace\\*")
+                  (name . "\\*Packages\\*")
+                  (name . "\\*Messages\\*")
+                  (name . "\\*Customize\\*")))
+     ("Helm" (name . "^\\*Helm"))
+     ("Programming" (or (derived-mode . prog-mode)
+                        (mode . makefile-mode)
+                        (mode . cmake-mode)))
+     ("Text" (or (mode . org-mode)
+                 (mode . markdown-mode)
+                 (mode . gfm-mode)
+                 (mode . rst-mode)
+                 (mode . text-mode)))
+     ("Dired" (mode . dired-mode))
+     ("Magit" (name . "magit"))
+     ("Help" (or (name . "\\*Help\\*")
+                 (name . "\\*Apropos\\*")
+                 (name . "\\*info\\*"))))
+    ))
+
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
