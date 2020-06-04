@@ -24,6 +24,11 @@
     (with-temp-buffer (write-file file)))
   file)
 
+(defun my/ensure-dir-exists (dir)
+  (when (not (file-exists-p dir))
+    (with-temp-buffer (make-directory dir)))
+  dir)
+
 (setq custom-file (concat user-emacs-directory "customize.el"))
 (my/ensure-file-exists custom-file)
 

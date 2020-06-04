@@ -1,6 +1,7 @@
 ;; do backup and temp files to user-emacs-directory
 ;; (setq make-backup-files nil)
 (let ((saves-dir (concat user-emacs-directory "saves")))
+  (my/ensure-dir-exists saves-dir)
   (setq backup-by-copying t      ; don't clobber symlinks
         backup-directory-alist `(("." . ,saves-dir)
         delete-old-versions t
@@ -8,6 +9,7 @@
         kept-old-versions 2
         version-control t)))
 (let ((tmp-dir (concat user-emacs-directory "tmp")))
+  (my/ensure-dir-exists tmp-dir)
   (setq auto-save-file-name-transforms
       `((".*" ,tmp-dir t))))
 
