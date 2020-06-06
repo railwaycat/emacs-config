@@ -1,33 +1,48 @@
-(el-get-bundle helm :checkout "v3.6.2"
+(el-get-bundle helm :checkout "v3.6.2")
+(use-package helm
+  :init
   (require 'helm-config)
-  (define-key global-map [remap execute-extended-command] 'helm-M-x)
-  (define-key global-map [remap yank-pop] 'helm-show-kill-ring)
-  (define-key global-map [remap bookmark-jump] 'helm-filtered-bookmarks)
-  (define-key global-map [remap find-file] 'helm-find-files)
-  (define-key global-map (kbd "C-c o") 'helm-occur)
-  (define-key global-map [remap switch-to-buffer] 'helm-mini)
-  (define-key global-map (kbd "C-c C-r") 'helm-resume)
+  :bind
+  ([remap execute-extended-command] . helm-M-x)
+  ([remap yank-pop] . helm-show-kill-ring)
+  ([remap bookmark-jump] . helm-filtered-bookmarks)
+  ([remap find-file] . helm-find-files)
+  ("C-c o" . helm-occur)
+  ("C-c C-r" . helm-resume)
+  ([remap switch-to-buffer] . helm-mini)
+  :config
+  (setq helm-mode-fuzzy-match t)
   (helm-mode 1))
 
-(el-get-bundle helm-gtags
-  (require 'helm-gtags)
-  (customize-set-variable 'helm-gtags-suggested-key-mapping t)
-  (customize-set-variable 'helm-gtags-prefix-key "\C-ct")
-  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim))
+(el-get-bundle helm-gtags)
+(use-package helm-gtags
+  :after helm
+  :init
+  (setq helm-gtags-prefix-key "\C-ct"
+        helm-gtags-suggested-key-mapping t)
+  :bind
+  (:map helm-gtags-mode-map
+        ("M-," . helm-gtags-pop-stack)
+        ("M-." . helm-gtags-dwim)))
 
-(el-get-bundle helm-ag
-  (require 'helm-ag)
-  (custom-set-variables
-   '(helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
-   `(helm-ag-success-exit-status '(0 2)))
-  (define-key global-map (kbd "C-c k") 'helm-ag)
-  (define-key global-map (kbd "C-c C-k") 'helm-do-ag))
+(el-get-bundle helm-ag)
+(use-package helm-ag
+  :after helm
+  :init
+  (setq helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number"
+        helm-ag-success-exit-status '(0 2))
+  :bind
+  ("C-c k" . helm-ag)
+  ("C-c C-k" . helm-do-ag))
 
-(el-get-bundle helm-ls-git
-  (require 'helm-ls-git)
-  (define-key global-map (kbd "C-c g") 'helm-ls-git-ls))
+(el-get-bundle helm-ls-git)
+(use-package helm-ls-git
+  :after helm
+  :bind
+  ("C-c g" . helm-ls-git-ls))
 
-(el-get-bundle helm-swoop
-  (require 'helm-swoop)
-  (define-key global-map [remap isearch-forward] 'helm-swoop))
+(el-get-bundle helm-swoop)
+(use-package helm-swoop
+  :after helm
+  :bind
+  ([remap isearch-forward] . helm-swoop))
