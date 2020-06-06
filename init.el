@@ -35,7 +35,6 @@
 ;; load common config
 (my/load-conf '("common.el"
                 "path.el"
-                "elpa.el"
                 "el-get.el"
                 "org.el"
                 "helm.el"
