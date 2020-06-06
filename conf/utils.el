@@ -1,21 +1,29 @@
 ;; imenu-list
 (el-get-bundle imenu-list
   :type github
-  :pkgname "bmag/imenu-list"
-  (define-key global-map (kbd "C-c i") 'imenu-list-smart-toggle)
-  (define-key global-map (kbd "<f7>") 'imenu-list-smart-toggle))
+  :pkgname "bmag/imenu-list")
+(use-package imenu-list
+  :bind
+  ("C-c i" . imenu-list-smart-toggle)
+  ([f7] . imenu-list-smart-toggle))
 
 ;; session
-(el-get-bundle session
+(el-get-bundle session)
+(use-package session
+  :init
   (add-hook 'after-init-hook 'session-initialize))
 
 ;; highlight symbol
-(el-get-bundle highlight-symbol
-  (define-key global-map (kbd "C-c h") 'highlight-symbol)
-  (define-key global-map (kbd "<f4>") 'highlight-symbol-next))
+(el-get-bundle highlight-symbol)
+(use-package highlight-symbol
+  :bind
+  ("C-c h" . highlight-symbol)
+  ([f4] . highlight-symbol-next))
 
 ;; bm
-(el-get-bundle bm
-  (define-key global-map (kbd "<f9>") 'bm-toggle)
-  (define-key global-map (kbd "<C-f9>") 'bm-next)
-  (define-key global-map (kbd "<S-f9>") 'bm-previous))
+(el-get-bundle bm)
+(use-package bm
+  :bind
+  ("<f9>" . bm-toggle)
+  ("<C-f9>" . bm-next)
+  ("<S-f9>" . bm-previous))
