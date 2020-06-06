@@ -2,7 +2,9 @@
 (el-get-bundle cmake-mode)
 
 ;; markdown mode
-(el-get-bundle markdown-mode
+(el-get-bundle markdown-mode)
+(use-package markdown-mode
+  :init
   (add-hook 'markdown-mode-hook 'turn-on-flyspell))
 
 ;; text-mode

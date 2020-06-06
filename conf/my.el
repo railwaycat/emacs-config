@@ -108,3 +108,18 @@ directory to make multiple eshell windows easier."
   (if (file-exists-p "~/Dropbox/dropbox.bmk")
       (bookmark-load "~/Dropbox/dropbox.bmk" t t)
     (bookmark-load (concat user-emacs-directory "bookmarks") t t)))
+
+;; C-t is split window and/or move other window
+(defun my/other-window-or-split ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+(define-key global-map (kbd "C-t") 'my/other-window-or-split)
+;; C-T is split window and/or move other window
+(defun my/other-window-or-split-v ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-vertically))
+  (other-window 1))
+(define-key global-map (kbd "C-S-t") 'my/other-window-or-split-v)
