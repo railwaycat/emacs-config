@@ -38,7 +38,7 @@
   :bind
   ("C-c c" . org-capture)
   :config
-  (let ((org-capture-diary-file "~/Dropbox/logs/2020.org")
+  (let ((org-capture-diary-file "~/Dropbox/logs/diary.org")
         (org-capture-inbox-file "~/Dropbox/wiki/inbox.org")
         (org-capture-capture-file (if user-with-dropbox
                                       "~/Dropbox/logs/capture.org"
