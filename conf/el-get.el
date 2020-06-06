@@ -17,15 +17,6 @@
 
 ;; use-package
 (el-get-bundle use-package
+  (setq-default use-package-always-ensure nil)
   (eval-when-compile
     (require 'use-package)))
-
-;; use-package-el-get
-;; use package from twlz0ne's repo before this PR get merged
-;; https://github.com/edvorg/use-package-el-get/pull/8
-(el-get-bundle use-package-el-get
-  :type github
-  :pkgname "twlz0ne/use-package-el-get"
-  (require 'use-package-el-get)
-  (setq use-package-always-ensure nil)
-  (use-package-el-get-setup))
