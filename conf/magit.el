@@ -1,2 +1,4 @@
-(el-get-bundle magit
-  (define-key global-map (kbd "C-x g") 'magit-status))
+(el-get-bundle magit)
+(use-package magit
+  :bind
+  ("C-x g" . magit-status))
