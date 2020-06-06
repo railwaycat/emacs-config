@@ -24,10 +24,10 @@
 (add-to-list 'default-frame-alist '(width . 90))
 
 ;; show bookmark instead of startup message when has Dropbox
-(if (file-exists-p "~/Dropbox/dropbox.bmk")
-    (setq initial-buffer-choice (lambda ()
-                                  (list-bookmarks)
-                                  (get-buffer "*Bookmark List*"))))
+(when user-with-dropbox
+  (setq initial-buffer-choice (lambda ()
+                                (list-bookmarks)
+                                (get-buffer "*Bookmark List*"))))
 
 ;; confirm when exit
 (setq confirm-kill-emacs 'y-or-n-p)

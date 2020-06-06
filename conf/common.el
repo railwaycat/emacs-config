@@ -83,21 +83,6 @@
 ;;   (kill-buffer))
 ;; (define-key global-map (kbd "C-x k") 'kill-current-buffer)
 
-;; C-t is split window and/or move other window
-(defun other-window-or-split ()
-  (interactive)
-  (when (one-window-p)
-    (split-window-horizontally))
-  (other-window 1))
-(define-key global-map (kbd "C-t") 'other-window-or-split)
-;; C-T is split window and/or move other window
-(defun other-window-or-split-v ()
-  (interactive)
-  (when (one-window-p)
-    (split-window-vertically))
-  (other-window 1))
-(define-key global-map (kbd "C-S-t") 'other-window-or-split-v)
-
 ;; show trailing space
 (setq-default show-trailing-whitespace t)
 
@@ -125,7 +110,7 @@
 (electric-indent-mode t)
 
 ;; bookmarks
-(if (file-exists-p "~/Dropbox/dropbox.bmk")
+(if user-with-dropbox
     (customize-set-variable 'bookmark-default-file "~/Dropbox/dropbox.bmk")
   (customize-set-variable 'bookmark-default-file
                        (concat user-emacs-directory "bookmarks")))
@@ -138,11 +123,17 @@
           trash-directory "~/.Trash/emacs"))
 
 ;; ibuffer
-(add-hook 'ibuffer-mode-hook (lambda ()
-                                (ibuffer-switch-to-saved-filter-groups "Default")))
-(setq
- ibuffer-show-empty-filter-groups nil
- ibuffer-saved-filter-groups
+(use-package ibuffer
+  :bind
+  ("<f12>" . ibuffer)
+  ([remap list-buffers] . ibuffer)
+  :commands (ibuffer-switch-to-saved-filter-groups)
+  :hook ((ibuffer-mode . ibuffer-auto-mode)
+         (ibuffer-mode . (lambda ()
+                           (ibuffer-switch-to-saved-filter-groups "Default"))))
+  :custom
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-saved-filter-groups
   '(("Default"
      ("Emacs" (or (name . "\\*scratch\\*")
                   (name . "\\*dashboard\\*")
@@ -165,11 +156,9 @@
      ("Help" (or (name . "\\*Help\\*")
                  (name . "\\*Apropos\\*")
                  (name . "\\*info\\*"))))
-    ))
+    )))
 
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
-(define-key global-map (kbd "<f12>") 'ibuffer)
-(define-key global-map (kbd "C-x C-b") 'ibuffer)
 (define-key global-map (kbd "C-c r") 'revert-buffer)

@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq user-full-name "Xin Xu"
       user-mail-address "railwaycat@gmail.com")
 
@@ -14,6 +21,11 @@
 ;; located in custom directory
 (setq user-emacs-directory
       (substring (or load-file-name "~/.emacs.d/init.el") 0 -7))
+
+(setq user-with-dropbox
+      (if (file-accessible-directory-p "~/Dropbox")
+          t
+        nil))
 
 (defun my/load-conf (conf-list)
   (dolist (conf conf-list)
@@ -33,9 +45,9 @@
 (my/ensure-file-exists custom-file)
 
 ;; load common config
-(my/load-conf '("common.el"
-                "path.el"
+(my/load-conf '("path.el"
                 "el-get.el"
+                "common.el"
                 "org.el"
                 "helm.el"
                 "flyspell.el"
