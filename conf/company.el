@@ -1,22 +1,29 @@
-(el-get-bundle company-mode :features (company)
-  ;; use C-n, C-p to select candidates
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-search-map (kbd "C-n") 'company-select-next)
-  (define-key company-search-map (kbd "C-p") 'company-select-previous)
-
-  ;; C-s to filter
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-
-  ;; TAB to select
-  (define-key company-active-map (kbd "C-i") 'company-complete-common-or-cycle)
-
-  ;; global company mode
+(el-get-bundle company-mode)
+(use-package company
+  :init
   (add-hook 'after-init-hook 'global-company-mode)
-
-  ;; global completion key
-  (define-key global-map (kbd "C-;") 'company-complete)
-
+  (setq company-global-modes '(not eshell-mode shell-mode))
+  :bind
+  (("C-;" . company-complete)
+   :map company-active-map
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous)
+   ("C-s" . company-filter-candidates)
+   ("<tab>" . company-complete-common-or-cycle)
+   :map company-search-map
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous))
+  :config
+  ;; no completion for Chinese
+  (advice-add 'company-dabbrev--prefix :around
+              (lambda (orig-fun)
+                "取消中文补全"
+                (let ((string (char-to-string (char-before (point)))))
+                  (if (and (stringp "\\cc")
+                           (stringp string)
+                           (string-match-p "\\cc" string))
+                      nil
+                    (funcall orig-fun)))))
   (setq company-idle-delay 0.2
         ;; cancel selections by typing non-matching characters
         company-require-match 'never
@@ -34,14 +41,10 @@
                            (company-dabbrev-code
                             company-gtags
                             company-keywords)
-                           company-dabbrev))
-  ;; no completion for Chinese
-  (advice-add 'company-dabbrev--prefix :around
-              (lambda (orig-fun)
-                "取消中文补全"
-                (let ((string (char-to-string (char-before (point)))))
-                  (if (and (stringp "\\cc")
-                           (stringp string)
-                           (string-match-p "\\cc" string))
-                      nil
-                    (funcall orig-fun))))))
+                           company-dabbrev)))
+
+(el-get-bundle company-statistics)
+(use-package company-statistics
+  :after company
+  :config
+  (company-statistics-mode))
