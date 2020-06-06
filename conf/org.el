@@ -22,7 +22,8 @@
         (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
   (org-log-done 'time)
   (org-log-into-drawer t)
-  (org-log-state-notes-insert-after-drawers nil))
+  (org-log-state-notes-insert-after-drawers nil)
+  (org-adapt-indentation nil))
 
 (use-package ob
   :config
