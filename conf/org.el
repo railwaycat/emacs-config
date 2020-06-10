@@ -76,4 +76,4 @@
   (org-log-state-notes-insert-after-drawers nil)
   :config
   (when user-with-dropbox
-    (setq org-agenda-files '("~/Dropbox/logs/2020.org"))))
+    (setq org-agenda-files '("~/Dropbox/logs/diary.org"))))
