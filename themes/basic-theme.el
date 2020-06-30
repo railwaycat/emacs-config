@@ -33,8 +33,7 @@
        (normal (cond (is-mac "mac:system:textColor") (is-term "unspecified-fg") (t "#000000")))
        (background (cond (is-mac "mac:system:textBackgroundColor") (is-term "unspecified-bg") (t "#ffffff")))
        (alt-background (cond (is-mac "mac:system:selectedTextBackgroundColor") (t "lightskyblue1")))
-       ;; unemphasizedSelectedTextBackgroundColor
-       (contrast-background (cond (is-mac "mac:system:alternatingContentBackgroundColor") (t "grey95")))
+       (contrast-background (cond (is-mac "mac:system:windowBackgroundColor") (t "grey95")))
        )
 
   (custom-theme-set-variables
