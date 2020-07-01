@@ -53,7 +53,6 @@
                 "utils.el"
                 "my.el"
                 "theme.el"
-                "rime.el"
                 ))
 
 ;; work specific
