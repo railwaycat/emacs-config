@@ -50,8 +50,8 @@
 (defun my/set-font-large ()
   "Using large size font"
   (interactive)
-  (set-face-attribute 'default nil :font (font-spec :name "JetBrains Mono" :size 12))
-  (set-face-attribute 'fixed-pitch nil :font (font-spec :name "JetBrains Mono" :size 12))
+  (set-face-attribute 'default nil :font (font-spec :name "SF Mono" :size 12))
+  (set-face-attribute 'fixed-pitch nil :font (font-spec :name "SF Mono" :size 12))
   (my/set-font-cjk-xinshusong 14))
 
 ;; Emoji
