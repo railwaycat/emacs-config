@@ -1,4 +1,4 @@
-(el-get-bundle helm :checkout "v3.6.2")
+(el-get-bundle helm :checkout "v3.6.4")
 (use-package helm
   :init
   (require 'helm-config)
@@ -11,7 +11,8 @@
   ("C-c C-r" . helm-resume)
   ([remap switch-to-buffer] . helm-mini)
   :config
-  (setq helm-mode-fuzzy-match t)
+  (setq helm-mode-fuzzy-match t
+        helm-ff-cache-mode-lighter nil)
   (helm-mode 1))
 
 (el-get-bundle helm-gtags)
