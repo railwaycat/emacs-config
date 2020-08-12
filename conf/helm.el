@@ -46,4 +46,4 @@
 (use-package helm-swoop
   :after helm
   :bind
-  ([remap isearch-forward] . helm-swoop))
+  ("M-s M-o" . helm-swoop))
