@@ -1,5 +1,5 @@
-(el-get-bundle helm :checkout "v3.6.4")
 (use-package helm
+  :ensure t
   :init
   (require 'helm-config)
   :bind
@@ -15,8 +15,8 @@
         helm-ff-cache-mode-lighter nil)
   (helm-mode 1))
 
-(el-get-bundle helm-gtags)
 (use-package helm-gtags
+  :ensure t
   :after helm
   :init
   (setq helm-gtags-prefix-key "\C-ct"
@@ -26,8 +26,8 @@
         ("M-," . helm-gtags-pop-stack)
         ("M-." . helm-gtags-dwim)))
 
-(el-get-bundle helm-ag)
 (use-package helm-ag
+  :ensure t
   :after helm
   :init
   (setq helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number"
@@ -36,14 +36,14 @@
   ("C-c k" . helm-ag)
   ("C-c C-k" . helm-do-ag))
 
-(el-get-bundle helm-ls-git)
 (use-package helm-ls-git
+  :ensure t
   :after helm
   :bind
   ("C-c g" . helm-ls-git-ls))
 
-(el-get-bundle helm-swoop)
 (use-package helm-swoop
+  :ensure t
   :after helm
   :bind
   ("M-s M-o" . helm-swoop))

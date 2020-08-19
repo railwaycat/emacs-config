@@ -1,8 +1,5 @@
-(el-get-bundle rime
-  :type github
-  :pkgname "DogLooksGood/emacs-rime"
-  :depends posframe)
 (use-package rime
+  :ensure t
   :bind
   (:map rime-mode-map
         ("C-`" . 'rime-send-keybinding))

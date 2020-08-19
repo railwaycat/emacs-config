@@ -39,7 +39,7 @@
 
 ;; load common config
 (my/load-conf '("path.el"
-                "el-get.el"
+                "elpa.el"
                 "common.el"
                 "org.el"
                 "helm.el"
@@ -75,6 +75,3 @@
   (my/load-conf '("x-font.el")))
 
 (load custom-file)
-
-;; el-get sync
-(el-get 'sync)

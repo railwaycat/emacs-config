@@ -1,5 +1,5 @@
-(el-get-bundle flycheck)
 (use-package flycheck
+  :ensure t
   :custom
   (flycheck-disabled-checkers '(emacs-lisp-checkdoc
                                 c/c++-clang
