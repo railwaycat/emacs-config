@@ -11,8 +11,7 @@
   ("C-c C-r" . helm-resume)
   ([remap switch-to-buffer] . helm-mini)
   :config
-  (setq helm-mode-fuzzy-match t
-        helm-ff-cache-mode-lighter nil)
+  (setq helm-mode-fuzzy-match t)
   (helm-mode 1))
 
 (use-package helm-gtags
