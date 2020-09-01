@@ -1,7 +1,5 @@
-(el-get-bundle deft
-  :type github
-  :pkgname "jrblevin/deft")
 (use-package deft
+  :ensure t
   :bind
   ("C-c d" . deft)
   :config

@@ -8,8 +8,8 @@
     (setq ispell-program-name "hunspell")
     (setq ispell-extra-args '("-d en_US")))))
 
-(el-get-bundle flyspell-correct)
 (use-package flyspell-correct
+  :ensure t
   :requires flyspell
   :bind
   (:map flyspell-mode-map

@@ -1,5 +1,5 @@
-(el-get-bundle company-mode)
 (use-package company
+  :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-global-modes '(not eshell-mode shell-mode))
@@ -43,8 +43,8 @@
                             company-keywords)
                            company-dabbrev)))
 
-(el-get-bundle company-statistics)
 (use-package company-statistics
+  :ensure t
   :after company
   :config
   (company-statistics-mode))

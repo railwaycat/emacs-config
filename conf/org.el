@@ -1,5 +1,3 @@
-(el-get-bundle org-mode :checkout "release_9.3.7")
-
 (use-package org
   :bind
   ("C-c l" . org-store-link)

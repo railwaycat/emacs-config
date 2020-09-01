@@ -1,9 +1,9 @@
-(el-get-bundle yaml-mode)
-(el-get-bundle cmake-mode)
+(use-package yaml-mode :ensure t)
+(use-package cmake-mode :ensure t)
 
 ;; markdown mode
-(el-get-bundle markdown-mode)
 (use-package markdown-mode
+  :ensure t
   :init
   (add-hook 'markdown-mode-hook 'turn-on-flyspell))
 
