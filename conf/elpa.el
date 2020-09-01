@@ -2,12 +2,12 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa stable" . "https://stable.melpa.org/packages/")
+        ;; ("melpa stable" . "https://stable.melpa.org/packages/")
         ("melpa" . "https://melpa.org/packages/"))
       package-archive-priorities
       '(("gnu" . 10)
-        ("melpa stable" . 7)
-        ("melpa" . 4)))
+        ;; ("melpa stable" . 7)
+        ("melpa" . 5)))
 (package-initialize)
 
 ;; use-package
