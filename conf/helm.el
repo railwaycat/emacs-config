@@ -23,7 +23,7 @@
   :bind
   (:map helm-gtags-mode-map
         ("M-," . helm-gtags-pop-stack)
-        ("M-." . helm-gtags-dwim)))
+        ("M-." . helm-gtags-find-tag)))
 
 (use-package helm-ag
   :ensure t
