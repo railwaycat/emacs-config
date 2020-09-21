@@ -52,3 +52,12 @@
 (use-package flyspell-correct-ivy
   :ensure t
   :after (ivy flyspell-correct))
+
+(use-package counsel-projectile
+  :ensure t
+  :after ivy
+  :init
+  (counsel-projectile-mode 1)
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map)))
