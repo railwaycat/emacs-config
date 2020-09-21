@@ -42,7 +42,7 @@
                 "elpa.el"
                 "common.el"
                 "org.el"
-                "helm.el"
+                "ivy.el"
                 "flyspell.el"
                 "flycheck.el"
                 "company.el"

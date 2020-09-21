@@ -15,4 +15,6 @@
   (:map flyspell-mode-map
         ("M-p" . flyspell-correct-wrapper))
   :config
-  (require 'flyspell-correct-helm))
+  ;; (require 'flyspell-correct-helm)
+  (require 'flyspell-correct-ivy)
+  )

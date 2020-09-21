@@ -1,30 +1,48 @@
-(el-get-bundle smex)
-
-(el-get-bundle swiper :features (ivy counsel) :checkout "0.13.0"
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  ;; (global-set-key (kbd "<f6>") 'ivy-resume)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c k") 'counsel-rg)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
-  (define-key global-map [remap yank-pop] 'counsel-yank-pop)
-  (define-key global-map (kbd "<f11>") 'counsel-bookmark)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-  (define-key global-map [remap org-capture] 'counsel-org-capture)
+(use-package ivy
+  :ensure t
+  :init
+  (setq enable-recursive-minibuffers t
+        ivy-use-virtual-buffers t
+        ivy-count-format "%d/%d ")
+  :hook (after-init . ivy-mode)
   )
 
-(el-get-bundle counsel-gtags
-  :type github
-  :pkgname "FelipeLema/emacs-counsel-gtags"
-  (customize-set-variable 'counsel-gtags-use-suggested-key-map t)
-  (customize-set-variable 'counsel-gtags-prefix-key "\C-ct")
-  (with-eval-after-load 'counsel-gtags
-    (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)))
+(use-package counsel
+  :after ivy
+  :ensure t
+  :custom
+  (ivy-height 20)
+  ;; :config
+  ;; (setq ivy-height-alist
+  ;;       '((t
+  ;;          lambda (_caller)
+  ;;          (/ (frame-height) 2))))
+  :bind
+  ([remap execute-extended-command] . counsel-M-x)
+  ([remap yank-pop] . counsel-yank-pop)
+  ([remap find-file] . counsel-find-file)
+  ([remap bookmark-jump] . counsel-bookmark)
+  ([remap switch-to-buffer] . ivy-switch-buffer)
+  ("C-c C-r" . ivy-resume)
+  ("M-s M-o" . swiper)
+  ("C-c g" . counsel-git)
+  ("C-c j" . counsel-git-grep)
+  ("C-c k" . counsel-rg)
+  ("C-x l" . counsel-locate)
+  ("C-c f" . counsel-fzf)
+  ([remap org-capture] . counsel-org-capture)
+  ("<f2> i" . counsel-info-lookup-symbol)
+  ("<f2> u" . counsel-unicode-char)
+  (:map minibuffer-local-map
+        ("C-r" . counsel-minibuffer-history))
+  (:map ivy-minibuffer-map
+        ("C-s" . swiper))
+  )
+
+(use-package ivy-xref
+  :ensure t
+  :after (ivy gxref)
+  :init
+  (when (>= emacs-major-version 27)
+    (setq xref-show-definitions-function #'ivy-xref-show-defs))
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
