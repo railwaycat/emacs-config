@@ -14,16 +14,22 @@
   (setq helm-mode-fuzzy-match t)
   (helm-mode 1))
 
-(use-package helm-gtags
+;; (use-package helm-gtags
+;;   :ensure t
+;;   :after helm
+;;   :init
+;;   (setq helm-gtags-prefix-key "\C-ct"
+;;         helm-gtags-suggested-key-mapping t)
+;;   :bind
+;;   (:map helm-gtags-mode-map
+;;         ("M-," . helm-gtags-pop-stack)
+;;         ("M-." . helm-gtags-find-tag)))
+
+(use-package helm-xref
   :ensure t
   :after helm
   :init
-  (setq helm-gtags-prefix-key "\C-ct"
-        helm-gtags-suggested-key-mapping t)
-  :bind
-  (:map helm-gtags-mode-map
-        ("M-," . helm-gtags-pop-stack)
-        ("M-." . helm-gtags-find-tag)))
+  (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
 (use-package helm-ag
   :ensure t
