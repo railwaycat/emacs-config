@@ -43,7 +43,7 @@
 
 (use-package ivy-xref
   :ensure t
-  :after (ivy gxref)
+  :after ivy
   :init
   (when (>= emacs-major-version 27)
     (setq xref-show-definitions-function #'ivy-xref-show-defs))
