@@ -46,3 +46,7 @@
   :after helm
   :bind
   ("M-s M-o" . helm-swoop))
+
+(use-package flyspell-correct-helm
+  :ensure t
+  :after (helm flyspell-correct))
