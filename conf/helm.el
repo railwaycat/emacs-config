@@ -56,3 +56,11 @@
 (use-package flyspell-correct-helm
   :ensure t
   :after (helm flyspell-correct))
+
+(use-package helm-projectile
+  :ensure t
+  :after helm
+  :init
+  (helm-projectile-on)
+  :bind
+  ("C-c p" . helm-projectile))
