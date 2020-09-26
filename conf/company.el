@@ -25,6 +25,7 @@
                       nil
                     (funcall orig-fun)))))
   (setq company-idle-delay 0.2
+        company-show-numbers t
         ;; cancel selections by typing non-matching characters
         company-require-match 'never
         company-dabbrev-other-buffers 'all
