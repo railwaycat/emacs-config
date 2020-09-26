@@ -15,8 +15,15 @@
 (setq user-emacs-directory
       (substring (or load-file-name "~/.emacs.d/init.el") 0 -7))
 
+;; if this machine with Dropbox
 (setq user-with-dropbox
       (if (file-accessible-directory-p "~/Dropbox")
+          t
+        nil))
+
+;; if this is a machine from work
+(setq user-with-aka
+      (if (file-exists-p "~/.m_aka")
           t
         nil))
 
@@ -57,7 +64,7 @@
                 ))
 
 ;; work specific
-(when (file-exists-p "~/.m_aka")
+(when user-with-aka
   (my/load-conf '("aka.el")))
 
 ;; window/no-window system specific config
