@@ -48,3 +48,10 @@
   :after company
   :config
   (company-statistics-mode))
+
+(when (not user-with-aka)
+    (use-package company-tabnine
+      :ensure t
+      :after company
+      :init
+      (add-to-list 'company-backends #'company-tabnine)))
