@@ -41,12 +41,6 @@
   ("C-c k" . helm-ag)
   ("C-c C-k" . helm-do-ag))
 
-(use-package helm-ls-git
-  :ensure t
-  :after helm
-  :bind
-  ("C-c g" . helm-ls-git-ls))
-
 (use-package helm-swoop
   :ensure t
   :after helm

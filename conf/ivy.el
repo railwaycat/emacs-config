@@ -19,16 +19,21 @@
   ;;       '((t
   ;;          lambda (_caller)
   ;;          (/ (frame-height) 2))))
+  :config
+  (setq counsel-base-command
+        "rg -i -M 120 --no-heading --line-number --color never %s %s"
+        counsel-find-file-at-point t)
   :bind
   ([remap execute-extended-command] . counsel-M-x)
   ([remap yank-pop] . counsel-yank-pop)
   ([remap find-file] . counsel-find-file)
   ([remap bookmark-jump] . counsel-bookmark)
   ([remap switch-to-buffer] . ivy-switch-buffer)
+  ([remap isearch-forward] . swiper-isearch)
   ("C-c C-r" . ivy-resume)
-  ("M-s M-o" . swiper)
-  ("C-c g" . counsel-git)
-  ("C-c j" . counsel-git-grep)
+  ("C-c o" . swiper)
+  ;; ("C-c g" . counsel-git)
+  ;; ("C-c j" . counsel-git-grep)
   ("C-c k" . counsel-rg)
   ("C-x l" . counsel-locate)
   ("C-c f" . counsel-fzf)
@@ -60,4 +65,5 @@
   (counsel-projectile-mode 1)
   :bind
   (:map projectile-mode-map
+        ("C-c SPC" . counsel-projectile)
         ("C-c p" . projectile-command-map)))
