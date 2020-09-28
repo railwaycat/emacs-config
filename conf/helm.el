@@ -51,6 +51,10 @@
   :ensure t
   :after (helm flyspell-correct))
 
+(use-package helm-rg
+  :ensure t
+  :after helm)
+
 (use-package helm-projectile
   :ensure t
   :after helm
