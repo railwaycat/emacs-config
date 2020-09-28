@@ -37,7 +37,7 @@
   ("C-c k" . counsel-rg)
   ("C-x l" . counsel-locate)
   ("C-c f" . counsel-fzf)
-  ([remap org-capture] . counsel-org-capture)
+  ;; ([remap org-capture] . counsel-org-capture)
   ("<f2> i" . counsel-info-lookup-symbol)
   ("<f2> u" . counsel-unicode-char)
   (:map minibuffer-local-map
