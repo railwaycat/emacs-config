@@ -58,9 +58,11 @@
   :ensure t
   :after (ivy flyspell-correct))
 
+(use-package projectile
+  :ensure t)
 (use-package counsel-projectile
   :ensure t
-  :after ivy
+  :after (ivy projectile)
   :init
   (counsel-projectile-mode 1)
   :bind

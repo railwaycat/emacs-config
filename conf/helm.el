@@ -55,9 +55,11 @@
   :ensure t
   :after helm)
 
+(use-package projectile
+  :ensure t)
 (use-package helm-projectile
   :ensure t
-  :after helm
+  :after (helm projectile)
   :init
   (helm-projectile-on)
   :bind
