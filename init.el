@@ -57,7 +57,6 @@
                 "c.el"
                 "misc.el"
                 "magit.el"
-                "deft.el"
                 "utils.el"
                 "my.el"
                 "theme.el"
