@@ -2,8 +2,8 @@
       user-mail-address "railwaycat@gmail.com")
 
 ;; Speed up startup
-(setq gc-cons-threshold 402653184
-      gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 1)
 (add-hook 'after-init-hook
           `(lambda ()
              (setq gc-cons-threshold 800000
