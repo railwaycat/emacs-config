@@ -41,12 +41,6 @@
   ("C-c k" . helm-ag)
   ("C-c C-k" . helm-do-ag))
 
-(use-package helm-swoop
-  :ensure t
-  :after helm
-  :bind
-  ("M-s M-o" . helm-swoop))
-
 (use-package flyspell-correct-helm
   :ensure t
   :after (helm flyspell-correct))
@@ -61,6 +55,8 @@
   :ensure t
   :after (helm projectile)
   :init
-  (helm-projectile-on)
+  (projectile-mode 1)
   :bind
-  ("C-c p" . helm-projectile))
+  (:map projectile-mode-map
+        ("C-c SPC" . helm-projectile)
+        ("C-c p" . projectile-command-map)))
