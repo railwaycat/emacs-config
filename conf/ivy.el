@@ -29,7 +29,7 @@
   ([remap find-file] . counsel-find-file)
   ([remap bookmark-jump] . counsel-bookmark)
   ([remap switch-to-buffer] . ivy-switch-buffer)
-  ([remap isearch-forward] . swiper-isearch)
+  ;; ([remap isearch-forward] . swiper-isearch)
   ("C-c C-r" . ivy-resume)
   ("C-c o" . swiper)
   ;; ("C-c g" . counsel-git)
