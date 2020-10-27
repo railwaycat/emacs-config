@@ -57,6 +57,7 @@
   :after projectile
   :init
   (projectile-mode 1)
+  (helm-projectile-on)
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
