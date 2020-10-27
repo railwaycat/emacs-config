@@ -27,33 +27,34 @@
 
 (use-package helm-xref
   :ensure t
-  :after helm
   :init
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
 (use-package helm-ag
   :ensure t
-  :after helm
   :init
   (setq helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number"
         helm-ag-success-exit-status '(0 2))
   :bind
-  ("C-c k" . helm-ag)
-  ("C-c C-k" . helm-do-ag))
-
-(use-package flyspell-correct-helm
-  :ensure t
-  :after (helm flyspell-correct))
+  ("C-c k" . helm-ag))
 
 (use-package helm-rg
   :ensure t
-  :after helm)
+  :bind
+  ("C-c g" . helm-rg))
+
+(use-package flyspell-correct-helm
+  :ensure t
+  :after flyspell-correct)
+
 
 (use-package projectile
   :ensure t)
+(use-package projectile-ripgrep
+  :ensure t)
 (use-package helm-projectile
   :ensure t
-  :after (helm projectile)
+  :after projectile
   :init
   (projectile-mode 1)
   :bind
