@@ -12,3 +12,6 @@
       (setq visible-bell nil)
       )
   )
+
+(if (eq window-system 'mac)
+    (customize-set-value 'mac-mouse-wheel-smooth-scroll nil))
