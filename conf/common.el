@@ -73,9 +73,9 @@
 (customize-set-variable 'tramp-default-method "ssh")
 
 ;; scroll
-(setq scroll-step 1)
-;; (setq scroll-margin 3)
-;; (setq scroll-conservatively 100)
+(setq scroll-step 1
+      scroll-margin 3
+      scroll-conservatively 100)
 
 ;; C-x k just kill current buffer
 ;; (defun kill-current-buffer ()
@@ -121,6 +121,12 @@
 (if (eq system-type 'darwin)
     (setq delete-by-moving-to-trash t
           trash-directory "~/.Trash/emacs"))
+
+;; no lock files
+(setq create-lockfiles nil)
+
+;; always load the newest el/elc file
+(setq load-prefer-newer t)
 
 ;; ibuffer
 (use-package ibuffer

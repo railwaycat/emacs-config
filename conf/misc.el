@@ -8,9 +8,16 @@
   (add-hook 'markdown-mode-hook 'turn-on-flyspell))
 
 ;; text-mode
-(defun my/text-mode-hook()
-  (visual-line-mode t))
-(add-hook 'text-mode-hook 'my/text-mode-hook)
+(use-package visual-line-mode
+  :hook
+  (text-mode . visual-line-mode))
+(use-package text-mode
+  :custom
+  ;; better word wrapping for CJK characters
+  (word-wrap-by-category t)
+  ;; paragraphs
+  (sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+  (sentence-end-double-space nil))
 
 ;; python-mode
 (defun my/python-mode-hook()

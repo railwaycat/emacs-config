@@ -68,4 +68,5 @@
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . counsel-projectile)
-        ("C-c p" . projectile-command-map)))
+        ("C-c p" . projectile-command-map)
+        ("C-c p s" . counsel-projectile-rg)))
