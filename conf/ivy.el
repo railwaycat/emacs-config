@@ -29,7 +29,7 @@
   :bind
   ([remap yank-pop] . counsel-yank-pop)
   ([remap swiper] . counsel-grep-or-swiper)
-  ("C-c g" . counsel-rg)
+  ("C-c f" . counsel-rg)
   ("C-x l" . counsel-locate)
   ;; ([remap org-capture] . counsel-org-capture)
   ("<f2> i" . counsel-info-lookup-symbol)

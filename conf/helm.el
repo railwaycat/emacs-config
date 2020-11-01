@@ -44,7 +44,7 @@
 (use-package helm-rg
   :ensure t
   :bind
-  ("C-c g" . helm-rg))
+  ("C-c f" . helm-rg))
 
 (use-package flyspell-correct-helm
   :ensure t
