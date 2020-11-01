@@ -31,7 +31,7 @@
   :ensure t
   :bind
   ("C-c k" . rg)
-  ("C-c C-k" . rg-dwim))
+  ("C-c C-g" . rg-dwim))
 
 ;; diminish
 (use-package diminish
