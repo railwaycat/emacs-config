@@ -8,8 +8,8 @@
 ;; session
 (use-package session
   :ensure t
-  :init
-  (add-hook 'after-init-hook 'session-initialize))
+  :hook
+  (after-init . session-initialize))
 
 ;; highlight symbol
 (use-package highlight-symbol

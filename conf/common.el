@@ -38,7 +38,7 @@
 ;; indent settings
 (setq-default indent-tabs-mode nil)
 (setq-default electric-indent-inhibit t)
-(electric-indent-mode 1)
+(electric-indent-mode t)
 (setq backward-delete-char-untabify-method 'hungry)
 (defun set-tab-width-all (size)
   (setq tab-width size)
@@ -86,8 +86,18 @@
 ;; show trailing space
 (setq-default show-trailing-whitespace t)
 
-;; global auto revert changed files
-(global-auto-revert-mode t)
+;; Update buffer whenever file changes
+;; Also revert dired buffer.
+(use-package autorevert
+  :ensure nil
+  :hook (after-init . global-auto-revert-mode)
+  :custom
+  (auto-revert-interval 3)
+  (auto-revert-avoid-polling t)
+  (auto-revert-verbose nil)
+  (auto-revert-remote-files t)
+  (auto-revert-check-vc-info t)
+  (global-auto-revert-non-file-buffers t))
 
 ;; avoid dired error on OS X
 (if (eq system-type 'darwin)
@@ -105,9 +115,6 @@
                         (?\“ . ?\”)
                         (?\‘ . ?\’)
                         ))
-
-;; auto indet for new line
-(electric-indent-mode t)
 
 ;; bookmarks
 (if user-with-dropbox
@@ -127,6 +134,10 @@
 
 ;; always load the newest el/elc file
 (setq load-prefer-newer t)
+
+;; line number
+(use-package display-line-numbers-mode
+  :hook (prog-mode . display-line-numbers-mode))
 
 ;; ibuffer
 (use-package ibuffer
@@ -163,6 +174,19 @@
                  (name . "\\*Apropos\\*")
                  (name . "\\*info\\*"))))
     )))
+
+;; recentf
+(use-package recentf
+  :custom
+  (recentf-max-saved-items 300)
+  (recentf-auto-cleanup 'never)
+  (recentf-exclude `(,(expand-file-name package-user-dir)
+                     ;; ,quelpa-packages-dir
+                     "^/tmp/"
+                     "/ssh:"
+                     "/su\\(do\\)?:"
+                     "/TAGS\\'"
+                     "COMMIT_EDITMSG\\'")))
 
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)

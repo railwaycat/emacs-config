@@ -72,14 +72,15 @@
   :after flyspell-correct)
 
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map)))
 (use-package counsel-projectile
   :ensure t
-  :after (projectile counsel)
   :init
   (counsel-projectile-mode 1)
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . counsel-projectile)
-        ("C-c p" . projectile-command-map)
         ("C-c p s" . counsel-projectile-rg)))

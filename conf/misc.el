@@ -4,14 +4,19 @@
 ;; markdown mode
 (use-package markdown-mode
   :ensure t
-  :init
-  (add-hook 'markdown-mode-hook 'turn-on-flyspell))
+  :custom
+  (markdown-header-scaling t)
+  (markdown-enable-wiki-links t)
+  (markdown-italic-underscore t)
+  (markdown-asymmetric-header t)
+  (markdown-gfm-uppercase-checkbox t)
+  (markdown-fontify-code-blocks-natively t))
 
 ;; text-mode
-(use-package visual-line-mode
-  :hook
-  (text-mode . visual-line-mode))
 (use-package text-mode
+  :hook
+  (text-mode . visual-line-mode)
+  (text-mode . flyspell-mode)
   :custom
   ;; better word wrapping for CJK characters
   (word-wrap-by-category t)
@@ -19,18 +24,11 @@
   (sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
 
-;; python-mode
-(defun my/python-mode-hook()
-  ;; (flyspell-prog-mode)
-  (display-line-numbers-mode 1))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; shell mode
-(defun my/shell-mode-hook()
-  (display-line-numbers-mode 0))
-(add-hook 'shell-mode-hook 'my/shell-mode-hook)
-
 ;; emacs-lisp mode
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)))
+
+(add-hook 'lisp-interaction-mode-hook
+          (lambda ()
+            (setq display-line-numbers nil)))

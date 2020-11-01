@@ -2,8 +2,6 @@
   :bind
   ("C-c l" . org-store-link)
   ("C-c b" . org-switchb)
-  :hook
-  (org-mode . flyspell-mode)
   :custom-face
   (org-document-title ((t (:height 1.25 :weight bold))))
   :custom

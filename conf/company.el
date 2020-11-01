@@ -1,7 +1,8 @@
 (use-package company
   :ensure t
+  :hook
+  (after-init . global-company-mode)
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
   (setq company-global-modes '(not eshell-mode shell-mode))
   :bind
   (("C-;" . company-complete)
@@ -24,25 +25,26 @@
                            (string-match-p "\\cc" string))
                       nil
                     (funcall orig-fun)))))
-  (setq company-idle-delay 0.2
-        company-show-numbers t
-        ;; cancel selections by typing non-matching characters
-        company-require-match 'never
-        company-dabbrev-other-buffers 'all
-        company-dabbrev-code-everywhere t
-        company-dabbrev-code-other-buffers 'all
-        company-dabbrev-downcase nil
-        company-tooltip-align-annotations t
-        company-minimum-prefix-length 2
-        company-backends '(company-semantic
-                           company-cmake
-                           (company-capf
-                            :with company-dabbrev-code)
-                           company-files
-                           (company-dabbrev-code
-                            company-etags
-                            company-keywords)
-                           company-dabbrev)))
+  :custom
+  (company-idle-delay 0.2)
+  (company-show-numbers t)
+  ;; cancel selections by typing non-matching characters
+  (company-require-match 'never)
+  (company-dabbrev-other-buffers 'all)
+  (company-dabbrev-code-everywhere t)
+  (company-dabbrev-code-other-buffers 'all)
+  (company-dabbrev-downcase nil)
+  (company-tooltip-align-annotations t)
+  (company-minimum-prefix-length 2)
+  (company-backends '(company-semantic
+                      company-cmake
+                      (company-capf
+                       :with company-dabbrev-code)
+                      company-files
+                      (company-dabbrev-code
+                       company-etags
+                       company-keywords)
+                      company-dabbrev)))
 
 (use-package company-statistics
   :ensure t
