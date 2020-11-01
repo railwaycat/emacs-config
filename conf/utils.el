@@ -25,3 +25,18 @@
   ("<f9>" . bm-toggle)
   ("<C-f9>" . bm-next)
   ("<S-f9>" . bm-previous))
+
+;; rg
+(use-package rg
+  :ensure t
+  :bind
+  ("C-c k" . rg)
+  ("C-c C-k" . rg-dwim))
+
+;; diminish
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'company-mode)
+  (diminish 'ivy-mode)
+  (diminish 'counsel-mode))
