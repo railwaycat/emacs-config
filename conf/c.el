@@ -1,15 +1,11 @@
-(defun my/c-mode-common-hook()
+(use-package cc-mode
+  :mode
+  ("\\.cxx\\'" . cc-mode)
+  ;; :bind
+  ;; (:map c-mode-base-map
+  ;;       ("C-c C-c" . align))
+  :init
   (setq c-default-style "linux")
-  (define-key c-mode-base-map (kbd "C-c C-c") 'align)
+  :config
   (which-func-mode t)
-  (subword-mode 1)
-  (display-line-numbers-mode 1)
-  ;; (yas-minor-mode 1)
-  )
-(add-hook 'c-mode-common-hook 'my/c-mode-common-hook)
-
-(setq auto-mode-alist (append '(("\\.h\\'" . c++-mode))
-                              '(("\\.hpp\\'" . c++-mode))
-                              '(("\\.cc\\'" . c++-mode))
-                              '(("\\.cpp\\'" . c++-mode))
-                              auto-mode-alist))
+  (subword-mode t))
