@@ -7,7 +7,7 @@
   ([remap yank-pop] . helm-show-kill-ring)
   ([remap bookmark-jump] . helm-filtered-bookmarks)
   ([remap find-file] . helm-find-files)
-  ("C-c o" . helm-occur)
+  ;; ("C-c o" . helm-occur)
   ("C-c C-r" . helm-resume)
   ([remap switch-to-buffer] . helm-mini)
   :config
@@ -25,6 +25,11 @@
 ;;         ("M-," . helm-gtags-pop-stack)
 ;;         ("M-." . helm-gtags-find-tag)))
 
+(use-package helm-swoop
+  :ensure t
+  :bind
+  ("C-c o" . helm-swoop))
+
 (use-package helm-xref
   :ensure t
   :init
@@ -34,9 +39,7 @@
   :ensure t
   :init
   (setq helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number"
-        helm-ag-success-exit-status '(0 2))
-  :bind
-  ("C-c k" . helm-ag))
+        helm-ag-success-exit-status '(0 2)))
 
 (use-package helm-rg
   :ensure t
@@ -47,9 +50,11 @@
   :ensure t
   :after flyspell-correct)
 
-
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map)))
 (use-package projectile-ripgrep
   :ensure t)
 (use-package helm-projectile
@@ -61,5 +66,4 @@
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c p" . projectile-command-map)
         ("C-c p s" . helm-projectile-rg)))
