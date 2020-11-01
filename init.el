@@ -50,7 +50,7 @@
                 "common.el"
                 "org.el"
                 "flyspell.el"
-                "flycheck.el"
+                ;; "flycheck.el"
                 "ivy.el"
                 "company.el"
                 "hippie.el"
