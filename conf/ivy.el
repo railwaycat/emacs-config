@@ -8,6 +8,7 @@
   :custom
   (ivy-count-format "%d/%d ")          ;; better counts
   (ivy-use-virtual-buffers t)          ;; show recent files
+  (ivy-virtual-abbreviate 'abbreviate)
   (ivy-height 20)
   (ivy-sort-max-size 3000)             ;; the default value 30000 is too large
   ;; (ivy-fixed-height-minibuffer t)      ;; fixed height
