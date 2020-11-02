@@ -13,6 +13,7 @@
   (ivy-sort-max-size 3000)             ;; the default value 30000 is too large
   ;; (ivy-fixed-height-minibuffer t)      ;; fixed height
   (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
+  (ivy-more-chars-alist '((counsel-grep . 2) (counsel-rg . 2) (t . 3)))
   (enable-recursive-minibuffers t))
 
 (use-package swiper
