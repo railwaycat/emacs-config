@@ -1,5 +1,6 @@
 (use-package company
   :ensure t
+  :delight
   :hook
   (after-init . global-company-mode)
   :init

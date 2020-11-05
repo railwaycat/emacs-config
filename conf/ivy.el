@@ -2,6 +2,7 @@
 
 (use-package ivy
   :ensure t
+  :delight
   :hook (after-init . ivy-mode)
   :bind
   ("C-c C-r" . ivy-resume)
@@ -26,6 +27,7 @@
 
 (use-package counsel
   :ensure t
+  :delight
   :hook (ivy-mode . counsel-mode)
   :bind
   ([remap yank-pop] . counsel-yank-pop)
@@ -75,6 +77,7 @@
 
 (use-package projectile
   :ensure t
+  :delight '(:eval (concat " " (projectile-project-name)))
   :bind
   (:map projectile-mode-map
         ("C-c p" . projectile-command-map)))

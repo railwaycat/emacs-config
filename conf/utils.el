@@ -32,10 +32,3 @@
   :bind
   ("C-c g" . rg-dwim))
 
-;; diminish
-(use-package diminish
-  :ensure t
-  :config
-  (diminish 'company-mode)
-  (diminish 'ivy-mode)
-  (diminish 'counsel-mode))
