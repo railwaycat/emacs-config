@@ -5,7 +5,7 @@
 (use-package markdown-mode
   :ensure t
   :custom
-  (markdown-header-scaling t)
+  (markdown-header-scaling nil)
   (markdown-enable-wiki-links t)
   (markdown-italic-underscore t)
   (markdown-asymmetric-header t)
