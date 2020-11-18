@@ -1,5 +1,6 @@
 (use-package helm
   :ensure t
+  :delight
   :init
   (require 'helm-config)
   :bind
@@ -52,6 +53,7 @@
 
 (use-package projectile
   :ensure t
+  :delight '(:eval (concat " [" (projectile-project-name) "]"))
   :bind
   (:map projectile-mode-map
         ("C-c p" . projectile-command-map)))
