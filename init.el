@@ -46,7 +46,7 @@
 
 ;; load common config
 (my/load-conf '("path.el"
-                "elpa.el"
+                "init-elpa.el"
                 "common.el"
                 "org.el"
                 "flyspell.el"
