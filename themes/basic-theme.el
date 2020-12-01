@@ -47,10 +47,12 @@
    `(default ((t (:foreground ,normal :background ,background))))
    `(region ((t (:background ,alt-background))))
    `(fringe ((t (:background ,contrast-background))))
+   ;; cursor color does not matter if 256 color, since it will be override by
+   ;; terminal setting
    `(cursor ((t (:background "#d33682"))))
 
    ;; emacs interface
-   `(line-number-current-line ((t (:weight bold))))
+   `(line-number-current-line ((t (:background ,contrast-background :weight bold))))
    `(mode-line ((t (:background "grey75" :foreground "black" :box (:line-width 1 :color "grey75")))))
    `(mode-line-inactive ((t (:inverse-video nil :box (:line-width 1 :color "grey75")))))
 
