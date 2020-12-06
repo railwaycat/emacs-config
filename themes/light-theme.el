@@ -496,7 +496,7 @@ COLOR is like ”#RRGGBB”."
            (red       "#E04E49")
            (yellow    "#987816")
            (violet1   "#b751b6") ; bg
-           (violet2   "#A8289C") ; fg 
+           (violet2   "#A8289C") ; fg
            ;; Note that this is not a cons cell.
            (tty       '((type nil))))
       `(;; builtin faces
@@ -516,9 +516,6 @@ COLOR is like ”#RRGGBB”."
         (link-visited    (link ,violet2))
         (block       (nil nil ,bg-alt))
 
-        (variable-pitch () (:family "Charter"))
-        (fixed-pitch () (:family "SF Mono"))
-
         (vertical-border     (nil nil "black"))
         (lazy-highlight      (nil "black" nil nil bold))
         (highlight-fg-only-1 (nil ,blue1))
@@ -531,7 +528,7 @@ COLOR is like ”#RRGGBB”."
         (trailing-whitespace (nil nil ,red))
 
         (widget-field        (nil nil ,bg-alt))
-        
+
         ;; see also builin-config.el (Customize) where I increase line
         ;; spacing and default face.
         (custom-default        () (:family "SF Mono" :height 140))
@@ -596,9 +593,9 @@ COLOR is like ”#RRGGBB”."
         (comp-common       (nil ,violet2))
         (selection-common  (current-selection ,bg))
         (comp-mouse        (nil ,bg ,violet1))
-        
+
         ;; package faces
-        
+
         (company-tooltip                     (tooltip))
         (company-tooltip-annotation          (company-tooltip))
         (company-tooltip-annotation-selection
@@ -616,7 +613,7 @@ COLOR is like ”#RRGGBB”."
         (company-preview                     (highlight-fg-only-1))
         (company-preview-common              (company-preview))
         (company-preview-search              (company-preview))
-        
+
         (ivy-current-match                   (current-selection))
         (ivy-minibuffer-match-face-1         (nil ,bg ,green))
         (ivy-minibuffer-match-face-2         (nil ,bg ,orange))
@@ -642,7 +639,7 @@ COLOR is like ”#RRGGBB”."
         (magit-cherry-unmatched  (nil ,blue1))
         (magit-tag               (nil ,yellow))
         (magit-filename          (nil ,violet2))
-        
+
         (magit-diff-added            (nil ,green ,(overlay bg green 0.1)))
         (magit-diff-added-highlight  (nil ,green ,(overlay bg green 0.2)))
         (diff-refine-added           (nil ,green "#99ff99"))
@@ -656,11 +653,11 @@ COLOR is like ”#RRGGBB”."
 
         (magit-diff-context           (default))
         (magit-diff-context-highlight (nil ,fg ,bg-alt))
-        
+
         (magit-diff-file-heading           (default))
         (magit-diff-file-heading-highlight (magit-heading-highlight))
         (magit-diff-file-heading-selection (magit-heading-selection))
-        
+
         (magit-diff-hunk-heading
          (nil ,bg ,(overlay bg violet2 0.2)))
         (magit-diff-hunk-heading-highlight
@@ -670,11 +667,11 @@ COLOR is like ”#RRGGBB”."
         (magit-diff-hunk-region            (italic))
         ;; this also determines the hunk region boundary
         (magit-diff-lines-heading          (nil ,bg ,red))
-        
+
         (magit-section-heading           (nil ,blue1))
         (magit-section-highlight         (magit-heading-highlight))
         (magit-section-heading-selection (magit-heading-selection))
-        
+
         (magit-diffstat-added            (nil ,green))
         (magit-diffstat-removed          (nil ,red))
         (magit-dimmed                    (nil ,fg-weak))
@@ -748,26 +745,24 @@ COLOR is like ”#RRGGBB”."
         (org-document-info  (org-meta-line))
         (org-document-info-keyword (org-meta-line))
 
-        (org-verbatim         (fixed-pitch))
         (org-code             (org-verbatim))
         (org-block            ((org-verbatim block)) (:extend t))
         (org-block-begin-line ((org-block org-meta-line)))
         (org-block-end-line   ((org-block org-meta-line)))
-        (org-formula          (fixed-pitch))
         (org-quote            (nil nil ,bg-alt) (:extend t))
 
         ;; (org-table             (default))
         (org-todo              (highlight-fg-only-1))
         (org-time-grid         (nil ,yellow))
         (org-upcoming-deadline (nil ,red))
-        
+
         (helpful-heading (info-title-3))
 
         (ghelp-entry-title (info-title-2))
 
         (diff-hl-change (nil ,orange ,(overlay bg orange 0.1)))
 
-        ;; (line-number              ((fixed-pitch default)))
+        (line-number              ((nil default)))
         (line-number-current-line (nil nil ,bg-alt))
         ;; (line-number-major-tick   (line-number))
         ;; (line-number-minor-tick   (line-number))
@@ -792,7 +787,6 @@ COLOR is like ”#RRGGBB”."
 
         (rime-default-face (tooltip) (:height 160))
         (rime-highlight-candidate-face ((bold rime-default-face)))
-        (rime-code-face ((variable-pitch rime-default-face)))))))
+        (rime-code-face ((nil rime-default-face)))))))
 
 (provide-theme 'light)
-
