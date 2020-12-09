@@ -524,7 +524,7 @@ COLOR is like ”#RRGGBB”."
         (secondary-selection (nil nil ,(overlay bg blue1 0.3)))
         (isearch             (bold))
         (isearch-fail        (error))
-        (show-paren-match    (bold))
+        ;; (show-paren-match    (bold))
         (trailing-whitespace (nil nil ,red))
 
         (widget-field        (nil nil ,bg-alt))
