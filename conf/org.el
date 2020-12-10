@@ -34,13 +34,13 @@
   :bind
   ("C-c c" . org-capture)
   :config
-  (let ((org-capture-diary-file "~/Dropbox/logs/diary.org")
+  (let ((org-capture-diary-file "~/Dropbox/notes/diary.org")
         (org-capture-inbox-file "~/Dropbox/wiki/inbox.org")
         (org-capture-capture-file (if user-with-dropbox
-                                      "~/Dropbox/logs/capture.org"
+                                      "~/Dropbox/notes/capture.org"
                                     (concat user-emacs-directory "capture_akamai.org")))
         (org-capture-capture-aka-file (if user-with-dropbox
-                                          "~/Dropbox/logs/capture_akamai.org"
+                                          "~/Dropbox/notes/capture_akamai.org"
                                         (concat user-emacs-directory "capture.org"))))
     (setq org-capture-templates
           `(("d" "Diary"
@@ -72,4 +72,4 @@
   (org-log-state-notes-insert-after-drawers nil)
   :config
   (when user-with-dropbox
-    (setq org-agenda-files '("~/Dropbox/logs/diary.org"))))
+    (setq org-agenda-files '("~/Dropbox/notes/diary.org"))))
