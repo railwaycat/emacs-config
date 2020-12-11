@@ -500,7 +500,7 @@ COLOR is like ”#RRGGBB”."
            ;; Note that this is not a cons cell.
            (tty       '((type nil))))
       `(;; builtin faces
-        (default     (nil ,fg ,bg))
+        (default     (nil ,fg ,(if is-term "unspecified-bg" bg)))
         (region      (nil nil ,(overlay bg violet1 0.1)))
         (highlight   (nil ,bg ,blue2))
         (cursor      (nil "white" "black"))
@@ -515,6 +515,9 @@ COLOR is like ”#RRGGBB”."
         (vertical-border (nil ,bg-alt ,bg-alt) nil ,tty)
         (link-visited    (link ,violet2))
         (block       (nil nil ,bg-alt))
+
+        (variable-pitch () (:family "Charter"))
+        (fixed-pitch () (:family "Menlo"))
 
         (vertical-border     (nil nil "black"))
         (lazy-highlight      (nil "black" nil nil bold))
@@ -745,10 +748,12 @@ COLOR is like ”#RRGGBB”."
         (org-document-info  (org-meta-line))
         (org-document-info-keyword (org-meta-line))
 
+        (org-verbatim         (fixed-pitch))
         (org-code             (org-verbatim))
         (org-block            ((org-verbatim block)) (:extend t))
         (org-block-begin-line ((org-block org-meta-line)))
         (org-block-end-line   ((org-block org-meta-line)))
+        (org-formula          (fixed-pitch))
         (org-quote            (nil nil ,bg-alt) (:extend t))
 
         ;; (org-table             (default))
@@ -787,6 +792,6 @@ COLOR is like ”#RRGGBB”."
 
         (rime-default-face (tooltip) (:height 160))
         (rime-highlight-candidate-face ((bold rime-default-face)))
-        (rime-code-face ((nil rime-default-face)))))))
+        (rime-code-face ((variable-pitch rime-default-face)))))))
 
 (provide-theme 'light)
