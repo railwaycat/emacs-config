@@ -517,7 +517,7 @@ COLOR is like ”#RRGGBB”."
         (block       (nil nil ,bg-alt))
 
         (variable-pitch () (:family "Charter"))
-        (fixed-pitch () (:family "Menlo"))
+        (fixed-pitch () (:family "PragmataPro Mono"))
 
         (vertical-border     (nil nil "black"))
         (lazy-highlight      (nil "black" nil nil bold))
