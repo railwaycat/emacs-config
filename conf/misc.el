@@ -1,6 +1,3 @@
-(use-package yaml-mode :ensure t)
-(use-package cmake-mode :ensure t)
-
 ;; markdown mode
 (use-package markdown-mode
   :ensure t
