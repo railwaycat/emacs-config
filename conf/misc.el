@@ -29,3 +29,6 @@
 (add-hook 'lisp-interaction-mode-hook
           (lambda ()
             (setq display-line-numbers nil)))
+
+(use-package yaml-mode
+  :ensure t)
