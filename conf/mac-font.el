@@ -6,8 +6,10 @@
 ;; 苹方
 (defun my/set-font-cjk-pingfang (size)
   "Set CJK font to 苹方"
-  (dolist (charset '(han kana hangul cjk-misc symbol bopomofo))
-    (set-fontset-font t charset (font-spec :family "PingFang SC" :size size))))
+  (dolist (charset '(han hangul cjk-misc symbol bopomofo))
+    (set-fontset-font t charset (font-spec :family "PingFang SC" :size size)))
+  (set-fontset-font t 'kana
+                    (font-spec :family "YuGothic" :size size)))
 
 
 ;; 思源宋体
@@ -16,17 +18,17 @@
   (dolist (charset '(han cjk-misc symbol bopomofo))
     (set-fontset-font t charset (font-spec :family "Source Han Serif SC" :size size)))
   (set-fontset-font t 'kana
-                    (font-spec :family "Source Han Serif" :size size))
+                    (font-spec :family "YuMinCho" :size size))
   (set-fontset-font t 'hangul
                     (font-spec :family "Source Han Serif K" :size size)))
 
-;; 思源宋体
+;; 思源黑体
 (defun my/set-font-cjk-SourceHanSans (size)
   "Set CJK font to 思源黑体"
   (dolist (charset '(han cjk-misc symbol bopomofo))
     (set-fontset-font t charset (font-spec :family "Source Han Sans SC" :size size)))
   (set-fontset-font t 'kana
-                    (font-spec :family "Source Han Sans" :size size))
+                    (font-spec :family "YuGothic" :size size))
   (set-fontset-font t 'hangul
                     (font-spec :family "Source Han Sans K" :size size)))
 
@@ -36,7 +38,7 @@
   (dolist (charset '(han cjk-misc symbol bopomofo))
     (set-fontset-font t charset (font-spec :family "FZNewShuSong-Z10" :size size)))
   (set-fontset-font t 'kana
-                    (font-spec :family "Source Han Serif" :size size))
+                    (font-spec :family "YuMinCho" :size size))
   (set-fontset-font t 'hangul
                     (font-spec :family "Source Han Serif K" :size size)))
 
@@ -45,6 +47,7 @@
   (interactive)
   (set-face-attribute 'default nil :font (font-spec :name "PragmataPro Mono Liga" :size 12))
   (set-face-attribute 'fixed-pitch nil :font (font-spec :name "PragmataPro Mono" :size 12))
+  (set-face-attribute 'variable-pitch nil :font (font-spec :name "Charter" :size 12))
   (my/set-font-cjk-pingfang 12))
 
 (defun my/set-font-large ()
@@ -52,6 +55,7 @@
   (interactive)
   (set-face-attribute 'default nil :font (font-spec :name "SF Mono" :size 12))
   (set-face-attribute 'fixed-pitch nil :font (font-spec :name "SF Mono" :size 12))
+  (set-face-attribute 'variable-pitch nil :font (font-spec :name "Charter" :size 14))
   (my/set-font-cjk-xinshusong 14))
 
 ;; Emoji
