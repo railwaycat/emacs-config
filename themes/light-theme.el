@@ -516,9 +516,6 @@ COLOR is like ”#RRGGBB”."
         (link-visited    (link ,violet2))
         (block       (nil nil ,bg-alt))
 
-        (variable-pitch () (:family "Charter"))
-        (fixed-pitch () (:family "PragmataPro Mono"))
-
         (vertical-border     (nil nil "black"))
         (lazy-highlight      (nil "black" nil nil bold))
         (highlight-fg-only-1 (nil ,blue1))
