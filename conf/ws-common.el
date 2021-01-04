@@ -2,8 +2,7 @@
 (menu-bar-mode 1)
 
 ;; tool-bar off
-;; I decide to turn on tool-bar for fun
-;; (tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; scroll-bar off
 (scroll-bar-mode -1)
