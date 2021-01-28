@@ -30,5 +30,11 @@
           (lambda ()
             (setq display-line-numbers nil)))
 
+;; yaml-mode
 (use-package yaml-mode
   :ensure t)
+
+;; sh-mode (shell script)
+(use-package sh-script
+  :bind (:map sh-mode-map
+              ("C-c C-r" . nil)))
