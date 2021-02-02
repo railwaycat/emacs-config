@@ -8,8 +8,8 @@
 
 (if (eq system-type 'darwin)
     (let*
-        ((path '("/usr/local/bin"
-                 "/usr/local/opt/texinfo/bin")))
+        ((path '("/opt/local/bin"
+                 "/opt/homebrew/bin")))
       (dolist (p path)
         (add-to-list 'exec-path (expand-file-name p))
         (setenv "PATH" (concat (expand-file-name p) ":" (getenv "PATH"))))))
