@@ -7,5 +7,4 @@
   :init
   (setq c-default-style "linux")
   :config
-  (which-func-mode t)
-  (subword-mode t))
+  (which-func-mode t))

@@ -57,8 +57,14 @@
   (set-tab-width-all size))
 
 ;; paren highlight style
-(customize-set-variable 'show-paren-style 'parenthesis)
-(show-paren-mode t)
+(use-package paren
+  :custom
+  (show-paren-style 'parenthesis)
+  :hook
+  (after-init . show-paren-mode)
+  :config
+  (setq show-paren-when-point-inside-paren t
+        show-paren-when-point-in-periphery t))
 
 ;; text-mode as default mode
 (customize-set-variable 'major-mode 'text-mode)
@@ -195,6 +201,21 @@
 ;; abbrev
 (use-package abbrev
   :delight)
+
+;; so-long
+(use-package so-long
+  :config
+  (global-so-long-mode 1))
+
+;; global subword
+(use-package subword
+  :hook
+  (after-init . global-subword-mode))
+
+;; delete selected region when continue type-in
+(use-package delsel
+  :hook
+  (after-init . delete-selection-mode))
 
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
