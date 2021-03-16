@@ -51,7 +51,7 @@
              "* TODO %?" :kill-buffer t)
             ("i" "Inbox"
              plain (file ,org-capture-inbox-file)
-             "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
+             "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
             ("g" "Akamai Todo"
              entry (file+datetree ,org-capture-diary-file)
              "* TODO %? :Akamai:" :kill-buffer t)
