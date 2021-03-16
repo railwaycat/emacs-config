@@ -79,6 +79,6 @@
                   "mac-font.el")))
 
 (when (equal window-system 'x)
-  (my/load-conf '("x-font.el")))
+  (my/load-conf '("x-common.el")))
 
 (load custom-file)
