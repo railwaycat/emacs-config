@@ -33,7 +33,7 @@
   ([remap yank-pop] . counsel-yank-pop)
   ([remap swiper] . counsel-grep-or-swiper)
   ("C-c f" . counsel-rg)
-  ("C-x l" . counsel-locate)
+  ("C-x l" . counsel-fzf)
   ;; ([remap org-capture] . counsel-org-capture)
   ("<f2> i" . counsel-info-lookup-symbol)
   ("<f2> u" . counsel-unicode-char)
