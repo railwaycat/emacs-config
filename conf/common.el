@@ -91,6 +91,21 @@
 
 ;; show trailing space
 (setq-default show-trailing-whitespace t)
+(defun my/disable-trailing-mode-hook ()
+  "Disable show tail whitespace."
+  (setq show-trailing-whitespace nil))
+
+(defvar my/disable-trailing-modes
+  '(eshell-mode
+    eww-mode
+    telega-chat-mode
+    telega-root-mode))
+
+(mapc
+ (lambda (mode)
+   (add-hook (intern (concat (symbol-name mode) "-hook"))
+             'my/disable-trailing-mode-hook))
+ my/disable-trailing-modes)
 
 ;; Update buffer whenever file changes
 ;; Also revert dired buffer.
