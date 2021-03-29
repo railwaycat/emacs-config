@@ -194,8 +194,9 @@
      ("Magit" (name . "magit"))
      ("Help" (or (name . "\\*Help\\*")
                  (name . "\\*Apropos\\*")
-                 (name . "\\*info\\*"))))
-    )))
+                 (name . "\\*info\\*")))
+     ("Telega" (or (mode . telega-chat-mode)
+                   (mode . telega-root-mode)))))))
 
 ;; recentf
 (use-package recentf
