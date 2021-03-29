@@ -8,7 +8,7 @@
   ([remap yank-pop] . helm-show-kill-ring)
   ([remap bookmark-jump] . helm-filtered-bookmarks)
   ([remap find-file] . helm-find-files)
-  ("C-c o" . helm-occur)
+  ([remap isearch-forward] . helm-occur)
   ("C-c C-r" . helm-resume)
   ([remap switch-to-buffer] . helm-mini)
   :config
@@ -26,10 +26,8 @@
 ;;         ("M-," . helm-gtags-pop-stack)
 ;;         ("M-." . helm-gtags-find-tag)))
 
-(use-package helm-swoop
-  :ensure t
-  :bind
-  ([remap isearch-forward] . helm-swoop))
+(use-package wgrep-helm
+  :ensure t)
 
 (use-package helm-xref
   :ensure t
