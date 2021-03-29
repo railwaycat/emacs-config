@@ -38,3 +38,10 @@
 (use-package sh-script
   :bind (:map sh-mode-map
               ("C-c C-r" . nil)))
+
+;; nxml-mode
+(use-package nxml-mode
+  :hook
+  ;; disable flyspell for nxml because of performance issue
+  (nxml-mode . (lambda ()
+                 (flyspell-mode -1))))
