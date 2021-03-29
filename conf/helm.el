@@ -8,7 +8,7 @@
   ([remap yank-pop] . helm-show-kill-ring)
   ([remap bookmark-jump] . helm-filtered-bookmarks)
   ([remap find-file] . helm-find-files)
-  ;; ("C-c o" . helm-occur)
+  ("C-c o" . helm-occur)
   ("C-c C-r" . helm-resume)
   ([remap switch-to-buffer] . helm-mini)
   :config
@@ -29,7 +29,7 @@
 (use-package helm-swoop
   :ensure t
   :bind
-  ("C-c o" . helm-swoop))
+  ([remap isearch-forward] . helm-swoop))
 
 (use-package helm-xref
   :ensure t
