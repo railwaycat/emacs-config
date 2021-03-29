@@ -90,22 +90,9 @@
 ;; (define-key global-map (kbd "C-x k") 'kill-current-buffer)
 
 ;; show trailing space
-(setq-default show-trailing-whitespace t)
-(defun my/disable-trailing-mode-hook ()
-  "Disable show tail whitespace."
-  (setq show-trailing-whitespace nil))
-
-(defvar my/disable-trailing-modes
-  '(eshell-mode
-    eww-mode
-    telega-chat-mode
-    telega-root-mode))
-
-(mapc
- (lambda (mode)
-   (add-hook (intern (concat (symbol-name mode) "-hook"))
-             'my/disable-trailing-mode-hook))
- my/disable-trailing-modes)
+;; not globally enabled, turn to hook by mode
+;; see misc.el
+;; (setq-default show-trailing-whitespace nil)
 
 ;; Update buffer whenever file changes
 ;; Also revert dired buffer.

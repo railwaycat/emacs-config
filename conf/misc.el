@@ -14,12 +14,17 @@
   :hook
   (text-mode . visual-line-mode)
   (text-mode . flyspell-mode)
+  (text-mode . (lambda () (setq show-trailing-whitespace t)))
   :custom
   ;; better word wrapping for CJK characters
   (word-wrap-by-category t)
   ;; paragraphs
   (sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
+
+(use-package prog-mode
+  :hook
+  (prog-mode . (lambda () (setq show-trailing-whitespace t))))
 
 ;; emacs-lisp mode
 (add-hook 'emacs-lisp-mode-hook
