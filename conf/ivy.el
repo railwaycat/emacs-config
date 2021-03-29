@@ -64,6 +64,11 @@
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
+(use-package ivy-rich
+  :ensure t
+  :config
+  (ivy-rich-mode t))
+
 (use-package ivy-xref
   :ensure t
   :init
