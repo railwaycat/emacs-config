@@ -168,6 +168,7 @@
                   (name . "\\*Messages\\*")
                   (name . "\\*Customize\\*")))
      ("Helm" (name . "^\\*Helm"))
+     ("Scratch" (name . "^scratch-"))
      ("Programming" (or (derived-mode . prog-mode)
                         (mode . makefile-mode)
                         (mode . cmake-mode)
