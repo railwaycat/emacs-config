@@ -3,6 +3,8 @@
   :delight
   :init
   (require 'helm-config)
+  :custom
+  (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
@@ -10,6 +12,7 @@
   ([remap find-file] . helm-find-files)
   ([remap isearch-forward] . helm-occur)
   ("C-c C-r" . helm-resume)
+  ("C-c f" . helm-do-grep-ag)
   ([remap switch-to-buffer] . helm-mini)
   :config
   (setq helm-mode-fuzzy-match t)
@@ -34,17 +37,6 @@
   :init
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
-(use-package helm-ag
-  :ensure t
-  :init
-  (setq helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number"
-        helm-ag-success-exit-status '(0 2)))
-
-(use-package helm-rg
-  :ensure t
-  :bind
-  ("C-c f" . helm-rg))
-
 (use-package flyspell-correct-helm
   :ensure t
   :after flyspell-correct)
@@ -66,4 +58,4 @@
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c p s" . helm-projectile-rg)))
+        ("C-c p s" . helm-projectile-grep)))
