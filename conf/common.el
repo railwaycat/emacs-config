@@ -223,6 +223,7 @@
   (after-init . delete-selection-mode))
 
 ;; enable semantic mode by default
+(global-semantic-idle-scheduler-mode 1)
 (semantic-mode 1)
 
 (define-key global-map (kbd "<f5>") 'goto-line)
