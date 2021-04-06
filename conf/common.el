@@ -222,9 +222,10 @@
   :hook
   (after-init . delete-selection-mode))
 
-;; enable semantic mode by default
-(global-semantic-idle-scheduler-mode 1)
-(semantic-mode 1)
+;; semantic mode
+(use-package semantic
+  :init
+  (semantic-mode 1))
 
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
