@@ -1,10 +1,3 @@
-;; imenu-list
-(use-package imenu-list
-  :ensure t
-  :bind
-  ("C-c i" . imenu-list-smart-toggle)
-  ([f7] . imenu-list-smart-toggle))
-
 ;; session
 (use-package session
   :ensure t

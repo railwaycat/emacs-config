@@ -34,6 +34,7 @@
   ([remap swiper] . counsel-grep-or-swiper)
   ("C-c f" . counsel-rg)
   ("C-x l" . counsel-fzf)
+  ("C-c k" . counsel-semantic-or-imenu)
   ;; ([remap org-capture] . counsel-org-capture)
   ("<f2> i" . counsel-info-lookup-symbol)
   ("<f2> u" . counsel-unicode-char)

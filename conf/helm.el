@@ -13,6 +13,7 @@
   ([remap isearch-forward] . helm-occur)
   ("C-c C-r" . helm-resume)
   ("C-c f" . helm-do-grep-ag)
+  ("C-c k" . helm-semantic-or-imenu)
   ([remap switch-to-buffer] . helm-mini)
   :config
   (setq helm-mode-fuzzy-match t)

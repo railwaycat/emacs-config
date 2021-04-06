@@ -222,6 +222,9 @@
   :hook
   (after-init . delete-selection-mode))
 
+;; enable semantic mode by default
+(semantic-mode 1)
+
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
