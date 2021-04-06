@@ -51,7 +51,7 @@
                 "org.el"
                 "flyspell.el"
                 ;; "flycheck.el"
-                "ivy.el"
+                "helm.el"
                 "company.el"
                 "hippie.el"
                 "c.el"
