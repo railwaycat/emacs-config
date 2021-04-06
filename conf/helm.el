@@ -16,6 +16,7 @@
   ([remap switch-to-buffer] . helm-mini)
   :config
   (setq helm-mode-fuzzy-match t)
+  (setq helm-split-window-in-side-p t)
   (helm-mode 1))
 
 ;; (use-package helm-gtags
