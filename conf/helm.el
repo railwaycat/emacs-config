@@ -15,6 +15,8 @@
   ("C-c f" . helm-do-grep-ag)
   ("C-c k" . helm-semantic-or-imenu)
   ([remap switch-to-buffer] . helm-mini)
+  (:map minibuffer-local-map
+        ("C-c C-l" . helm-minibuffer-history))
   :config
   (setq helm-mode-fuzzy-match t)
   (setq helm-split-window-in-side-p t)
