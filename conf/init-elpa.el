@@ -1,5 +1,8 @@
 ;; use http for gnu repo as a workaround
 (setq package-enable-at-startup nil)
+(when (< emacs-major-version 27)
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+  )
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ;; ("melpa stable" . "https://stable.melpa.org/packages/")

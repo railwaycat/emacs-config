@@ -208,9 +208,10 @@
   :delight)
 
 ;; so-long
-(use-package so-long
-  :config
-  (global-so-long-mode 1))
+(when (>= emacs-major-version 27)
+  (use-package so-long
+    :config
+    (global-so-long-mode 1)))
 
 ;; global subword
 (use-package subword
