@@ -9,5 +9,6 @@
     :ensure t
     :config
     (pyim-cangjie5-enable))
+  (setq pyim-page-tooltip 'minibuffer)
   (setq default-input-method "pyim")
   (setq pyim-default-scheme 'cangjie))
