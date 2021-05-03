@@ -35,7 +35,7 @@
                                 (>= (length c) 15)))))
              company-transformers)
   :custom
-  (company-idle-delay 0.2)
+  (company-idle-delay 0.6)
   (company-show-numbers t)
   ;; cancel selections by typing non-matching characters
   (company-require-match 'never)
