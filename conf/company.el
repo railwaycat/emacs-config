@@ -45,15 +45,15 @@
   (company-dabbrev-downcase nil)
   (company-tooltip-align-annotations t)
   (company-minimum-prefix-length 2)
-  (company-backends '(company-semantic
-                      company-cmake
+  (company-backends '(company-cmake
                       (company-capf
                        :with company-dabbrev-code)
                       company-files
                       (company-dabbrev-code
                        company-etags
                        company-keywords)
-                      company-dabbrev)))
+                      company-dabbrev
+                      company-semantic)))
 
 (use-package company-statistics
   :ensure t

@@ -225,6 +225,11 @@
 
 ;; semantic mode
 (use-package semantic
+  :hook
+  (after-init . (lambda ()
+                (dolist (x (default-value 'completion-at-point-functions))
+                  (when (string-prefix-p "semantic-" (symbol-name x))
+                    (remove-hook 'completion-at-point-functions x)))))
   :init
   (semantic-mode 1))
 
