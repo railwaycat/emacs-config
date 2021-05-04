@@ -5,10 +5,10 @@
   :ensure t
   :demand t
   :config
-  (use-package pyim-cangjie5dict
+  (use-package pyim-cangjiedict
     :ensure t
     :config
-    (pyim-cangjie5-enable))
+    (pyim-cangjie5dict-enable))
   (setq pyim-page-tooltip 'minibuffer)
   (setq default-input-method "pyim")
   (setq pyim-default-scheme 'cangjie))
