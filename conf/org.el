@@ -14,8 +14,8 @@
          1))
   (org-support-shift-select t)
   (org-startup-folded nil)
-  (org-todo-keywords '((sequence "TODO(t)" "DOING(i)" "|" "DONE(d@)")
-        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+  (org-todo-keywords '((sequence "TODO(t)" "DOING(i@)" "|" "DONE(d@)")
+        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "ABORT(a@/!)")))
   (org-log-done 'time)
   (org-log-into-drawer t)
   (org-log-state-notes-insert-after-drawers nil)
@@ -48,13 +48,13 @@
              entry (file+datetree ,org-capture-diary-file)
              "* %U\n%?%i" :kill-buffer t)
             ("t" "Todo"
-             entry (file+datetree ,org-capture-track-file)
+             entry (file ,org-capture-track-file)
              "* TODO %?" :kill-buffer t)
             ("i" "Inbox"
              plain (file ,org-capture-inbox-file)
              "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
             ("g" "Akamai Todo"
-             entry (file+datetree ,org-capture-track-file)
+             entry (file ,org-capture-track-file)
              "* TODO %? :Akamai:" :kill-buffer t)
             ("c" "Capture"
              plain (file ,org-capture-capture-file)
