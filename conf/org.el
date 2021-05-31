@@ -36,24 +36,25 @@
   :config
   (let ((org-capture-diary-file "~/Dropbox/notes/diary.org")
         (org-capture-inbox-file "~/Dropbox/wiki/inbox.org")
+        (org-capture-track-file "~/Dropbox/notes/track.org")
         (org-capture-capture-file (if user-with-dropbox
                                       "~/Dropbox/notes/capture.org"
-                                    (concat user-emacs-directory "capture_akamai.org")))
+                                    (concat user-emacs-directory "capture.org")))
         (org-capture-capture-aka-file (if user-with-dropbox
                                           "~/Dropbox/notes/capture_akamai.org"
-                                        (concat user-emacs-directory "capture.org"))))
+                                        (concat user-emacs-directory "capture_akamai.org"))))
     (setq org-capture-templates
           `(("d" "Diary"
              entry (file+datetree ,org-capture-diary-file)
              "* %U\n%?%i" :kill-buffer t)
             ("t" "Todo"
-             entry (file+datetree ,org-capture-diary-file)
+             entry (file+datetree ,org-capture-track-file)
              "* TODO %?" :kill-buffer t)
             ("i" "Inbox"
              plain (file ,org-capture-inbox-file)
              "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
             ("g" "Akamai Todo"
-             entry (file+datetree ,org-capture-diary-file)
+             entry (file+datetree ,org-capture-track-file)
              "* TODO %? :Akamai:" :kill-buffer t)
             ("c" "Capture"
              plain (file ,org-capture-capture-file)
@@ -72,4 +73,4 @@
   (org-log-state-notes-insert-after-drawers nil)
   :config
   (when user-with-dropbox
-    (setq org-agenda-files '("~/Dropbox/notes/diary.org"))))
+    (setq org-agenda-files '("~/Dropbox/notes/track.org"))))
