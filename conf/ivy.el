@@ -5,7 +5,7 @@
   :delight
   :hook (after-init . ivy-mode)
   :bind
-  ("C-c C-r" . ivy-resume)
+  ("C-c v" . ivy-resume)
   :custom
   (ivy-count-format "%d/%d ")          ;; better counts
   (ivy-use-virtual-buffers t)          ;; show recent files
