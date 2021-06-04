@@ -45,18 +45,19 @@
 (my/ensure-file-exists custom-file)
 
 ;; load common config
-(my/load-conf '("path.el"
+(my/load-conf '(
+                "path.el"
                 "init-elpa.el"
                 "common.el"
-                "org.el"
                 "flyspell.el"
-                ;; "flycheck.el"
                 "ivy.el"
                 "company.el"
+                "lsp.el"
                 "hippie.el"
-                "c.el"
-                "misc.el"
+                "pyim.el"
+                "org.el"
                 "magit.el"
+                "modes.el"
                 "utils.el"
                 "my.el"
                 "theme.el"

@@ -45,8 +45,7 @@
   (company-dabbrev-downcase nil)
   (company-tooltip-align-annotations t)
   (company-minimum-prefix-length 2)
-  (company-backends '(company-cmake
-                      (company-capf
+  (company-backends '((company-capf
                        :with company-dabbrev-code)
                       company-files
                       (company-dabbrev-code
