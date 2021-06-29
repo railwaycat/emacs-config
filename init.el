@@ -50,7 +50,7 @@
                 "init-elpa.el"
                 "common.el"
                 "flyspell.el"
-                "ivy.el"
+                "helm.el"
                 "company.el"
                 "lsp.el"
                 "hippie.el"
