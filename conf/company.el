@@ -49,7 +49,7 @@
                        :with company-dabbrev-code)
                       company-files
                       (company-dabbrev-code
-                       company-etags
+                       ;; company-etags
                        company-keywords)
                       company-dabbrev
                       company-semantic)))
