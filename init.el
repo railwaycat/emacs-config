@@ -52,7 +52,6 @@
                 "flyspell.el"
                 "helm.el"
                 "company.el"
-                "lsp.el"
                 "hippie.el"
                 "pyim.el"
                 "org.el"
