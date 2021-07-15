@@ -729,18 +729,21 @@ COLOR is like ”#RRGGBB”."
 
         ;; If we use the same color, it’s hard to distinguish between
         ;; levels...
-        (outline-1 (info-title-2))
-        (outline-2 (info-title-3 ,(brighten fg 0.3)))
-        (outline-3 (info-title-4))
-        (outline-4 (outline-3 ,(brighten fg 0.3)))
+        ;; (outline-1 (info-title-2))
+        ;; (outline-2 (info-title-3 ,(brighten fg 0.3)))
+        (outline-2 (nil ,(brighten fg 0.3)))
+        ;; (outline-3 (info-title-4))
+        ;; (outline-4 (outline-3 ,(brighten fg 0.3)))
+        (outline-4 (nil ,(brighten fg 0.3)))
         (outline-5 (outline-3))
         (outline-6 (outline-4))
         (outline-7 (outline-3))
         (outline-8 (outlint-4))
 
-        (org-level-1 (info-title-3))
-        (org-level-2 (info-title-4 ,(brighten fg 0.3)) (:height 1.1))
-        (org-document-title (info-title-2))
+        ;; (org-level-1 (info-title-3))
+        ;; (org-level-2 (info-title-4 ,(brighten fg 0.3)) (:height 1.1))
+        (org-level-2 (nil ,(brighten fg 0.3)))
+        ;; (org-document-title (info-title-2))
         (org-meta-line (shadow nil nil nil nil italic))
         (org-document-info  (org-meta-line))
         (org-document-info-keyword (org-meta-line))
