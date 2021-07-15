@@ -66,7 +66,7 @@
       (require 'helm-files)
       (helm-grep-ag project-root arg)))
   :bind
-  ("C-c j". helm-projectile-ripgrep)
+  ;; ("C-c j". helm-projectile-ripgrep)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c p s" . helm-projectile-grep)))
+        ("C-c p s" . helm-projectile-ripgrep)))
