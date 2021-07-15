@@ -13,3 +13,7 @@
 
 (use-package ccls
   :ensure t)
+
+;; rust
+;; (use-package rustic
+;;   :ensure t)

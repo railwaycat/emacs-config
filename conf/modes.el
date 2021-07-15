@@ -63,6 +63,5 @@
   (nxml-mode . (lambda ()
                  (flyspell-mode -1))))
 
-;; rust
-(use-package rustic
+(use-package rust-mode
   :ensure t)
