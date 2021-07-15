@@ -13,4 +13,4 @@
   :requires flyspell
   :bind
   (:map flyspell-mode-map
-        ("M-p" . flyspell-correct-wrapper)))
+        ("M-n" . flyspell-correct-wrapper)))
