@@ -531,7 +531,7 @@ COLOR is like ”#RRGGBB”."
 
         ;; see also builin-config.el (Customize) where I increase line
         ;; spacing and default face.
-        (custom-default        () (:family "SF Mono" :height 140))
+        ;; (custom-default        () (:family "SF Mono" :height 140))
         (custom-button
          (custom-default ,(brighten fg 0.2) ,bg-alt)
          (:box (:line-width 3 :color ,bg-alt)))
@@ -740,7 +740,7 @@ COLOR is like ”#RRGGBB”."
 
         (org-level-1 (info-title-3))
         (org-level-2 (info-title-4 ,(brighten fg 0.3)) (:height 1.1))
-        (org-document-title (info-title-1))
+        (org-document-title (info-title-2))
         (org-meta-line (shadow nil nil nil nil italic))
         (org-document-info  (org-meta-line))
         (org-document-info-keyword (org-meta-line))

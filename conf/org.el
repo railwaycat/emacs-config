@@ -3,7 +3,7 @@
   ("C-c l" . org-store-link)
   ("C-c b" . org-switchb)
   :custom-face
-  (org-document-title ((t (:height 1.25 :weight bold))))
+  ;; (org-document-title ((t (:height 1 :weight bold))))
   :custom
   (org-emphasis-regexp-components
    ;; markup 记号前后允许中文
