@@ -59,7 +59,14 @@
   :init
   (projectile-mode 1)
   (helm-projectile-on)
+  (defun helm-projectile-ripgrep (arg)
+    "Search projectile project with ripgrep"
+    (interactive "P")
+    (let ((project-root (or (projectile-project-root) (error "You're not in a project"))))
+      (require 'helm-files)
+      (helm-grep-ag project-root arg)))
   :bind
+  ("C-c j". helm-projectile-ripgrep)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
         ("C-c p s" . helm-projectile-grep)))
