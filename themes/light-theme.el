@@ -625,6 +625,8 @@ COLOR is like ”#RRGGBB”."
         (ivy-remote                          (default))
         (ivy-org                             (default))
 
+        (helm-candidate-number (nil ,red))
+
         (magit-heading-highlight (nil nil ,bg-alt))
         (magit-heading-selection (nil ,bg ,(overlay bg orange 0.8)))
         (magit-bisect-bad        (nil ,red))
