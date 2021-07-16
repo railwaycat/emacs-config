@@ -31,8 +31,14 @@
   :defer t
   :init
   (require 'citre-config)
+  (require 'thingatpt)
+  (defun citre-peek+ ()
+    (interactive)
+    (if (thing-at-point 'symbol)
+        (citre-peek)
+      (citre-peek-restore)))
   :bind
-  ("M-p" . citre-peek)
+  ("M-p" . citre-peek+)
   :config
   (setq
    ;; Set these if readtags/ctags is not in your path.
