@@ -5,6 +5,7 @@
   (require 'helm-config)
   :custom
   (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+  (helm-inherit-input-method nil)
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
