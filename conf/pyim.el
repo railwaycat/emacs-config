@@ -5,10 +5,11 @@
   :bind
   ([remap forward-word] . pyim-forward-word)
   ([remap backward-word] . pyim-backward-word)
+  ("M-j" . pyim-convert-string-at-point)
   :config
   (setq default-input-method "pyim")
   (setq pyim-page-tooltip 'minibuffer)
-  (setq pyim-page-length 8)
+  (setq pyim-page-length 9)
   ;; 探针设置
   (setq-default pyim-english-input-switch-functions
                 '(pyim-probe-auto-english
