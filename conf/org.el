@@ -77,16 +77,31 @@
 
 (use-package org-roam
   :ensure t
-  :custom
+  :init
+  (setq org-roam-v2-ack t)
   (if user-with-dropbox
-      (org-roam-directory (file-truename "~/Dropbox/roam"))
-    (org-roam-directory (file-truename "~/.roam")))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today))
+      (setq org-roam-directory (file-truename "~/Dropbox/roam"))
+    (setq org-roam-directory (concat user-emacs-directory "roam")))
+  :bind
+  (("C-c n l" . org-roam-buffer-toggle)
+   ("C-c n f" . org-roam-node-find)
+   ("C-c n g" . org-roam-graph)
+   ("C-c n i" . org-roam-node-insert)
+   ("C-c n c" . org-roam-capture)
+   ;; Dailies
+   ("C-c n j" . org-roam-dailies-capture-today))
   :config
   (org-roam-setup))
+;; only use deft for org roam
+(use-package deft
+  :ensure t
+  :bind
+  ("C-c n d" . deft)
+  :config
+  (setq deft-extensions '("org" "md" "markdown" "txt")
+        deft-markdown-mode-title-level 1
+        deft-default-extension "md"
+        deft-recursive t)
+  (if user-with-dropbox
+      (setq deft-directory "~/Dropbox/roam")
+    (setq deft-directory (concat user-emacs-directory "roam"))))

@@ -55,7 +55,6 @@
                 "hippie.el"
                 "pyim.el"
                 "org.el"
-                "deft.el"
                 "magit.el"
                 "modes.el"
                 "utils.el"
