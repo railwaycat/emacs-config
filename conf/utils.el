@@ -64,7 +64,8 @@
         ;; deft-text-mode 'org-mode
         deft-recursive t
         deft-use-filename-as-title t
-        deft-use-filter-string-for-filename t)
+        deft-use-filter-string-for-filename t
+        deft-auto-save-interval -1.0) ;; disable autosave
   (if user-with-dropbox
       (setq deft-directory (file-truename "~/Dropbox/notes"))
     (setq deft-directory (file-truename "~/notes"))))
