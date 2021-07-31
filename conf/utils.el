@@ -52,3 +52,19 @@
    ;; See the "Create tags file" section above to know these options
    citre-use-project-root-when-creating-tags t
    citre-prompt-language-for-ctags-command t))
+
+(use-package deft
+  :ensure t
+  :bind
+  ("C-c d" . deft)
+  :config
+  (setq deft-extensions '("org" "md" "markdown" "txt")
+        ;; deft-markdown-mode-title-level 1
+        deft-default-extension "org"
+        ;; deft-text-mode 'org-mode
+        deft-recursive t
+        deft-use-filename-as-title t
+        deft-use-filter-string-for-filename t)
+  (if user-with-dropbox
+      (setq deft-directory (file-truename "~/Dropbox/notes"))
+    (setq deft-directory (file-truename "~/notes"))))
