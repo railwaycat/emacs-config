@@ -3,8 +3,8 @@
   :ensure t
   :demand t
   :bind
-  ([remap forward-word] . pyim-forward-word)
-  ([remap backward-word] . pyim-backward-word)
+  ;; ([remap forward-word] . pyim-forward-word)
+  ;; ([remap backward-word] . pyim-backward-word)
   ("M-j" . pyim-convert-string-at-point)
   :config
   (setq default-input-method "pyim")
