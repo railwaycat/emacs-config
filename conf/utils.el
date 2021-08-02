@@ -69,3 +69,7 @@
   (if user-with-dropbox
       (setq deft-directory (file-truename "~/Dropbox/notes"))
     (setq deft-directory (file-truename "~/notes"))))
+
+;; buffer move
+(use-package buffer-move
+  :ensure t)
