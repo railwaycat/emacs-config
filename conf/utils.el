@@ -53,7 +53,8 @@
    citre-default-create-tags-file-location 'global-cache
    ;; See the "Create tags file" section above to know these options
    citre-use-project-root-when-creating-tags t
-   citre-prompt-language-for-ctags-command t))
+   citre-prompt-language-for-ctags-command t
+   citre-peek-fill-fringe nil))
 
 (use-package deft
   :ensure t
