@@ -39,6 +39,8 @@
       (citre-peek-restore)))
   :bind
   ("M-p" . citre-peek+)
+  :custom
+  (citre-auto-enable-citre-mode-modes '(prog-mode))
   :config
   (setq
    ;; Set these if readtags/ctags is not in your path.
