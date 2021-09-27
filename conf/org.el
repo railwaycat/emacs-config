@@ -37,6 +37,7 @@
   (let ((org-capture-diary-file "~/Dropbox/notes/diary.org")
         (org-capture-inbox-file "~/Dropbox/wiki/inbox.org")
         (org-capture-track-file "~/Dropbox/notes/track.org")
+        (org-capture-worklog-file "~/Dropbox/notes/worklog.org")
         (org-capture-capture-file (if user-with-dropbox
                                       "~/Dropbox/notes/capture.org"
                                     (concat user-emacs-directory "capture.org")))
@@ -46,20 +47,20 @@
     (setq org-capture-templates
           `(("d" "Diary"
              entry (file+datetree ,org-capture-diary-file)
-             "* %U\n%?%i" :kill-buffer t)
+             "* %U\n%?" :kill-buffer t)
+            ("w" "Worklog"
+             entry (file+datetree ,org-capture-worklog-file)
+             "* %U - %^{heading} %^g\n%?")
             ("t" "Todo"
              entry (file ,org-capture-track-file)
-             "* TODO %?" :kill-buffer t)
-            ("i" "Inbox"
+             "* TODO %? %^g" :kill-buffer t)
+            ("e" "Inbox"
              plain (file ,org-capture-inbox-file)
              "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
-            ("g" "Akamai Todo"
-             entry (file ,org-capture-track-file)
-             "* TODO %? :Akamai:" :kill-buffer t)
             ("c" "Capture"
              plain (file ,org-capture-capture-file)
              "%?%i" :kill-buffer t :empty-lines 1)
-            ("a" "Akamai Snippet"
+            ("a" "Akamai Capture"
              plain (file ,org-capture-capture-aka-file)
              "%?%i" :kill-buffer t :empty-lines 1)))))
 
