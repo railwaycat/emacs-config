@@ -39,6 +39,8 @@
       (citre-peek-restore)))
   :bind
   ("M-p" . citre-peek+)
+  :custom
+  (citre-auto-enable-citre-mode-modes '(prog-mode))
   :config
   (setq
    ;; Set these if readtags/ctags is not in your path.
@@ -51,7 +53,8 @@
    citre-default-create-tags-file-location 'global-cache
    ;; See the "Create tags file" section above to know these options
    citre-use-project-root-when-creating-tags t
-   citre-prompt-language-for-ctags-command t))
+   citre-prompt-language-for-ctags-command t
+   citre-peek-fill-fringe nil))
 
 (use-package deft
   :ensure t
