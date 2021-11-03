@@ -23,7 +23,8 @@
 (use-package rg
   :ensure t
   :bind
-  ("C-c g" . rg-dwim))
+  ("C-c g" . rg-dwim)
+  ("C-c G" . rg))
 
 ;; citre/ctags
 (use-package citre
