@@ -45,6 +45,9 @@
    'counsel-find-file
    '(("j" find-file-other-window "other window")
      ("f" find-file-other-frame "other frame")
+     ("g" (lambda (path)
+            (interactive)
+            (counsel-rg "" (file-name-directory path))) "grep")
      ("b" counsel-find-file-cd-bookmark-action "cd bookmark")
      ("x" counsel-find-file-extern "open externally")
      ("r" counsel-find-file-as-root "open as root")
