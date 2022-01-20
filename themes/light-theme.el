@@ -770,7 +770,7 @@ COLOR is like ”#RRGGBB”."
         (diff-hl-change (nil ,orange ,(overlay bg orange 0.1)))
 
         (line-number              ((nil default)))
-        (line-number-current-line (nil nil ,bg-alt))
+        (line-number-current-line (nil nil ,bg-alt nil bold))
         ;; (line-number-major-tick   (line-number))
         ;; (line-number-minor-tick   (line-number))
 
