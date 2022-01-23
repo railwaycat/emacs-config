@@ -19,7 +19,11 @@
   (org-log-done 'time)
   (org-log-into-drawer t)
   (org-log-state-notes-insert-after-drawers nil)
-  (org-adapt-indentation nil))
+  (org-adapt-indentation nil)
+  :config
+  (setq
+   org-edit-src-content-indentation 0
+   org-src-tab-acts-natively t))
 
 (use-package ob
   :config
