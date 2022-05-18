@@ -52,6 +52,9 @@
           `(("d" "Diary"
              entry (file+datetree ,org-capture-diary-file)
              "* %U\n%?" :kill-buffer t)
+            ("D" "Diary"
+             entry (file+datetree ,org-capture-diary-file)
+             "* %u\n%?" :kill-buffer t)
             ("W" "Worklog"
              entry (file+datetree ,org-capture-worklog-file)
              "* %U - %^{heading} %^g\n%?")
