@@ -55,9 +55,12 @@
             ("D" "Diary"
              entry (file+datetree ,org-capture-diary-file)
              "* %u\n%?" :kill-buffer t)
+            ;; ("W" "Worklog"
+            ;;  entry (file+datetree ,org-capture-worklog-file)
+            ;;  "* %U - %^{heading} %^g\n%?")
             ("W" "Worklog"
              entry (file+datetree ,org-capture-worklog-file)
-             "* %U - %^{heading} %^g\n%?")
+             "* %u\n%?")
             ("w" "Worklog"
              entry (file+datetree ,org-capture-worklog-file)
              "* %U - %^{heading}\n%?")
