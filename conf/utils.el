@@ -77,3 +77,14 @@
 ;; buffer move
 (use-package buffer-move
   :ensure t)
+
+;; xref
+(use-package xref
+  :init
+  (setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
+  ;; configured in consult
+  ;; (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+  ;; (setq xref-show-xrefs-function #'xref-show-definitions-buffer) ; for grep and the like
+  ;; (setq xref-file-name-display 'project-relative)
+  (setq xref-search-program 'ripgrep)
+  )
