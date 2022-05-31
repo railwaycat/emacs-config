@@ -88,3 +88,14 @@
   ;; (setq xref-file-name-display 'project-relative)
   (setq xref-search-program 'ripgrep)
   )
+
+;; Dashboard
+(use-package dashboard
+  :ensure t
+  :init
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
+        dashboard-items '((recents . 5)
+                          (bookmarks . 7)
+                          (projects . 5)))
+  :config
+  (dashboard-setup-startup-hook))

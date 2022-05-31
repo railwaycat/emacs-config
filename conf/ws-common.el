@@ -24,10 +24,11 @@
 (add-to-list 'default-frame-alist '(width . 90))
 
 ;; show bookmark instead of startup message when has Dropbox
-(when user-with-dropbox
-  (setq initial-buffer-choice (lambda ()
-                                (list-bookmarks)
-                                (get-buffer "*Bookmark List*"))))
+;; disable this setting, switch to Dashboard
+;; (when user-with-dropbox
+;;   (setq initial-buffer-choice (lambda ()
+;;                                 (list-bookmarks)
+;;                                 (get-buffer "*Bookmark List*"))))
 
 ;; confirm when exit
 (setq confirm-kill-emacs 'y-or-n-p)
