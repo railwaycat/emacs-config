@@ -94,6 +94,7 @@
   :ensure t
   :init
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
+        dashboard-startup-banner (concat user-emacs-directory "logo1.png")
         dashboard-items '((recents . 5)
                           (bookmarks . 7)
                           (projects . 5)))
