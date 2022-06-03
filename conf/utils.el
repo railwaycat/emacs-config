@@ -98,5 +98,12 @@
         dashboard-items '((recents . 5)
                           (bookmarks . 7)
                           (projects . 5)))
+  :bind
+  ("C-c C-d" . (lambda ()
+                 (interactive)
+                 (switch-to-buffer dashboard-buffer-name)
+                 (dashboard-insert-startupify-lists)
+                 ;; (dashboard-refresh-buffer)
+                 (delete-other-windows)))
   :config
   (dashboard-setup-startup-hook))
