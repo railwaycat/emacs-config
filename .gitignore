@@ -1,7 +1,7 @@
 *
 !.gitignore
 !README.md
-!logo*.png
+!logo*.*
 !conf
 !conf/**
 !init.el

@@ -93,11 +93,13 @@
 (use-package dashboard
   :ensure t
   :init
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
-        dashboard-startup-banner (concat user-emacs-directory "logo1.png")
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
         dashboard-items '((recents . 5)
                           (bookmarks . 7)
                           (projects . 5)))
+  (if (window-system)
+      (setq dashboard-startup-banner (concat user-emacs-directory "logo1.png"))
+    (setq dashboard-startup-banner (concat user-emacs-directory "logo3.txt")))
   :bind
   ("C-c C-d" . (lambda ()
                  (interactive)
