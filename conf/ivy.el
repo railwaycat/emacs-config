@@ -29,10 +29,18 @@
   :ensure t
   :delight
   :hook (ivy-mode . counsel-mode)
+  :init
+  (defun my/ivy-with-thing-at-point (cmd)
+    (let ((ivy-initial-inputs-alist
+           (list
+            (cons cmd (substring-no-properties (thing-at-point 'symbol))))))
+      (funcall cmd)))
   :bind
   ([remap yank-pop] . counsel-yank-pop)
   ([remap swiper] . counsel-grep-or-swiper)
-  ("C-c f" . counsel-rg)
+  ("C-c f" . (lambda ()
+                (interactive)
+                (my/ivy-with-thing-at-point 'counsel-rg)))
   ("C-x l" . counsel-fzf)
   ("C-c k" . counsel-semantic-or-imenu)
   ;; ([remap org-capture] . counsel-org-capture)
