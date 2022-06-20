@@ -49,16 +49,16 @@
                                           "~/Dropbox/notes/capture_akamai.org"
                                         (concat user-emacs-directory "capture_akamai.org"))))
     (setq org-capture-templates
-          `(("d" "Diary"
+          `(("d" "Diary - timestamp"
              entry (file+datetree ,org-capture-diary-file)
              "* %U\n%?" :kill-buffer t)
-            ("D" "Diary"
+            ("D" "Diary - Day"
              entry (file+datetree ,org-capture-diary-file)
              "* %u\n%?" :kill-buffer t)
-            ("W" "Worklog"
+            ("W" "Worklog - Day"
              entry (file+datetree ,org-capture-worklog-file)
              "* %u\n%?")
-            ("w" "Worklog"
+            ("w" "Worklog - timestamp"
              entry (file+datetree ,org-capture-worklog-file)
              "* %U - %^{heading} %^g\n%?")
             ("t" "Todo"
