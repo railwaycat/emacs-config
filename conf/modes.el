@@ -47,10 +47,6 @@
           (lambda ()
             (setq display-line-numbers nil)))
 
-;; yaml-mode
-(use-package yaml-mode
-  :ensure t)
-
 ;; sh-mode (shell script)
 ;; (use-package sh-script
 ;;   :bind (:map sh-mode-map
@@ -62,6 +58,3 @@
   ;; disable flyspell for nxml because of performance issue
   (nxml-mode . (lambda ()
                  (flyspell-mode -1))))
-
-(use-package rust-mode
-  :ensure t)
