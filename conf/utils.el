@@ -96,7 +96,9 @@
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
         dashboard-items '((recents . 5)
                           (bookmarks . 7)
-                          (projects . 5)))
+                          (projects . 5))
+        dashboard-banner-logo-title "C-x C-c to exit Emacs"
+        dashboard-set-footer nil)
   (if (window-system)
       (setq dashboard-startup-banner (concat user-emacs-directory "logo1.png"))
     (setq dashboard-startup-banner (concat user-emacs-directory "logo3.txt")))
