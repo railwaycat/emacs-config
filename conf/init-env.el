@@ -1,3 +1,10 @@
+;;; init-env.el --- ENV setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 (let*
     ((path '("~/.bin"
              "~/.cargo/bin")))
@@ -14,4 +21,6 @@
         (add-to-list 'exec-path (expand-file-name p))
         (setenv "PATH" (concat (expand-file-name p) ":" (getenv "PATH"))))))
 
-(add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
+
+(provide 'init-env)
+;;; init-env.el ends here

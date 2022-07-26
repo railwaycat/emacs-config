@@ -1,8 +1,15 @@
-(use-package smex :ensure t)
+;;; init-ivy.el --- ivy setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
+(use-package smex)
+
 
 (use-package ivy
-  :ensure t
-  :delight
+  :diminish
   :hook (after-init . ivy-mode)
   :bind
   ("C-c v" . ivy-resume)
@@ -17,32 +24,25 @@
   (ivy-more-chars-alist '((counsel-grep . 2) (counsel-rg . 2) (t . 3)))
   (enable-recursive-minibuffers t))
 
+
 (use-package swiper
-  :ensure t
   :bind
   ([remap isearch-forward] . swiper-isearch)
   ("C-c o" . swiper)
   (:map ivy-minibuffer-map
         ("C-s" . swiper)))
 
+
 (use-package counsel
-  :ensure t
-  :delight
+  :diminish
   :hook (ivy-mode . counsel-mode)
-  :init
-  (defun my/ivy-with-thing-at-point (cmd)
-    (let ((ivy-initial-inputs-alist
-           (list
-            (cons cmd (substring-no-properties (thing-at-point 'symbol))))))
-      (funcall cmd)))
   :bind
   ([remap yank-pop] . counsel-yank-pop)
   ([remap swiper] . counsel-grep-or-swiper)
-  ("C-c f" . (lambda ()
-                (interactive)
-                (my/ivy-with-thing-at-point 'counsel-rg)))
+  ("C-c f" . counsel-rg)  ;; M-n to fill in string under corsur
   ("C-x l" . counsel-fzf)
   ("C-c k" . counsel-semantic-or-imenu)
+  ("M-Y" . counsel-yank-pop)
   ;; ([remap org-capture] . counsel-org-capture)
   ("<f2> i" . counsel-info-lookup-symbol)
   ("<f2> u" . counsel-unicode-char)
@@ -77,8 +77,8 @@
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
+
 (use-package ivy-rich
-  :ensure t
   :after counsel
   :config
   (setq ivy-rich-path-style 'abbrev
@@ -119,28 +119,27 @@
              (:face font-lock-comment-face))))))
   (ivy-rich-mode t))
 
+
 (use-package ivy-xref
-  :ensure t
   :init
   (when (>= emacs-major-version 27)
     (setq xref-show-definitions-function #'ivy-xref-show-defs))
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
+
 (use-package flyspell-correct-ivy
-  :ensure t
   :after flyspell-correct)
 
-(use-package projectile
-  :ensure t
-  :delight '(:eval (concat " [" (projectile-project-name) "]"))
-  :bind
-  (:map projectile-mode-map
-        ("C-c p" . projectile-command-map)))
+
 (use-package counsel-projectile
-  :ensure t
+  :after projectile
   :init
   (counsel-projectile-mode 1)
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . counsel-projectile)
         ("C-c p s" . counsel-projectile-rg)))
+
+
+(provide 'init-ivy)
+;;; init-ivy.el ends here

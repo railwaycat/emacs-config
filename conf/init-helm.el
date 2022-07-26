@@ -1,6 +1,12 @@
+;;; init-helm.el --- helm setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 (use-package helm
-  :ensure t
-  :delight
+  :diminish
   :init
   (require 'helm-config)
   :custom
@@ -24,7 +30,6 @@
   (helm-mode 1))
 
 ;; (use-package helm-gtags
-;;   :ensure t
 ;;   :after helm
 ;;   :init
 ;;   (setq helm-gtags-prefix-key "\C-ct"
@@ -34,33 +39,23 @@
 ;;         ("M-," . helm-gtags-pop-stack)
 ;;         ("M-." . helm-gtags-find-tag)))
 
-(use-package wgrep-helm
-  :ensure t)
+(use-package wgrep-helm)
 
 (use-package helm-xref
-  :ensure t
   :init
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
 (use-package flyspell-correct-helm
-  :ensure t
   :after flyspell-correct)
 
-(use-package projectile
-  :ensure t
-  :delight '(:eval (concat " [" (projectile-project-name) "]"))
-  :bind
-  (:map projectile-mode-map
-        ("C-c p" . projectile-command-map)))
 (use-package helm-projectile
-  :ensure t
   :init
-  (projectile-mode 1)
   (helm-projectile-on)
   (defun helm-grep-ag-projectile (arg)
     "Search projectile project with ripgrep"
     (interactive "P")
-    (let ((project-root (or (projectile-project-root) (error "You're not in a project"))))
+    (let ((project-root (or (projectile-project-root)
+                            (error "You're not in a project"))))
       (require 'helm-files)
       (helm-grep-ag project-root arg)))
   :bind
@@ -68,3 +63,7 @@
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
         ("C-c p s" . helm-grep-ag-projectile)))
+
+
+(provide 'init-helm)
+;;; init-helm.el ends here

@@ -1,4 +1,4 @@
-;;; init.el --- Emacs Setup -*- lexical-binding: t -*-
+;;; init.el --- init Setup -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -54,45 +54,38 @@
 (my/ensure-file-exists custom-file)
 
 
-;; load common config
-(defun my/load-conf (conf-list)
-  (dolist (conf conf-list)
-    (load (concat user-emacs-directory "conf/" conf))))
+;; load each conf
+(add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
+(add-to-list 'load-path (concat user-emacs-directory "conf"))
 
-(my/load-conf '(
-                "path.el"
-                "init-elpa.el"
-                "common.el"
-                "flyspell.el"
-                "helm.el"
-                "company.el"
-                "hippie.el"
-                "pyim.el"
-                "org.el"
-                "magit.el"
-                "modes.el"
-                "utils.el"
-                "my.el"
-                "theme.el"
-                ))
+(require 'init-env)
+(require 'init-elpa)
+(require 'init-common)
+(require 'init-editor)
+(require 'init-utils)
+(require 'init-ivy)
+(require 'init-company)
+(require 'init-modes)
+(require 'init-im)
+(require 'init-org)
+(require 'init-my)
+(require 'init-theme)
 
 ;; work specific
 (when user-with-aka
-  (my/load-conf '("aka.el")))
+  (require 'init-aka))
 
 ;; window/no-window system specific config
 (if (null window-system)
-    (my/load-conf '("nw-common.el"))
-  (my/load-conf '("ws-common.el")))
+    (require 'init-terminal)
+  (require 'init-gui))
 
 (when (or (equal window-system 'mac)
           (equal window-system 'ns))
-  (my/load-conf '("mac-common.el"
-                  "mac-key.el"
-                  "mac-font.el")))
+  (require 'init-macos))
 
 (when (equal window-system 'x)
-  (my/load-conf '("x-common.el")))
+  (require 'init-x11))
 
 (load custom-file)
 

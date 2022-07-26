@@ -1,6 +1,12 @@
+;;; init-company.el --- company mode setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 (use-package company
-  :ensure t
-  :delight
+  :diminish
   :hook
   (after-init . global-company-mode)
   :init
@@ -10,7 +16,7 @@
    :map company-active-map
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous)
-   ("C-s" . company-filter-candidates)
+   ("M-SPC" . company-filter-candidates)
    ("<tab>" . company-complete-common-or-cycle)
    :map company-search-map
    ("C-n" . company-select-next)
@@ -35,7 +41,7 @@
                                 (>= (length c) 15)))))
              company-transformers)
   :custom
-  (company-idle-delay 0.3)
+  (company-idle-delay 0.2)
   (company-show-numbers t)
   ;; cancel selections by typing non-matching characters
   (company-require-match 'never)
@@ -45,17 +51,23 @@
   (company-dabbrev-downcase nil)
   (company-tooltip-align-annotations t)
   (company-minimum-prefix-length 2)
-  (company-backends '((company-capf
-                       :with company-dabbrev-code)
+  (company-backends '(
+                      company-capf
+                      ;; (company-capf
+                      ;;  :with company-dabbrev-code)
                       company-files
+                      company-semantic
                       (company-dabbrev-code
                        ;; company-etags
                        company-keywords)
                       company-dabbrev
-                      company-semantic)))
+                      )))
 
 (use-package company-statistics
-  :ensure t
   :after company
   :config
   (company-statistics-mode))
+
+
+(provide 'init-company)
+;;; init-company.el ends here

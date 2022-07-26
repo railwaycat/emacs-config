@@ -1,35 +1,44 @@
+;;; init-utils.el --- utils setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
+(use-package projectile
+  :demand
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map))
+  :config
+  (with-eval-after-load 'projectile
+    (diminish 'projectile-mode
+              '(:eval (concat " [" (projectile-project-name) "]")))))
+
+
 ;; session
 (use-package session
-  :ensure t
   :hook
   (after-init . session-initialize))
 
-;; highlight symbol
-(use-package highlight-symbol
-  :ensure t
-  :bind
-  ("C-c h" . highlight-symbol)
-  ([f4] . highlight-symbol-next))
 
 ;; bm
 (use-package bm
-  :ensure t
   :bind
   ("<f9>" . bm-toggle)
   ("<C-f9>" . bm-next)
   ("<S-f9>" . bm-previous))
 
+
 ;; rg
 (use-package rg
-  :ensure t
   :bind
   ("C-c g" . rg-dwim)
   ("C-c G" . rg))
 
+
 ;; citre/ctags
 (use-package citre
-  :ensure t
-  :defer t
   :init
   (require 'citre-config)
   (require 'thingatpt)
@@ -57,8 +66,8 @@
    citre-prompt-language-for-ctags-command t
    citre-peek-fill-fringe nil))
 
+
 (use-package deft
-  :ensure t
   :bind
   ("C-c d" . deft)
   :config
@@ -74,40 +83,43 @@
       (setq deft-directory (file-truename "~/Dropbox/notes"))
     (setq deft-directory (file-truename "~/notes"))))
 
-;; buffer move
-(use-package buffer-move
-  :ensure t)
 
 ;; xref
-(use-package xref
-  :init
-  (setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
-  ;; configured in consult
-  ;; (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
-  ;; (setq xref-show-xrefs-function #'xref-show-definitions-buffer) ; for grep and the like
-  ;; (setq xref-file-name-display 'project-relative)
-  (setq xref-search-program 'ripgrep)
-  )
+(setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
+;; configured in consult
+;; (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+;; (setq xref-show-xrefs-function #'xref-show-definitions-buffer) ; for grep and the like
+;; (setq xref-file-name-display 'project-relative)
+(setq xref-search-program 'ripgrep)
+
 
 ;; Dashboard
-(use-package dashboard
-  :ensure t
-  :init
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
-        dashboard-items '((recents . 5)
-                          (bookmarks . 7)
-                          (projects . 5))
-        dashboard-banner-logo-title "C-x C-c to exit Emacs"
-        dashboard-set-footer nil)
-  (if (window-system)
-      (setq dashboard-startup-banner (concat user-emacs-directory "logo1.png"))
-    (setq dashboard-startup-banner (concat user-emacs-directory "logo3.txt")))
+;; (use-package dashboard
+;;   :init
+;;   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
+;;         dashboard-items '((recents . 5)
+;;                           (bookmarks . 7)
+;;                           (projects . 5))
+;;         dashboard-banner-logo-title "C-x C-c to exit Emacs"
+;;         dashboard-set-footer nil)
+;;   (if (window-system)
+;;       (setq dashboard-startup-banner (concat user-emacs-directory "logo1.png"))
+;;     (setq dashboard-startup-banner (concat user-emacs-directory "logo3.txt")))
+;;   :bind
+;;   ("C-c C-d" . (lambda ()
+;;                  (interactive)
+;;                  (switch-to-buffer dashboard-buffer-name)
+;;                  (dashboard-insert-startupify-lists)
+;;                  ;; (dashboard-refresh-buffer)
+;;                  (delete-other-windows)))
+;;   :config
+;;   (dashboard-setup-startup-hook))
+
+
+(use-package magit
   :bind
-  ("C-c C-d" . (lambda ()
-                 (interactive)
-                 (switch-to-buffer dashboard-buffer-name)
-                 (dashboard-insert-startupify-lists)
-                 ;; (dashboard-refresh-buffer)
-                 (delete-other-windows)))
-  :config
-  (dashboard-setup-startup-hook))
+  ("C-x g" . magit-status))
+
+
+(provide 'init-utils)
+;;; init-utils.el ends here

@@ -1,3 +1,10 @@
+;;; init-org.el --- org mode setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 (use-package org
   :bind
   ("C-c l" . org-store-link)
@@ -26,14 +33,17 @@
    org-src-tab-acts-natively t))
 
 (use-package ob
+  :ensure nil
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t))))
 
 (use-package org-protocol
+  :ensure nil
   :after org)
 (use-package org-capture
+  :ensure nil
   :after org org-protocol
   :bind
   ("C-c c" . org-capture)
@@ -75,6 +85,7 @@
              "%?%i" :kill-buffer t :empty-lines 1)))))
 
 (use-package org-agenda
+  :ensure nil
   :after org
   :bind
   ("C-c a" . org-agenda)
@@ -85,3 +96,7 @@
   :config
   (when user-with-dropbox
     (setq org-agenda-files '("~/Dropbox/notes/track.org"))))
+
+
+(provide 'init-org)
+;;; init-org.el ends here

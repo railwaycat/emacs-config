@@ -1,5 +1,13 @@
+;;; init-terminal.el --- terminal setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 ;; menu bar off
 (menu-bar-mode -1)
+
 
 ;; xterm mouse
 (require 'mouse)
@@ -12,3 +20,7 @@
                             (scroll-up 1)))
 (defun track-mouse (e))
 (customize-set-variable 'mouse-sel-mode t)
+
+
+(provide 'init-terminal)
+;;; init-terminal.el ends here

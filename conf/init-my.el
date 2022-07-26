@@ -1,3 +1,11 @@
+;;; init-my.el --- my functions -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
+;;;###autoload
 (defun my/comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive)
@@ -10,6 +18,8 @@
 (if (eq system-type 'darwin)
     (define-key global-map [(hyper /)] 'my/comment-or-uncomment-region-or-line))
 
+
+;;;###autoload
 (defun my/insert-time ()
   (interactive)
   ;; (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))
@@ -17,6 +27,8 @@
   )
 (define-key global-map (kbd "C-c t t") 'my/insert-time)
 
+
+;;;###autoload
 (defun my/textmate-shift-right (&optional arg)
   "Shift the line or region to the ARG places to the right.
        A place is considered `tab-width' character columns."
@@ -29,6 +41,8 @@
 (define-key global-map (kbd "M-]") 'my/textmate-shift-right)
 (define-key global-map (kbd "M-】") 'my/textmate-shift-right)
 
+
+;;;###autoload
 (defun my/textmate-shift-left (&optional arg)
   "Shift the line or region to the ARG places to the left."
   (interactive)
@@ -42,11 +56,15 @@
     (define-key global-map (kbd "C-M-】") 'my/textmate-shift-left))
   )
 
+
+;;;###autoload
 (defun my/generate-tmp-buffer ()
   (interactive)
   (switch-to-buffer (make-temp-name "scratch-")))
 (define-key global-map (kbd "C-c s") 'my/generate-tmp-buffer)
 
+
+;;;###autoload
 (defun my/unfill-paragraph-or-region (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."
   (interactive (progn (barf-if-buffer-read-only) '(t)))
@@ -54,8 +72,10 @@
         ;; This would override `fill-column' if it's an integer.
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
-(define-key global-map "\M-Q" 'my/unfill-paragraph-or-region)
+;; (define-key global-map "\M-Q" 'my/unfill-paragraph-or-region)
 
+
+;;;###autoload
 (defun my/smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -82,6 +102,8 @@ point reaches the beginning or end of the buffer, stop there."
 (define-key global-map [remap move-beginning-of-line]
   'my/smarter-move-beginning-of-line)
 
+
+;;;###autoload
 (defun my/eshell-here ()
   "Opens up a new shell in the directory associated with the
 current buffer's file. The eshell is renamed to match that
@@ -109,8 +131,10 @@ directory to make multiple eshell windows easier."
       (bookmark-load "~/Dropbox/dropbox.bmk" t t)
     (bookmark-load (concat user-emacs-directory "bookmarks") t t)))
 
-;; C-t is split window and/or move other window
+
+;;;###autoload
 (defun my/other-window-or-split ()
+  "split window and/or move other window"
   (interactive)
   (when (one-window-p)
     (split-window-horizontally))
@@ -123,3 +147,7 @@ directory to make multiple eshell windows easier."
     (split-window-vertically))
   (other-window 1))
 (define-key global-map (kbd "C-S-t") 'my/other-window-or-split-v)
+
+
+(provide 'init-my)
+;;; init-my.el ends here

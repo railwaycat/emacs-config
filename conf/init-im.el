@@ -1,7 +1,13 @@
+;;; init-im.el --- input method setup -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+
 ;; setup for pyim
 (use-package pyim
-  :ensure t
-  :demand t
+  :demand
   :bind
   ;; ([remap forward-word] . pyim-forward-word)
   ;; ([remap backward-word] . pyim-backward-word)
@@ -21,21 +27,24 @@
 
   ;; 仓颉设置
   ;; (use-package pyim-cangjiedict
-  ;;   :ensure t
   ;;   :config
   ;;   (pyim-cangjie5dict-enable))
   ;; (setq pyim-default-scheme 'cangjie)
 
   ;; 五笔设置
   (use-package pyim-wbdict
-    :ensure t
     :config
     (pyim-wbdict-v98-morphe-enable))
   (setq pyim-default-scheme 'wubi)
 
   ;; 拼音设置
   (use-package pyim-tsinghua-dict
+    :ensure nil
     :config
     (pyim-tsinghua-dict-enable))
   ;; (setq pyim-default-scheme 'quanpin)
   )
+
+
+(provide 'init-im)
+;;; init-im.el ends here

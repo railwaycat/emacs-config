@@ -4,6 +4,7 @@
 !logo*.*
 !conf
 !conf/**
+!early-init.el
 !init.el
 !themes
 !themes/**
