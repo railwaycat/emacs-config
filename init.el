@@ -1,6 +1,7 @@
 (setq user-full-name "Xin Xu"
       user-mail-address "railwaycat@gmail.com")
 
+
 ;; Speed up startup
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 1)
@@ -9,6 +10,13 @@
              (setq gc-cons-threshold 100000000
                    gc-cons-percentage 0.1)
              (garbage-collect)) t)
+
+
+(prefer-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(unless (eq system-type 'windows-nt)
+  (setq selection-coding-system 'utf-8))
+
 
 ;; replace user-emacs-directory to support booting emacs with configs
 ;; located in custom directory
