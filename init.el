@@ -64,7 +64,7 @@
 (require 'init-editor)
 (require 'init-utils)
 (require 'init-ivy)
-(require 'init-company)
+(require 'init-corfu)
 (require 'init-modes)
 (require 'init-im)
 (require 'init-org)

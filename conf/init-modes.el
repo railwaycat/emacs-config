@@ -43,8 +43,9 @@
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
-            (add-to-list (make-local-variable 'company-backends)
-                         'company-elisp)))
+            (with-eval-after-load 'company
+              (add-to-list (make-local-variable 'company-backends)
+                           'company-elisp))))
 
 (add-hook 'lisp-interaction-mode-hook
           (lambda ()
