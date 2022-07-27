@@ -8,8 +8,8 @@
 
 (use-package orderless
   :init
-  (setq completion-styles '(orderless basic))
-  ;; completion-category-overrides '((eglot (styles . (orderless basic)))))
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((eglot (styles . (orderless basic)))))
   (setq completion-category-defaults nil
         completion-category-overrides nil)
   (setq completion-cycle-threshold 4))

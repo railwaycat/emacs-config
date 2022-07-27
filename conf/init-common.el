@@ -95,6 +95,12 @@
                        (concat user-emacs-directory "bookmarks")))
 ;; write bookmarks file on every change
 (customize-set-variable 'bookmark-save-flag t)
+;; jump to end of file, for capture files
+(add-hook 'bookmark-after-jump-hook
+          (lambda ()
+            (when (string-prefix-p "capture" (file-name-base buffer-file-name))
+              (end-of-buffer))))
+
 
 ;; trash bin for OS X
 (if (eq system-type 'darwin)
@@ -112,7 +118,7 @@
 (use-package ibuffer
   :ensure nil
   :bind
-  ("<f12>" . ibuffer)
+  ;; ("<f12>" . ibuffer)
   ([remap list-buffers] . ibuffer)
   :commands (ibuffer-switch-to-saved-filter-groups)
   :hook ((ibuffer-mode . ibuffer-auto-mode)
@@ -194,6 +200,7 @@
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
+(define-key global-map (kbd "<f12>") 'bookmark-bmenu-list)
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 (define-key global-map (kbd "C-x M-c") 'save-buffers-kill-emacs)
 

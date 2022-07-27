@@ -61,7 +61,7 @@
 (defun my/generate-tmp-buffer ()
   (interactive)
   (switch-to-buffer (make-temp-name "scratch-")))
-(define-key global-map (kbd "C-c s") 'my/generate-tmp-buffer)
+;; (define-key global-map (kbd "C-c s") 'my/generate-tmp-buffer)
 
 
 ;;;###autoload

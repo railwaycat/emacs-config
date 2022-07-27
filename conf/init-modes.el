@@ -19,6 +19,7 @@
           (lambda ()
             (visual-line-mode)
             (flyspell-mode)
+            (flymake-mode)
             (setq show-trailing-whitespace t)))
 ;; better word wrapping for CJK characters
 (setq-default word-wrap-by-category t)
@@ -30,6 +31,7 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (flyspell-prog-mode)
+                            (flymake-mode)
                             (setq show-trailing-whitespace t)))
 
 
@@ -61,6 +63,11 @@
 
 (add-hook 'nxml-mode-hook (lambda ()
                             (flyspell-mode -1)))
+
+
+(use-package dockerfile-mode
+  :mode
+  ("Dockerfile\\'" . dockerfile-mode))
 
 
 (provide 'init-modes)

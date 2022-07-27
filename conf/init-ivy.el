@@ -70,6 +70,13 @@
         "rg -i -M 120 --no-heading --line-number --color never %s %s"
         counsel-find-file-at-point t
         ivy-format-function 'ivy-format-function-line)
+  (defun notes-grep ()
+    "grep my notes."
+    (interactive)
+    (let ((my-notes-directory (if user-with-dropbox
+                                  "~/Dropbox/notes"
+                                "~/notes")))
+      (counsel-rg nil my-notes-directory)))
   :custom
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)

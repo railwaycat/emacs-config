@@ -11,6 +11,7 @@
   (:map projectile-mode-map
         ("C-c p" . projectile-command-map))
   :config
+  (projectile-mode t)
   (with-eval-after-load 'projectile
     (diminish 'projectile-mode
               '(:eval (concat " [" (projectile-project-name) "]")))))
@@ -48,7 +49,7 @@
         (citre-peek)
       (citre-peek-restore)))
   :bind
-  ("M-p" . citre-peek+)
+  ("M-\"" . citre-peek+)
   :custom
   (citre-auto-enable-citre-mode-modes '(prog-mode))
   :config
@@ -67,21 +68,21 @@
    citre-peek-fill-fringe nil))
 
 
-(use-package deft
-  :bind
-  ("C-c d" . deft)
-  :config
-  (setq deft-extensions '("org" "md" "markdown" "txt")
-        ;; deft-markdown-mode-title-level 1
-        deft-default-extension "org"
-        ;; deft-text-mode 'org-mode
-        deft-recursive t
-        deft-use-filename-as-title t
-        deft-use-filter-string-for-filename t
-        deft-auto-save-interval -1.0) ;; disable autosave
-  (if user-with-dropbox
-      (setq deft-directory (file-truename "~/Dropbox/notes"))
-    (setq deft-directory (file-truename "~/notes"))))
+;; (use-package deft
+;;   :bind
+;;   ("C-c d" . deft)
+;;   :config
+;;   (setq deft-extensions '("org" "md" "markdown" "txt")
+;;         ;; deft-markdown-mode-title-level 1
+;;         deft-default-extension "org"
+;;         ;; deft-text-mode 'org-mode
+;;         deft-recursive t
+;;         deft-use-filename-as-title t
+;;         deft-use-filter-string-for-filename t
+;;         deft-auto-save-interval -1.0) ;; disable autosave
+;;   (if user-with-dropbox
+;;       (setq deft-directory (file-truename "~/Dropbox/notes"))
+;;     (setq deft-directory (file-truename "~/notes"))))
 
 
 ;; xref
@@ -119,6 +120,11 @@
 (use-package magit
   :bind
   ("C-x g" . magit-status))
+
+
+(use-package scratch
+  :bind
+  ("C-c s" . scratch))
 
 
 (provide 'init-utils)

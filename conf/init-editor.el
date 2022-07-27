@@ -104,22 +104,24 @@
  ((executable-find "hunspell")
   (setq ispell-program-name "hunspell")
   (setq ispell-extra-args '("-d en_US"))))
+(with-eval-after-load 'flyspell
+  (diminish 'flyspell-mode))
 
 (use-package flyspell-correct
   :after flyspell
   :bind
   (:map flyspell-mode-map
-        ("M-n" . flyspell-correct-wrapper)))
+        ("C-;" . flyspell-correct-wrapper)))
 
 
 (define-key global-map [remap dabbrev-expand] #'hippie-expand)
 (setq-default hippie-expand-try-functions-list
               '(try-expand-all-abbrevs
-                try-expand-dabbrev
-                try-expand-dabbrev-all-buffers
-                try-expand-dabbrev-from-kill
                 try-complete-file-name-partially
                 try-complete-file-name
+                try-expand-dabbrev
+                try-expand-dabbrev-from-kill
+                try-expand-dabbrev-all-buffers
                 try-expand-list
                 try-expand-line
                 try-complete-lisp-symbol-partially
@@ -139,9 +141,17 @@
 
 
 (use-package whole-line-or-region
-  :diminish
+  :diminish whole-line-or-region-local-mode
   :hook
   (after-init . whole-line-or-region-global-mode))
+
+
+(define-key global-map (kbd "M-c") #'capitalize-dwim)
+
+
+(with-eval-after-load 'flymake
+  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 
 (provide 'init-editor)

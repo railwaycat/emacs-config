@@ -7,6 +7,7 @@
 
 (use-package helm
   :diminish
+  :demand
   :init
   (require 'helm-config)
   :custom
@@ -25,9 +26,17 @@
   (:map minibuffer-local-map
         ("C-c C-l" . helm-minibuffer-history))
   :config
-  (setq helm-mode-fuzzy-match t)
-  (setq helm-split-window-in-side-p t)
+  (defun notes-grep ()
+    "grep my notes."
+    (interactive)
+    (let ((my-notes-directory (if user-with-dropbox
+                                  "~/Dropbox/notes"
+                                "~/notes")))
+    (helm-do-grep-1 (list my-notes-directory))))
+  (setq helm-mode-fuzzy-match t
+        helm-split-window-in-side-p t)
   (helm-mode 1))
+
 
 ;; (use-package helm-gtags
 ;;   :after helm
@@ -39,16 +48,23 @@
 ;;         ("M-," . helm-gtags-pop-stack)
 ;;         ("M-." . helm-gtags-find-tag)))
 
-(use-package wgrep-helm)
+
+(use-package wgrep-helm
+  :after helm)
+
 
 (use-package helm-xref
+  :after helm
   :init
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
+
 (use-package flyspell-correct-helm
-  :after flyspell-correct)
+  :after (helm flyspell-correct))
+
 
 (use-package helm-projectile
+  :after (helm projectile)
   :init
   (helm-projectile-on)
   (defun helm-grep-ag-projectile (arg)

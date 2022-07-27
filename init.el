@@ -65,6 +65,7 @@
 (require 'init-utils)
 (require 'init-ivy)
 (require 'init-corfu)
+(require 'init-lsp)
 (require 'init-modes)
 (require 'init-im)
 (require 'init-org)
