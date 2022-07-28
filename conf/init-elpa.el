@@ -40,7 +40,6 @@
   (require 'use-package))
 
 
-(use-package delight)
 (use-package diminish)
 
 
