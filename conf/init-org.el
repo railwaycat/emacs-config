@@ -112,6 +112,7 @@
             "~/Dropbox/notes/journal"
           "~/journal"))
   :custom
+  (org-journal-find-file #'find-file)
   (org-journal-file-type 'yearly)
   (org-journal-file-format "%Y.org")
   (org-journal-date-format "%A, %Y/%m/%d"))
