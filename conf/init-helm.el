@@ -34,7 +34,11 @@
                                 "~/notes")))
     (helm-do-grep-1 (list my-notes-directory))))
   (setq helm-mode-fuzzy-match t
-        helm-split-window-in-side-p t)
+        ;; helm-split-window-in-side-p t
+        helm-mini-default-sources '(helm-source-buffers-list
+                                    helm-source-bookmarks
+                                    helm-source-recentf
+                                    helm-source-buffer-not-found))
   (helm-mode 1))
 
 
