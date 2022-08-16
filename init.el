@@ -63,7 +63,7 @@
 (require 'init-common)
 (require 'init-editor)
 (require 'init-utils)
-(require 'init-ivy)
+(require 'init-helm)
 (require 'init-corfu)
 (require 'init-lsp)
 (require 'init-modes)
