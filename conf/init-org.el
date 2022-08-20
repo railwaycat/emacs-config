@@ -97,26 +97,5 @@
   (when user-with-dropbox
     (setq org-agenda-files '("~/Dropbox/notes/track.org"))))
 
-
-;; org-journal
-;; C-c C-j new journal
-;; calendar prefix j
-;;     r: view in new buffer
-;;     d: view but not switch to buffer
-;;     s w/m//y/f/F: search week/month/year/all time/future
-;;;    [ ]: previous/next day with entry
-(use-package org-journal
-  :init
-  (setq org-journal-dir
-        (if user-with-dropbox
-            "~/Dropbox/notes/journal"
-          "~/journal"))
-  :custom
-  (org-journal-find-file #'find-file)
-  (org-journal-file-type 'yearly)
-  (org-journal-file-format "%Y.org")
-  (org-journal-date-format "%A, %Y/%m/%d"))
-
-
 (provide 'init-org)
 ;;; init-org.el ends here
