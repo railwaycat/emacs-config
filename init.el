@@ -21,6 +21,7 @@
 
 (prefer-coding-system 'utf-8)
 (set-language-environment "UTF-8")
+(setq session-save-file-coding-system 'utf-8)
 (unless (eq system-type 'windows-nt)
   (setq selection-coding-system 'utf-8))
 
