@@ -57,6 +57,13 @@
   :after helm)
 
 
+(use-package helm-ls-git
+  :after helm
+  :bind
+  ("C-c j" . helm-browse-project)
+  ("C-c J" . helm-projects-history))
+
+
 (use-package helm-xref
   :after helm
   :init

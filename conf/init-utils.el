@@ -10,6 +10,8 @@
   :bind
   (:map projectile-mode-map
         ("C-c p" . projectile-command-map))
+  :custom
+  (projectile-use-git-grep t)
   :config
   (projectile-mode t)
   (with-eval-after-load 'projectile
@@ -48,8 +50,15 @@
     (if (thing-at-point 'symbol)
         (citre-peek)
       (citre-peek-restore)))
+  (defun xref-goto (symbol)
+    "Goto definition of the symbol without prompt for candidates.
+This saves time when working on a large tags file."
+
+    (interactive "sGoto definition: ")
+    (xref-find-definitions symbol))
   :bind
   ("M-\"" . citre-peek+)
+  ("ESC M-." . xref-goto)
   :custom
   (citre-auto-enable-citre-mode-modes '(prog-mode))
   :config
