@@ -145,7 +145,7 @@
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . counsel-projectile)
-        ("C-c p s" . counsel-projectile-rg)))
+        ("C-c M-SPC" . counsel-projectile-rg))
 
 
 (provide 'init-ivy)
