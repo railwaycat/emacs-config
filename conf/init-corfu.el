@@ -15,6 +15,12 @@
   (setq completion-cycle-threshold 4))
 
 (use-package corfu
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ([tab] . corfu-next)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
   :custom
   (corfu-auto t)
   (corfu-min-width 35)
@@ -22,7 +28,10 @@
   (corfu-quit-no-match 'separator)
   (corfu-quit-at-boundary 'separator)
   ;; (corfu-quit-no-match 'separator)
+  (corfu-on-exact-match nil)
   (corfu-auto-prefix 2)
+  (corfu-cycle t)
+  (corfu-preselect-first nil)
   :init
   (global-corfu-mode))
 
