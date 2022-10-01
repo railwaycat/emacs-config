@@ -65,7 +65,7 @@
 (require 'init-editor)
 (require 'init-utils)
 (require 'init-helm)
-(require 'init-corfu)
+(require 'init-company)
 (require 'init-lsp)
 (require 'init-modes)
 (require 'init-im)
