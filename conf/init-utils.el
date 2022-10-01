@@ -20,9 +20,9 @@
 
 
 ;; session
-(use-package session
-  :hook
-  (after-init . session-initialize))
+;; (use-package session
+;;   :hook
+;;   (after-init . session-initialize))
 
 
 ;; bm

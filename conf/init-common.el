@@ -158,6 +158,11 @@
                    (mode . telega-root-mode)))))))
 
 
+;; savehist
+(savehist-mode t)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+
+
 ;; recentf
 (add-hook 'after-init-hook 'recentf-mode)
 (setq-default
