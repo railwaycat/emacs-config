@@ -49,6 +49,7 @@
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-code-other-buffers 'all)
   (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case nil)
   (company-tooltip-align-annotations t)
   (company-minimum-prefix-length 2)
   (company-backends '(
