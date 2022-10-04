@@ -12,13 +12,6 @@
   :custom-face
   ;; (org-document-title ((t (:height 1 :weight bold))))
   :custom
-  (org-emphasis-regexp-components
-   ;; markup 记号前后允许中文
-   (list (concat " \t('\"{"            "[:nonascii:]")
-         (concat "- \t.,:!?;'\")}\\["  "[:nonascii:]")
-         " \t\r\n,\"'"
-         "."
-         1))
   (org-support-shift-select t)
   (org-startup-folded nil)
   (org-todo-keywords '((sequence "TODO(t)" "DOING(i@)" "|" "DONE(d@)")
@@ -28,6 +21,13 @@
   (org-log-state-notes-insert-after-drawers nil)
   (org-adapt-indentation nil)
   :config
+  ;; markup 记号前后中文
+  (org-set-emph-re 'org-emphasis-regexp-components
+                   '("-[:space:]('\"{[:nonascii:][:alpha:]"
+                     "-[:space:].,:!?;'\")}\\[[:nonascii:][:alpha:]"
+                     "[:space:]"
+                     "."
+                     1))
   (setq
    org-edit-src-content-indentation 0
    org-src-tab-acts-natively t))
