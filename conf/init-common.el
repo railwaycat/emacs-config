@@ -115,47 +115,40 @@
 
 
 ;; ibuffer
-(use-package ibuffer
-  :ensure nil
-  :bind
-  ;; ("<f12>" . ibuffer)
-  ([remap list-buffers] . ibuffer)
-  :commands (ibuffer-switch-to-saved-filter-groups)
-  :hook ((ibuffer-mode . ibuffer-auto-mode)
-         (ibuffer-mode . (lambda ()
-                           (ibuffer-switch-to-saved-filter-groups "Default"))))
-  :custom
-  (ibuffer-show-empty-filter-groups nil)
-  (ibuffer-saved-filter-groups
-  '(("Default"
-     ("Emacs" (or (name . "\\*scratch\\*")
-                  (name . "\\*dashboard\\*")
-                  (name . "\\*compilation\\*")
-                  (name . "\\*Backtrace\\*")
-                  (name . "\\*Packages\\*")
-                  (name . "\\*Messages\\*")
-                  (name . "\\*Customize\\*")))
-     ("Helm" (name . "^\\*Helm"))
-     ("Scratch" (name . "^scratch-"))
-     ("Programming" (or (derived-mode . prog-mode)
-                        (mode . makefile-mode)
-                        (mode . cmake-mode)
-                        (mode . nxml-mode)))
-     ("Conf" (or (mode . yaml-mode)
-                 (mode . conf-mode)
-                 (mode . conf-space-mode)))
-     ("Text" (or (mode . org-mode)
-                 (mode . markdown-mode)
-                 (mode . gfm-mode)
-                 (mode . rst-mode)
-                 (mode . text-mode)))
-     ("Dired" (mode . dired-mode))
-     ("Magit" (name . "magit"))
-     ("Help" (or (name . "\\*Help\\*")
-                 (name . "\\*Apropos\\*")
-                 (name . "\\*info\\*")))
-     ("Telega" (or (mode . telega-chat-mode)
-                   (mode . telega-root-mode)))))))
+(use-package ibuffer-vc
+  :ensure t)
+(global-set-key [remap list-buffers] #'ibuffer)
+(add-hook 'ibuffer-hook (lambda ()
+                          (ibuffer-auto-mode)
+
+                          (ibuffer-vc-set-filter-groups-by-vc-root)
+                          (unless (eq ibuffer-sorting-mode 'filename/process)
+                            (ibuffer-do-sort-by-filename/process))))
+;; (setq ibuffer-show-empty-filter-groups nil)
+(with-eval-after-load 'ibuffer
+  ;; Use human readable Size column instead of original one
+  (define-ibuffer-column size-h
+    (:name "Size" :inline t)
+    (file-size-human-readable (buffer-size))))
+(setq ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+              (name 22 22 :left :elide)
+              " "
+              (size-h 9 -1 :right)
+              " "
+              (mode 12 12 :left :elide)
+              " "
+              vc-relative-file)
+        (mark modified read-only vc-status-mini " "
+              (name 22 22 :left :elide)
+              " "
+              (size-h 9 -1 :right)
+              " "
+              (mode 14 14 :left :elide)
+              " "
+              (vc-status 12 12 :left)
+              " "
+              vc-relative-file)))
 
 
 ;; savehist
