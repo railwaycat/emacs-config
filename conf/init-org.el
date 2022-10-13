@@ -12,6 +12,9 @@
   :custom-face
   ;; (org-document-title ((t (:height 1 :weight bold))))
   :custom
+  (org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
+     (sequence "HOLD(h@/!)" "|" "ABORT(a@/!)")))
   (org-support-shift-select t)
   (org-startup-folded nil)
   (org-log-done 'time)
