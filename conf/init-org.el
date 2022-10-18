@@ -71,6 +71,7 @@
   (let ((org-capture-track-file "trace/track.org")
         (org-capture-notes-file "trace/notes.org")
         (org-capture-diary-file "diary.org")
+        (org-capture-worklog-file "worklog.org")
         (org-capture-capture-file "capture.org")
         (org-capture-capture-work-file "capture_work.org"))
     (setq org-capture-templates
@@ -92,10 +93,16 @@
             ("D" "Diary - Day"
              entry (file+datetree ,org-capture-diary-file)
              "* %u\n%?" :kill-buffer t)
+            ("w" "Worklog - timestamp"
+             entry (file+datetree ,org-capture-worklog-file)
+             "* %U - %^{heading} %^g\n%?")
+            ("W" "Worklog - Day"
+             entry (file+datetree ,org-capture-worklog-file)
+             "* %u\n%?")
             ("c" "Capture"
              plain (file ,org-capture-capture-file)
              "%?%i" :kill-buffer t :empty-lines 1)
-            ("a" "Akamai Capture"
+            ("a" "Capture for Work"
              plain (file ,org-capture-capture-work-file)
              "%?%i" :kill-buffer t :empty-lines 1)))))
 
