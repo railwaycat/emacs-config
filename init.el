@@ -68,7 +68,7 @@
 (require 'init-company)
 (require 'init-lsp)
 (require 'init-modes)
-(require 'init-im)
+(require 'init-ime)
 (require 'init-org)
 (require 'init-my)
 (require 'init-theme)

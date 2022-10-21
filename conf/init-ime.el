@@ -1,4 +1,4 @@
-;;; init-im.el --- input method setup -*- lexical-binding: t -*-
+;;; init-ime.el --- input method setup -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -46,5 +46,5 @@
   )
 
 
-(provide 'init-im)
-;;; init-im.el ends here
+(provide 'init-ime)
+;;; init-ime.el ends here
