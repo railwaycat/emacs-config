@@ -156,6 +156,9 @@
 (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
 
 
+;; save cursor location
+(save-place-mode t)
+
 ;; recentf
 (add-hook 'after-init-hook 'recentf-mode)
 (setq-default
