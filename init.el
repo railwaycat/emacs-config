@@ -58,6 +58,7 @@
 ;; load each conf
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 (add-to-list 'load-path (concat user-emacs-directory "conf"))
+(add-to-list 'load-path (concat user-emacs-directory "local"))
 
 (require 'init-env)
 (require 'init-elpa)
@@ -72,6 +73,7 @@
 (require 'init-org)
 (require 'init-my)
 (require 'init-theme)
+(require 'init-local nil t)
 
 ;; work specific
 (when user-with-aka
