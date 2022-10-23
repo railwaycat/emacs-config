@@ -5,10 +5,6 @@
 ;;; Code:
 
 
-(setq user-full-name "Xin Xu"
-      user-mail-address "railwaycat@gmail.com")
-
-
 ;; Speed up startup
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 1)
@@ -35,9 +31,6 @@
 ;; if this machine with Dropbox
 (setq user-with-dropbox
       (file-accessible-directory-p "~/Dropbox"))
-
-;; if this is a machine from work
-(setq user-with-aka (file-exists-p "~/.m_aka"))
 
 
 (defun my/ensure-file-exists (file)
@@ -75,9 +68,6 @@
 (require 'init-theme)
 (require 'init-local nil t)
 
-;; work specific
-(when user-with-aka
-  (require 'init-aka))
 
 ;; window/no-window system specific config
 (if (null window-system)
