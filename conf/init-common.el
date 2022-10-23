@@ -152,12 +152,21 @@
 
 
 ;; savehist
+(setq savehist-file (concat user-emacs-directory "savehist"))
 (savehist-mode t)
-(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history t)
+(setq savehist-additional-variables
+      '(kill-ring
+        search-ring
+        regexp-search-ring
+        extended-command-history))
 
 
 ;; save cursor location
 (save-place-mode t)
+
 
 ;; recentf
 (add-hook 'after-init-hook 'recentf-mode)
