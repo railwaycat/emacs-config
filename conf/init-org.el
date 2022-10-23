@@ -68,19 +68,19 @@
   ("C-c c" . org-capture)
   :hook (org-capture-mode . delete-other-windows)
   :config
-  (let ((org-capture-track-file "trace/track.org")
-        (org-capture-notes-file "trace/notes.org")
+  (let ((org-capture-track-file "tasks.org")
+        (org-capture-notes-file "collect.org")
         (org-capture-diary-file "diary.org")
         (org-capture-worklog-file "worklog.org")
         (org-capture-capture-file "capture.org")
         (org-capture-capture-work-file "capture_work.org"))
     (setq org-capture-templates
           `(
-            ("t" "Track"
+            ("t" "Task - Oneshot"
              entry
-             (file ,org-capture-track-file)
+             (file+headline ,org-capture-track-file "Oneshot")
              "* TODO %?\n/Entered on/ %U")
-            ("n" "Note"
+            ("n" "Note to collect"
              entry
              (file ,org-capture-notes-file)
              "* Note (%a)\n/Entered on/ %U\n\n%?")
@@ -117,13 +117,11 @@
   (org-log-into-drawer t)
   (org-log-state-notes-insert-after-drawers nil)
   :config
-  (setq org-agenda-files '("trace/track.org"
-                           "trace/notes.org"
-                           "trace/tasks.org"
-                           "trace/plans.org"
-                           "trace/journal.org"))
+  (setq org-agenda-files '("tasks.org"
+                           "worklog.org"
+                           "plans.org"))
   (setq org-agenda-custom-commands
-        '(("g" "Next and All Inbox"
+        '(("g" "Next and Deadlines"
            ((todo "NEXT"
                   ((org-agenda-overriding-header "Next Tasks")))
             (agenda "" ((org-agenda-start-on-weekday nil)
@@ -140,8 +138,8 @@
                         (org-agenda-block-separator nil)
                         (org-agenda-entry-types '(:deadline))
                         (org-agenda-overriding-header "\nDeadlines in 14 Days")))
-            (tags "inbox"
-                  ((org-agenda-overriding-header "\nInbox")
+            (todo "TODO"
+                  ((org-agenda-overriding-header "\nTODOs")
                    (org-agenda-block-separator nil))))))))
 
 
