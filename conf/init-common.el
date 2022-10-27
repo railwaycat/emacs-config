@@ -115,8 +115,7 @@
 
 
 ;; ibuffer
-(use-package ibuffer-vc
-  :ensure t)
+(use-package ibuffer-vc)
 (global-set-key [remap list-buffers] #'ibuffer)
 (add-hook 'ibuffer-hook (lambda ()
                           (ibuffer-auto-mode)
