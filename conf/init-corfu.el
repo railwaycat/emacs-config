@@ -31,7 +31,7 @@
   (corfu-on-exact-match nil)
   (corfu-auto-prefix 2)
   (corfu-cycle t)
-  (corfu-preselect-first nil)
+  (corfu-preselect-first t)
   :init
   (global-corfu-mode))
 
