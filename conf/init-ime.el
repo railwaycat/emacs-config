@@ -38,10 +38,8 @@
   (setq pyim-default-scheme 'wubi)
 
   ;; 拼音设置
-  (use-package pyim-tsinghua-dict
-    :ensure nil
-    :config
-    (pyim-tsinghua-dict-enable))
+  (require 'pyim-tsinghua-dict)
+  (pyim-tsinghua-dict-enable)
   ;; (setq pyim-default-scheme 'quanpin)
   )
 
