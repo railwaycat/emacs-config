@@ -43,5 +43,15 @@
 (use-package diminish)
 
 
+;; bootstrap quelpa as an addition for melpa
+(use-package quelpa
+  :commands quelpa
+  :custom
+  (quelpa-git-clone-depth 1)
+  (quelpa-self-upgrade-p nil)
+  (quelpa-update-melpa-p nil)
+  (quelpa-checkout-melpa-p nil))
+
+
 (provide 'init-elpa)
 ;;; init-elpa.el ends here
