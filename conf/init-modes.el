@@ -69,6 +69,8 @@
   :mode
   ("Dockerfile\\'" . dockerfile-mode))
 
+(use-package yaml-mode)
+
 
 (provide 'init-modes)
 ;;; init-modes.el ends here
