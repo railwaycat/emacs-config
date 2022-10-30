@@ -22,15 +22,10 @@
   (setq selection-coding-system 'utf-8))
 
 
-;; replace user-emacs-directory to support booting emacs with configs
-;; located in custom directory
-(setq user-emacs-directory
-      (substring (or load-file-name "~/.emacs.d/init.el") 0 -7))
-
-
 ;; if this machine with Dropbox
-(setq user-with-dropbox
-      (file-accessible-directory-p "~/Dropbox"))
+(defvar user-with-dropbox
+      (file-accessible-directory-p "~/Dropbox")
+      "Whether this machine with Dropbox.")
 
 
 (defun my/ensure-file-exists (file)
