@@ -26,13 +26,15 @@
   (:map minibuffer-local-map
         ("C-c C-l" . helm-minibuffer-history))
   :config
-  (defun notes-grep ()
+  (defun notes-grep (arg)
     "grep my notes."
-    (interactive)
+    (interactive "P")
     (let ((my-notes-directory (if user-with-dropbox
                                   "~/Dropbox/notes"
                                 "~/notes")))
-    (helm-do-grep-1 (list my-notes-directory))))
+      (helm-grep-ag
+       (expand-file-name my-notes-directory)
+       arg)))
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
         helm-mini-default-sources '(helm-source-buffers-list
