@@ -54,9 +54,12 @@
                      "[:space:]"
                      "."
                      1))
+  (setq org-babel-python-command "python3")
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((shell . t))))
+   '((shell . t)
+     (python . t)
+     (emacs-lisp . t))))
 
 
 ;; org-capture
