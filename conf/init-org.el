@@ -86,16 +86,16 @@
           ;;  plain (file ,org-capture-inbox-file)
           ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
           ("d" "Diary - timestamp"
-           entry (file+datetree ,org-capture-diary-file)
+           entry (file+olp+datetree ,org-capture-diary-file)
            "* %U\n%?" :kill-buffer t)
           ("D" "Diary - Day"
-           entry (file+datetree ,org-capture-diary-file)
+           entry (file+olp+datetree ,org-capture-diary-file)
            "* %u\n%?" :kill-buffer t)
           ("w" "Worklog - timestamp"
-           entry (file+datetree ,org-capture-worklog-file)
+           entry (file+olp+datetree ,org-capture-worklog-file)
            "* %U - %^{heading} %^g\n%?")
           ("W" "Worklog - Day"
-           entry (file+datetree ,org-capture-worklog-file)
+           entry (file+olp+datetree ,org-capture-worklog-file)
            "* %u\n%?")
           ("c" "Capture"
            plain (file ,org-capture-capture-file)
