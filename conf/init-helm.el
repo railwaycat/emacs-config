@@ -8,8 +8,8 @@
 (use-package helm
   :diminish
   :demand
-  :init
-  (require 'helm-config)
+  :config
+  (require 'helm-autoloads)
   :custom
   (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
   (helm-inherit-input-method nil)
