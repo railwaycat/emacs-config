@@ -5,7 +5,7 @@
 ;;; Code:
 
 
-(setq-default fill-column 80)
+(setq-default fill-column 70)
 
 
 ;; column number on mode-bar
