@@ -34,7 +34,7 @@
   ;; 五笔设置
   (use-package pyim-wbdict
     :config
-    (pyim-wbdict-v98-morphe-enable))
+    (pyim-wbdict-v86-single-enable))
   (setq pyim-default-scheme 'wubi)
 
   ;; 拼音设置
