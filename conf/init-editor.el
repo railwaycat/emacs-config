@@ -11,6 +11,10 @@
 ;; column number on mode-bar
 (column-number-mode t)
 
+;; line spacing, only for GUI. Value aligns with macOS Terminal
+;; setting.
+(setq-default line-spacing 0.2)
+
 
 ;; set "large file" size to 100MB
 (setq large-file-warning-threshold 100000000)
