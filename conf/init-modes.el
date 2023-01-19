@@ -69,7 +69,11 @@
   :mode
   ("Dockerfile\\'" . dockerfile-mode))
 
+
 (use-package yaml-mode)
+
+
+(use-package go-mode)
 
 
 (provide 'init-modes)
