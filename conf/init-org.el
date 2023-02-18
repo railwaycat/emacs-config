@@ -69,7 +69,7 @@
 (let ((org-capture-track-file "tasks.org")
       (org-capture-notes-file "collect.org")
       (org-capture-diary-file "diary.org")
-      (org-capture-worklog-file "worklog.org")
+      (org-capture-log-file "lifelog.org")
       (org-capture-capture-file "capture.org")
       (org-capture-capture-work-file "capture_work.org"))
   (setq org-capture-templates
@@ -91,12 +91,12 @@
           ("D" "Diary - Day"
            entry (file+olp+datetree ,org-capture-diary-file)
            "* %u\n%?" :kill-buffer t)
-          ("w" "Worklog - timestamp"
-           entry (file+olp+datetree ,org-capture-worklog-file)
+          ("w" "Lifelog - timestamp"
+           entry (file+olp+datetree ,org-capture-log-file)
            "* %U - %^{heading} %^g\n%?")
-          ("W" "Worklog - Day"
-           entry (file+olp+datetree ,org-capture-worklog-file)
-           "* %u\n%?")
+          ("W" "Lifelog - Day"
+           entry (file+olp+datetree ,org-capture-log-file)
+           "* %u\n** Plan\n%?\n** Summary\n")
           ("c" "Capture"
            plain (file ,org-capture-capture-file)
            "%?%i" :kill-buffer t :empty-lines 1)
