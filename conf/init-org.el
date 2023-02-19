@@ -41,8 +41,10 @@
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil
       org-refile-targets
-      '(("plans.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")
+      '(
+        ("plans.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")
         ("tasks.org" :level . 1)
+        ("tasks_archived.org" :level . 0)
         (nil :maxlevel . 5)))
 
 
@@ -74,11 +76,11 @@
       (org-capture-capture-work-file "capture_work.org"))
   (setq org-capture-templates
         `(
-          ("t" "Task - Oneshot"
+          ("t" "Task - Not in a plan (yet)"
            entry
-           (file+headline ,org-capture-track-file "Oneshot")
+           (file ,org-capture-track-file)
            "* TODO %?\n/Entered on/ %U")
-          ("n" "Note to collect"
+          ("n" "Note with a Topic"
            entry
            (file ,org-capture-notes-file)
            "* Note (%a)\n/Entered on/ %U\n\n%?")
@@ -111,7 +113,6 @@
   org-log-state-notes-insert-after-drawers nil)
 
 (setq org-agenda-files '("tasks.org"
-                         "worklog.org"
                          "plans.org"))
 (setq org-agenda-custom-commands
       '(("g" "Next and Deadlines"
