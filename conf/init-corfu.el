@@ -32,15 +32,10 @@
   (corfu-auto-prefix 2)
   (corfu-cycle t)
   (corfu-preselect-first t)
+  (corfu-popupinfo-delay 0.5)
   :init
-  (global-corfu-mode))
-
-(use-package corfu-doc
-  :after corfu
-  :hook
-  (corfu-mode-hook . corfu-doc-mode)
-  :custom
-  (corfu-doc-delay 0.5))
+  (global-corfu-mode)
+  (corfu-popupinfo-mode))
 
 (use-package corfu-terminal
   :after corfu
