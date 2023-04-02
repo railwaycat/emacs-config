@@ -22,6 +22,7 @@
 ;; (add-to-list 'exec-path "/opt/homebrew/opt/texinfo/bin")
 ;; (setenv "PATH" (concat "/opt/homebrew/opt/texinfo/bin:" (getenv "PATH")))
 
+(setq straight-repository-branch "develop")
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
