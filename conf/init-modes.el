@@ -76,5 +76,8 @@
 (use-package go-mode)
 
 
+(use-package bazel)
+
+
 (provide 'init-modes)
 ;;; init-modes.el ends here
