@@ -90,15 +90,15 @@
           ("d" "Diary - timestamp"
            entry (file+olp+datetree ,org-capture-diary-file)
            "* %U\n%?" :kill-buffer t)
-          ("D" "Diary - Day"
-           entry (file+olp+datetree ,org-capture-diary-file)
-           "* %u\n%?" :kill-buffer t)
+          ;; ("D" "Diary - Day"
+          ;;  entry (file+olp+datetree ,org-capture-diary-file)
+          ;;  "* %u\n%?" :kill-buffer t)
           ("w" "Lifelog - timestamp"
            entry (file+olp+datetree ,org-capture-log-file)
            "* %U - %^{heading} %^g\n%?")
           ("W" "Lifelog - Day"
            entry (file+olp+datetree ,org-capture-log-file)
-           "* %u\n** Plan\n%?\n** Summary\n")
+           "* Plan\n%?\n* Summary")
           ("c" "Capture"
            plain (file ,org-capture-capture-file)
            "%?%i" :kill-buffer t :empty-lines 1)
