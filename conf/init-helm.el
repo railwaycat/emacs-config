@@ -92,7 +92,7 @@
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c M-SPC" . helm-grep-ag-projectile)))
+        ("C-c d" . helm-grep-ag-projectile)))
 
 
 (provide 'init-helm)
