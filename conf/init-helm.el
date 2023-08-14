@@ -28,11 +28,18 @@
     "grep my notes."
     (interactive "P")
     (let ((my-notes-directory (if user-with-dropbox
-                                  "~/Dropbox/notes"
-                                "~/notes")))
+                                  "~/Dropbox/notes/"
+                                "~/notes/")))
       (helm-grep-ag
        (expand-file-name my-notes-directory)
        arg)))
+  (defun notes-find (arg)
+    "find my notes."
+    (interactive "P")
+    (let ((my-notes-directory (if user-with-dropbox
+                                  "~/Dropbox/notes/"
+                                "~/notes/")))
+      (helm-find-files-1 my-notes-directory)))
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
         helm-mini-default-sources '(helm-source-buffers-list

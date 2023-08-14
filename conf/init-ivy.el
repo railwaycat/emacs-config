@@ -74,9 +74,16 @@
     "grep my notes."
     (interactive)
     (let ((my-notes-directory (if user-with-dropbox
-                                  "~/Dropbox/notes"
-                                "~/notes")))
+                                  "~/Dropbox/notes/"
+                                "~/notes/")))
       (counsel-rg nil my-notes-directory)))
+  (defun notes-find (arg)
+    "find my notes."
+    (interactive "P")
+    (let ((default-directory (if user-with-dropbox
+                                 "~/Dropbox/notes/"
+                               "~/notes/")))
+      (counsel-find-file)))
   :custom
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
