@@ -24,6 +24,7 @@
       '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
         (sequence "HOLD(h@/!)" "|" "ABORT(a@/!)")))
 
+
 (setq org-support-shift-select t
       org-startup-folded nil
       org-log-done 'time
@@ -31,20 +32,19 @@
       org-log-state-notes-insert-after-drawers nil
       org-adapt-indentation nil)
 
+
 (setq
  org-edit-src-content-indentation 0
  org-src-tab-acts-natively t)
-;; set refile targets:
-;; 1. plans.org: any project sub levels with "Notes" and "Tasks".
-;; 2. tasks.org: top level
-;; 3. current file: max level 5.
+
+
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil
       org-refile-targets
       '(
-        ("plans.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")
-        ("tasks.org" :level . 1)
-        ("tasks_archived.org" :level . 0)
+        ("inbox.org" :maxlevel . 1)
+        ("work.org" :maxlevel . 1)
+        ("life.org" :maxlevel . 1)
         (nil :maxlevel . 5)))
 
 
@@ -68,43 +68,36 @@
 (with-eval-after-load 'org-capture
   (add-hook 'org-capture-mode-hook #'delete-other-windows))
 
-(let ((org-capture-track-file "tasks.org")
-      (org-capture-notes-file "collect.org")
-      (org-capture-diary-file "diary.org")
-      (org-capture-log-file "lifelog.org")
-      (org-capture-capture-file "capture.org")
-      (org-capture-capture-work-file "capture_work.org"))
+(let ((org-capture-file-diary "diary.org")
+      (org-capture-file-capture "capture.org")
+      (org-capture-file-capture-work "capture_work.org")
+      (org-capture-file-journal "logs/journal.org")
+      (org-capture-file-inbox "logs/inbox.org")
+      (org-capture-file-work "logs/work.org"))
   (setq org-capture-templates
         `(
-          ("t" "Task - Not in a plan (yet)"
-           entry
-           (file ,org-capture-track-file)
-           "* TODO %?\n/Entered on/ %U")
-          ("n" "Note with a Topic"
-           entry
-           (file ,org-capture-notes-file)
-           "* Note (%a)\n/Entered on/ %U\n\n%?")
-          ;; ("e" "Inbox"
-          ;;  plain (file ,org-capture-inbox-file)
-          ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
-          ("d" "Diary - timestamp"
-           entry (file+olp+datetree ,org-capture-diary-file)
-           "* %U\n%?" :kill-buffer t)
-          ;; ("D" "Diary - Day"
-          ;;  entry (file+olp+datetree ,org-capture-diary-file)
-          ;;  "* %u\n%?" :kill-buffer t)
-          ("w" "Lifelog - timestamp"
-           entry (file+olp+datetree ,org-capture-log-file)
-           "* %U - %^{heading} %^g\n%?")
-          ("W" "Lifelog - Day"
-           entry (file+olp+datetree ,org-capture-log-file)
-           "* Plan\n%?\n* Summary")
           ("c" "Capture"
-           plain (file ,org-capture-capture-file)
+           plain (file ,org-capture-file-capture)
            "%?%i" :kill-buffer t :empty-lines 1)
           ("a" "Capture for Work"
-           plain (file ,org-capture-capture-work-file)
-           "%?%i" :kill-buffer t :empty-lines 1))))
+           plain (file ,org-capture-file-capture-work)
+           "%?%i" :kill-buffer t :empty-lines 1)
+          ("d" "Diary - timestamp"
+           entry (file+olp+datetree ,org-capture-file-diary)
+           "* %U\n%?" :kill-buffer t)
+          ("j" "Journal"
+           entry (file+olp+datetree ,org-capture-file-journal)
+           "* %u\n%?" :kill-buffer t)
+          ("i" "Tasks Inbox"
+           entry (file ,org-capture-file-inbox)
+           "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n")
+          ("w" "Tasks Work"
+           entry (file ,org-capture-file-work)
+           "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"))))
+
+          ;; ("w" "Lifelog - timestamp"
+          ;;  entry (file+olp+datetree ,org-capture-log-file)
+          ;;  "* %U - %^{heading} %^g\n%?")
 
 
 ;; org-agenda
@@ -112,8 +105,8 @@
   org-log-into-drawer t
   org-log-state-notes-insert-after-drawers nil)
 
-(setq org-agenda-files '("tasks.org"
-                         "plans.org"))
+(setq org-agenda-files (directory-files-recursively
+                        (concat org-directory "/logs") "\\.org$"))
 (setq org-agenda-custom-commands
       '(("g" "Next and Deadlines"
          ((todo "NEXT"
