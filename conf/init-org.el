@@ -87,10 +87,10 @@
            "* %U\n%?" :kill-buffer t)
           ("i" "Tasks Inbox"
            entry (file ,org-capture-file-inbox)
-           "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n")
+           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
           ("w" "Tasks Work"
            entry (file ,org-capture-file-work)
-           "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"))))
+           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"))))
 
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
