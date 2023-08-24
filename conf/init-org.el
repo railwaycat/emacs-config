@@ -85,9 +85,6 @@
           ("d" "Diary - timestamp"
            entry (file+olp+datetree ,org-capture-file-diary)
            "* %U\n%?" :kill-buffer t)
-          ("j" "Journal"
-           entry (file+olp+datetree ,org-capture-file-journal)
-           "* %u\n%?" :kill-buffer t)
           ("i" "Tasks Inbox"
            entry (file ,org-capture-file-inbox)
            "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n")
@@ -98,6 +95,57 @@
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
+
+
+;; home-made org-journal
+(defun org-journal ()
+  "Open the journal file"
+  (interactive)
+  (let ((buffer (find-buffer-visiting (concat org-directory "/logs/journal.org"))))
+    (if buffer
+        (switch-to-buffer buffer)
+      (find-file (concat org-directory "/logs/journal.org")))))
+
+(defun org-journal-today ()
+  "Insert an date hierarchy based on the current date, if it doesn't already exist."
+  (interactive)
+  (let* ((current-date (calendar-current-date))
+         (year (nth 2 current-date))
+         (month (nth 0 current-date))
+         (day (nth 1 current-date))
+         (weekday (calendar-day-name current-date))
+         (month-name (calendar-month-name month))
+         (formatted-month (format "%d-%02d %s" year month month-name))
+         (formatted-day (format "%d-%02d-%02d %s" year month day weekday))
+         (year-exists nil)
+         (month-exists nil)
+         (day-exists nil))
+    ;; Check if year exists
+    (save-excursion
+      (goto-char (point-min))
+      (setq year-exists (re-search-forward (format "^\\* %d$" year) nil t)))
+    ;; Check if month exists
+    (save-excursion
+      (goto-char (point-min))
+      (setq month-exists (re-search-forward (format "^\\*\\* %s$" formatted-month) nil t)))
+    ;; Check if day exists
+    (save-excursion
+      (goto-char (point-min))
+      (setq day-exists (re-search-forward (format "^\\*\\*\\* %s$" formatted-day) nil t)))
+    ;; Insert year if not present
+    (unless year-exists
+      (goto-char (point-max))
+      (insert (format "* %d\n" year)))
+    ;; Insert month if not present
+    (unless month-exists
+      (goto-char (point-max))
+      (insert (format "** %s\n" formatted-month)))
+    ;; Insert day if not present
+    (unless day-exists
+      (goto-char (point-max))
+      (insert (format "*** %s\n" formatted-day)))
+    ;; Move cursor to the end of the file
+    (goto-char (point-max))))
 
 
 ;; org-agenda
