@@ -108,7 +108,10 @@
 (setq org-agenda-files (directory-files-recursively
                         (concat org-directory "/logs") "\\.org$"))
 (setq org-agenda-custom-commands
-      '(("g" "Next and Deadlines"
+      '(("n" "All NEXT tasks"
+         todo "NEXT"
+         ((org-agenda-overriding-header "NEXT todo")))
+        ("g" "Next and Deadlines"
          ((todo "NEXT"
                 ((org-agenda-overriding-header "Next Tasks")))
           (agenda "" ((org-agenda-start-on-weekday nil)
