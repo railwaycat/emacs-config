@@ -104,7 +104,8 @@
   (let ((buffer (find-buffer-visiting (concat org-directory "/logs/journal.org"))))
     (if buffer
         (switch-to-buffer buffer)
-      (find-file (concat org-directory "/logs/journal.org")))))
+      (find-file (concat org-directory "/logs/journal.org"))
+      (goto-char (point-max)))))
 
 (defun org-journal-today ()
   "Insert an date hierarchy based on the current date, if it doesn't already exist."
@@ -132,6 +133,12 @@
     (save-excursion
       (goto-char (point-min))
       (setq day-exists (re-search-forward (format "^\\*\\*\\* %s$" formatted-day) nil t)))
+    ;; Ensure newline
+    (unless (or (bolp)
+                (save-excursion
+                  (forward-line 1)
+                  (looking-at-p "^[ \t]*$")))
+      (insert "\n"))
     ;; Insert year if not present
     (unless year-exists
       (goto-char (point-max))
