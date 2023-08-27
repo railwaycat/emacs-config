@@ -160,8 +160,7 @@
   org-log-into-drawer t
   org-log-state-notes-insert-after-drawers nil)
 
-(setq org-agenda-files (directory-files-recursively
-                        (concat org-directory "/logs") "\\.org$"))
+(setq org-agenda-files (list (concat org-directory "/logs")))
 (setq org-agenda-custom-commands
       '(("n" "All NEXT tasks"
          todo "NEXT"
