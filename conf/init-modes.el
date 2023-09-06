@@ -79,5 +79,11 @@
 (use-package bazel)
 
 
+;; terraform mode
+(use-package hcl-mode)
+(add-to-list 'auto-mode-alist '("\\.tf\\'" . hcl-mode))
+(add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
+
+
 (provide 'init-modes)
 ;;; init-modes.el ends here
