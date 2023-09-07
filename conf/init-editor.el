@@ -159,5 +159,22 @@
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 
+(define-key global-map (kbd "C-<return>")
+            (lambda (arg)
+              "Move to the next line (like vi) and then opens a line. This
+function is a copy from
+https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
+              (interactive "p")
+              (end-of-line)
+              (open-line arg)
+              (call-interactively 'next-line arg)
+              (if (not (member major-mode
+                               '(haskell-mode
+                                 org-mode
+                                 literate-haskell-mode)))
+                  (indent-according-to-mode)
+                (beginning-of-line))))
+
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
