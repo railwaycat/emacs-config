@@ -136,5 +136,15 @@ This saves time when working on a large tags file."
   ("C-c s" . scratch))
 
 
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq
+   undo-tree-auto-save-history nil
+   undo-tree-visualizer-diff t
+   undo-tree-visualizer-timestamps t))
+
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
