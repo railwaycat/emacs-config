@@ -43,6 +43,11 @@
 (my/ensure-file-exists custom-file)
 
 
+;; suppress warnings
+; (setq warning-minimum-level :error)
+(setq native-comp-async-report-warnings-errors nil)
+
+
 ;; load each conf
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 (add-to-list 'load-path (concat user-emacs-directory "conf"))
