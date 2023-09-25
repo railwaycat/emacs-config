@@ -151,6 +151,9 @@
   (after-init . whole-line-or-region-global-mode))
 
 
+(use-package separedit)
+
+
 (define-key global-map (kbd "M-c") #'capitalize-dwim)
 
 
