@@ -60,6 +60,10 @@
 ;;         ("M-." . helm-gtags-find-tag)))
 
 
+;; wgrep-helm
+;; C-x C-s to make result to a buffer
+;; C-c C-p to start edit with wgrep-helm
+;; C-c C-c or C-x C-s when edit finish
 (use-package wgrep-helm
   :after helm)
 
