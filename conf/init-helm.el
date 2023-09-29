@@ -33,6 +33,7 @@
       (helm-grep-ag
        (expand-file-name my-notes-directory)
        arg)))
+  (define-key global-map (kbd "C-c n g") #'notes-grep)
   (defun notes-find (arg)
     "find my notes."
     (interactive "P")
@@ -40,6 +41,7 @@
                                   "~/Dropbox/notes/"
                                 "~/notes/")))
       (helm-find-files-1 my-notes-directory)))
+  (define-key global-map (kbd "C-c n v") #'notes-find)
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
         helm-mini-default-sources '(helm-source-buffers-list

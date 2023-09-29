@@ -77,6 +77,7 @@
                                   "~/Dropbox/notes/"
                                 "~/notes/")))
       (counsel-rg nil my-notes-directory)))
+  (define-key global-map (kbd "C-c n g") #'notes-grep)
   (defun notes-find (arg)
     "find my notes."
     (interactive "P")
@@ -84,6 +85,7 @@
                                  "~/Dropbox/notes/"
                                "~/notes/")))
       (counsel-find-file)))
+  (define-key global-map (kbd "C-c n v") #'notes-find)
   :custom
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
