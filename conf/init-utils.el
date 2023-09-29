@@ -127,7 +127,7 @@ This saves time when working on a large tags file."
   ;; Denote DOES NOT define any key bindings.  This is for the user to
   ;; decide.  For example:
   (let ((map global-map))
-    (define-key map (kbd "C-c n n") #'denote)
+    (define-key map (kbd "C-c n n") #'denote-open-or-create)
     (define-key map (kbd "C-c n N") #'denote-type)
     (define-key map (kbd "C-c n d") #'denote-date)
 
