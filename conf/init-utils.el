@@ -183,5 +183,91 @@ This saves time when working on a large tags file."
   :bind
   ("C-x u" . vundo))
 
+
+;; Popper
+;; Setup from roife@github
+(use-package popper
+  :bind (:map popper-mode-map
+              ("M-<tab>"   . popper-cycle)
+              ("M-`" . popper-toggle-type))
+  :hook (emacs-startup . popper-mode)
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$" "\\*Pp Eval Output\\*$"
+          "\\*Compile-Log\\*"
+          "\\*Completions\\*"
+          "\\*Warnings\\*"
+          "\\*Async Shell Command\\*"
+          "\\*Apropos\\*"
+          "\\*Backtrace\\*"
+          "\\*Calendar\\*"
+          "\\*Embark Actions\\*"
+          "\\*Finder\\*"
+          "\\*Kill Ring\\*"
+          "\\*Go-Translate\\*"
+
+          bookmark-bmenu-mode
+          comint-mode
+          compilation-mode
+          help-mode helpful-mode
+          tabulated-list-mode
+          Buffer-menu-mode
+
+          gnus-article-mode devdocs-mode
+          grep-mode occur-mode rg-mode ag-mode pt-mode
+
+          "^\\*Process List\\*" process-menu-mode
+          list-environment-mode cargo-process-mode
+
+          "^\\*eshell.*\\*.*$" eshell-mode
+          "^\\*shell.*\\*.*$"  shell-mode
+          "^\\*terminal.*\\*.*$" term-mode
+          "^\\*vterm.*\\*.*$"  vterm-mode
+          "^\\*eldoc.*\\*.*$" eldoc-mode
+
+          "\\*Flycheck errors\\*$" " \\*Flycheck checker\\*$"
+          "\\*Paradox Report\\*$" "\\*package update results\\*$" "\\*Package-Lint\\*$"
+          "\\*[Wo]*Man.*\\*$"
+          "\\*ert\\*$" overseer-buffer-mode
+          "\\*gud-debug\\*$"
+          "\\*lsp-help\\*$" "\\*lsp session\\*$"
+          "\\*quickrun\\*$"
+          "\\*tldr\\*$"
+          "\\*vc-.*\\*$"
+          "^\\*elfeed-entry\\*$"
+          "^\\*macro expansion\\**"
+
+          "\\*Agenda Commands\\*" "\\*Org Select\\*" "\\*Capture\\*" "^CAPTURE-.*\\.org*"
+          "\\*Gofmt Errors\\*$" "\\*Go Test\\*$" godoc-mode
+          "\\*docker-.+\\*"
+          "\\*prolog\\*" inferior-python-mode inf-ruby-mode swift-repl-mode
+          "\\*rustfmt\\*$" rustic-compilation-mode rustic-cargo-clippy-mode
+          rustic-cargo-outdated-mode rustic-cargo-test-mode
+	  ))
+
+  :config
+  ;; mode-line indicator
+  (with-eval-after-load 'popper
+    (setq popper-mode-line
+          '(:propertize " POP |"
+                        face +mode-line-meta-active-face)))
+
+  ;; Enable indicator in minibuffer
+  (popper-echo-mode t)
+
+  ;; HACK: close popper with `C-g'
+  (defun +popper-close-window-hack (&rest _)
+    "Close popper window via `C-g'."
+    (when (and (called-interactively-p 'interactive)
+               (not (region-active-p))
+               popper-open-popup-alist)
+      (let ((window (caar popper-open-popup-alist)))
+        (when (window-live-p window)
+          (delete-window window)))))
+  (advice-add #'keyboard-quit :before #'+popper-close-window-hack)
+  )
+
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
