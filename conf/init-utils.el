@@ -238,7 +238,6 @@ This saves time when working on a large tags file."
           "^\\*elfeed-entry\\*$"
           "^\\*macro expansion\\**"
 
-          "\\*Agenda Commands\\*" "\\*Org Select\\*" "\\*Capture\\*" "^CAPTURE-.*\\.org*"
           "\\*Gofmt Errors\\*$" "\\*Go Test\\*$" godoc-mode
           "\\*docker-.+\\*"
           "\\*prolog\\*" inferior-python-mode inf-ruby-mode swift-repl-mode
