@@ -244,7 +244,12 @@ This saves time when working on a large tags file."
           "\\*rustfmt\\*$" rustic-compilation-mode rustic-cargo-clippy-mode
           rustic-cargo-outdated-mode rustic-cargo-test-mode
 	  ))
-
+  :custom
+  (popper-window-height (lambda (win)
+                          (fit-window-to-buffer
+                           win
+                           (floor (frame-height) 2)
+                           (floor (frame-height) 2))))
   :config
   ;; mode-line indicator
   (with-eval-after-load 'popper
