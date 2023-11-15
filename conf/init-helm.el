@@ -52,6 +52,20 @@
   (helm-mode 1))
 
 
+;; helm-ag
+;; C-l search in parent directory
+;; by default insert word, M-n to insert symbol
+;; C-c C-f enable helm-follow-mode
+(use-package helm-ag
+  :after helm
+  :custom
+  (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
+  (helm-ag-insert-at-point 'word) ; value: word/symbol etc
+  (helm-ag-fuzzy-match t)
+  :bind
+  ("C-c g" . helm-ag)
+  ("C-c G" . helm-do-ag))
+
 ;; wgrep-helm
 ;; C-x C-s to make result to a buffer
 ;; C-c C-p to start edit with wgrep-helm
@@ -95,7 +109,7 @@
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c d" . helm-grep-ag-projectile)))
+        ("C-c F" . helm-grep-ag-projectile)))
 
 
 (provide 'init-helm)
