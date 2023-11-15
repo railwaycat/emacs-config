@@ -36,8 +36,8 @@
 ;; rg
 (use-package rg
   :bind
-  ("C-c g" . rg-dwim)
-  ("C-c G" . rg))
+  ("C-c r" . rg-dwim)
+  ("C-c R" . rg))
 
 
 ;; citre/ctags

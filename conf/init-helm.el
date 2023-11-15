@@ -52,17 +52,6 @@
   (helm-mode 1))
 
 
-;; (use-package helm-gtags
-;;   :after helm
-;;   :init
-;;   (setq helm-gtags-prefix-key "\C-ct"
-;;         helm-gtags-suggested-key-mapping t)
-;;   :bind
-;;   (:map helm-gtags-mode-map
-;;         ("M-," . helm-gtags-pop-stack)
-;;         ("M-." . helm-gtags-find-tag)))
-
-
 ;; wgrep-helm
 ;; C-x C-s to make result to a buffer
 ;; C-c C-p to start edit with wgrep-helm

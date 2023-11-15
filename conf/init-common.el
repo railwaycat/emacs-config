@@ -210,7 +210,6 @@
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
 (define-key global-map (kbd "<f12>") 'bookmark-bmenu-list)
-(define-key global-map (kbd "C-c r") 'revert-buffer)
 (define-key global-map (kbd "C-x M-c") 'save-buffers-kill-emacs)
 
 
