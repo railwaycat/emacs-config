@@ -16,7 +16,7 @@
    :map company-active-map
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous)
-   ("M-SPC" . company-filter-candidates)
+   ("C-s" . company-filter-candidates)
    ("<tab>" . company-complete-common-or-cycle)
    :map company-search-map
    ("C-n" . company-select-next)
