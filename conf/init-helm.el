@@ -12,10 +12,9 @@
   (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
+  ;; put visible buffers near the top
   (helm-buffer-list-reorder-fn (lambda (visibles others)
-                                 (nconc
-                                  (delete-dups visibles)
-                                  others)))
+                                 (nconc (list (car others)) (delete-dups visibles) (cdr others))))
   (helm-boring-buffer-regexp-list
    '(
      "\\` "
