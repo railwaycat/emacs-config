@@ -77,66 +77,6 @@ This saves time when working on a large tags file."
    citre-peek-fill-fringe nil))
 
 
-;; (use-package deft
-;;   :bind
-;;   ("C-c d" . deft)
-;;   :config
-;;   (setq deft-extensions '("org" "md" "markdown" "txt")
-;;         ;; deft-markdown-mode-title-level 1
-;;         deft-default-extension "org"
-;;         ;; deft-text-mode 'org-mode
-;;         deft-recursive t
-;;         deft-use-filename-as-title t
-;;         deft-use-filter-string-for-filename t
-;;         deft-auto-save-interval -1.0) ;; disable autosave
-;;   (if user-with-dropbox
-;;       (setq deft-directory (file-truename "~/Dropbox/notes"))
-;;     (setq deft-directory (file-truename "~/notes"))))
-
-
-;; Denote
-(when (bound-and-true-p straight-use-package-by-default)
-  ;; the package from elpa is outdated, install it through straight
-  ;; with the latest.
-  (straight-use-package
-     '(denote
-       :host github
-       :repo "protesilaos/denote"
-       :branch "main"))
-
-  (require 'denote)
-
-  (setq denote-directory (expand-file-name
-                          (if user-with-dropbox
-                              "~/Dropbox/notes/"
-                            "~/notes/")))
-  (setq denote-known-keywords '("inbox" "work"))
-  (setq denote-infer-keywords t)
-  (setq denote-sort-keywords t)
-  (setq denote-prompts '(title keywords))
-  (setq denote-date-prompt-use-org-read-date t)
-  (setq denote-allow-multi-word-keywords t)
-  (setq denote-backlinks-show-context t)
-
-  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
-
-  (setq denote-dired-directories
-        (list denote-directory))
-  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
-
-  ;; Denote DOES NOT define any key bindings.  This is for the user to
-  ;; decide.  For example:
-  (let ((map global-map))
-    (define-key map (kbd "C-c n n") #'denote-open-or-create)
-    (define-key map (kbd "C-c n N") #'denote-type)
-    (define-key map (kbd "C-c n d") #'denote-date)
-
-    (define-key map (kbd "C-c n i") #'denote-link) ; "insert" mnemonic
-    (define-key map (kbd "C-c n b") #'denote-backlinks)
-    (define-key map (kbd "C-c n f f") #'denote-find-link)
-    (define-key map (kbd "C-c n f b") #'denote-find-backlink)))
-
-
 ;; xref
 (setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
 ;; configured in consult

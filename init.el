@@ -64,6 +64,7 @@
 (require 'init-modes)
 (require 'init-ime)
 (require 'init-org)
+(require 'init-notes)
 (require 'init-my)
 (require 'init-theme)
 (require 'init-local nil t)
