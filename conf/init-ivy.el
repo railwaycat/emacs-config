@@ -73,16 +73,11 @@
   (defun notes-grep ()
     "grep my notes."
     (interactive)
-    (let ((my-notes-directory (if user-with-dropbox
-                                  "~/Dropbox/notes/"
-                                "~/notes/")))
-      (counsel-rg nil my-notes-directory)))
+    (counsel-rg nil my/notes-directory))
   (defun notes-find (arg)
     "find my notes."
     (interactive "P")
-    (let ((default-directory (if user-with-dropbox
-                                 "~/Dropbox/notes/"
-                               "~/notes/")))
+    (let ((default-directory my/notes-directory))
       (counsel-find-file)))
   :custom
   (counsel-preselect-current-file t)
