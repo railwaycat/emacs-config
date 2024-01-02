@@ -117,7 +117,7 @@
   "Using normal size font"
   (interactive)
   (set-face-attribute 'default nil
-                      :font (font-spec :name "PragmataPro Mono Liga" :size 12))
+                      :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'fixed-pitch nil
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
