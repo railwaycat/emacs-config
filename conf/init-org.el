@@ -101,10 +101,10 @@
 (defun org-journal ()
   "Open the journal file"
   (interactive)
-  (let ((buffer (find-buffer-visiting (concat org-directory "/logs/journal.org"))))
+  (let ((buffer (find-buffer-visiting (concat org-directory "/journal.org"))))
     (if buffer
         (switch-to-buffer buffer)
-      (find-file (concat org-directory "/logs/journal.org"))
+      (find-file (concat org-directory "/journal.org"))
       (goto-char (point-max)))))
 
 (defun org-journal-today ()
