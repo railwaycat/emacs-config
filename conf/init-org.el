@@ -21,7 +21,7 @@
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
+      '((sequence "TODO(t)" "NEXT(n)" "DOING(i!)" "|" "DONE(d@)")
         (sequence "HOLD(h@/!)" "|" "ABORT(a@/!)")))
 
 
@@ -160,14 +160,16 @@
   org-log-into-drawer t
   org-log-state-notes-insert-after-drawers nil)
 
-(setq org-agenda-files (list (concat org-directory "/logs")))
+(setq org-agenda-files (list
+                        (concat org-directory "/plan")
+                        (concat org-directory "/logs")))
 (setq org-agenda-custom-commands
-      '(("n" "All NEXT tasks"
-         todo "NEXT"
-         ((org-agenda-overriding-header "NEXT todo")))
-        ("g" "Next and Deadlines"
-         ((todo "NEXT"
-                ((org-agenda-overriding-header "Next Tasks")))
+      '(("n" "All TODO tasks"
+         todo "TODO"
+         ((org-agenda-overriding-header "TODO list")))
+        ("c" "Current Tasks"
+         ((todo "DOING"
+                ((org-agenda-overriding-header "In Progress")))
           ;; (agenda "" ((org-agenda-start-on-weekday nil)
           ;;             (org-agenda-span 3)
           ;;             (org-deadline-warning-days 0)
@@ -182,8 +184,8 @@
           ;;             (org-agenda-block-separator nil)
           ;;             (org-agenda-entry-types '(:deadline))
           ;;             (org-agenda-overriding-header "\nDeadlines in 14 Days")))
-          (todo "TODO"
-                ((org-agenda-overriding-header "\nTODOs")
+          (todo "NEXT"
+                ((org-agenda-overriding-header "\nNEXT todo")
                  (org-agenda-block-separator nil)))))))
 
 
