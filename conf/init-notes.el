@@ -11,6 +11,13 @@
                                    "~/notes/"))
 
 
+(unless (fboundp #'notes-find)
+  (defun notes-find ()
+    "Find my notes"
+    (interactive)
+    (let ((default-directory my/notes-directory))
+      (find-file (read-file-name "Find Notes: ")))))
+
 ;; notes-grep and notes-find should already be defined by helm, ivy or
 ;; consult setup.
 (define-key global-map (kbd "C-c n g") #'notes-grep)
