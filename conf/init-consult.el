@@ -53,7 +53,7 @@
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
-         ("C-c h" . consult-history)
+         ;; ("C-c h" . consult-history)
          ;; ("C-c k" . consult-kmacro)
          ("C-c m" . consult-man)
          ("C-c i" . consult-info)
