@@ -25,7 +25,7 @@
   ;; (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))
   (insert (format-time-string "[%H:%M:%S]" (current-time)))
   )
-(define-key global-map (kbd "C-c t t") 'my/insert-time)
+;; (define-key global-map (kbd "C-c t t") 'my/insert-time)
 
 
 ;;;###autoload
@@ -139,14 +139,14 @@ directory to make multiple eshell windows easier."
   (when (one-window-p)
     (split-window-horizontally))
   (other-window 1))
-(define-key global-map (kbd "C-t") 'my/other-window-or-split)
+(define-key global-map (kbd "C-c t") 'my/other-window-or-split)
 ;; C-T is split window and/or move other window
 (defun my/other-window-or-split-v ()
   (interactive)
   (when (one-window-p)
     (split-window-vertically))
   (other-window 1))
-(define-key global-map (kbd "C-S-t") 'my/other-window-or-split-v)
+(define-key global-map (kbd "C-c T") 'my/other-window-or-split-v)
 
 
 (provide 'init-my)
