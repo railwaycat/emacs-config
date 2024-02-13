@@ -29,14 +29,23 @@
   ([remap yank-pop] . helm-show-kill-ring)
   ([remap bookmark-jump] . helm-filtered-bookmarks)
   ([remap find-file] . helm-find-files)
-  ([remap isearch-forward] . helm-occur)
   ("C-c v" . helm-resume)
   ("C-c f" . helm-do-grep-ag)
-  ("C-c k" . helm-semantic-or-imenu)
+
+  ("M-g i" . helm-semantic-or-imenu)
+  ("M-g I" . helm-imenu-in-all-buffers)
+  ("M-g p" . helm-browse-project)
+  ("M-g P" . helm-projects-history)
+  ("M-s d" . helm-find)
+  ("M-s o" . helm-occur)
   ([remap switch-to-buffer] . helm-mini)
   (:map minibuffer-local-map
         ("C-c C-l" . helm-minibuffer-history))
+  (:map isearch-mode-map
+        ("M-s o" . helm-occur-from-isearch)
+        ("M-s O" . helm-multi-occur-from-isearch))
   :config
+  ;; Notes
   (defun notes-grep (arg)
     "grep my notes."
     (interactive "P")
@@ -45,6 +54,19 @@
     "find my notes."
     (interactive "P")
     (helm-find-files-1 my/notes-directory))
+
+  (defun my/helm-layout-toggle ()
+    "Toggle helm layout for buffer display."
+    (interactive)
+    (if helm-always-two-windows
+        (setq  helm-always-two-windows nil
+               helm-display-buffer-default-height 25
+               helm-default-display-buffer-functions '(display-buffer-in-side-window))
+      (setq  helm-always-two-windows t
+             helm-display-buffer-default-height nil
+             helm-default-display-buffer-functions nil)))
+  (my/helm-layout-toggle) ;; toggle to behavior: new buffer at bottom.
+
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
         helm-mini-default-sources '(helm-source-buffers-list
@@ -65,8 +87,8 @@
   (helm-ag-insert-at-point 'word) ; value: word/symbol etc
   (helm-ag-fuzzy-match t)
   :bind
-  ("C-c g" . helm-ag)
-  ("C-c G" . helm-do-ag))
+  ("M-s g" . helm-ag)
+  ("M-s G" . helm-do-ag))
 
 ;; wgrep-helm
 ;; C-x C-s to make result to a buffer
@@ -77,11 +99,7 @@
 
 
 (use-package helm-ls-git
-  :after helm
-  :bind
-  ("C-c j" . helm-browse-project)
-  ("C-c J" . helm-projects-history))
-
+  :after helm)
 
 (use-package helm-xref
   :after helm
