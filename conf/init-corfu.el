@@ -6,6 +6,9 @@
 
 (setq tab-always-indent 'complete)
 
+
+;; Duplicate setup for orderless. Ensure the case when consult and
+;; corfu are not be used together.
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)
@@ -45,10 +48,8 @@
 
 (use-package cape
   :after corfu
-  :bind
-  ([remap dabbrev-expand] . cape-dabbrev)
   :init
-  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   ;;(add-to-list 'completion-at-point-functions #'cape-history)
   (add-to-list 'completion-at-point-functions #'cape-keyword)

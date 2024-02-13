@@ -20,6 +20,17 @@
   (vertico-cycle nil))
 
 
+;; Duplicate setup for orderless. Ensure the case when consult and
+;; corfu are not be used together.
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((eglot (styles . (orderless basic)))))
+  (setq completion-category-defaults nil
+        completion-category-overrides nil)
+  (setq completion-cycle-threshold 4))
+
+
 (use-package embark
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
@@ -88,7 +99,6 @@
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)
          ("M-s r" . consult-ripgrep)
-         ([remap isearch-forward] . consult-line)
          ("M-s l" . (lambda ()
                       (interactive)
                       (consult-line (thing-at-point 'symbol))))
