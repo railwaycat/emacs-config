@@ -65,7 +65,7 @@
       (setq  helm-always-two-windows t
              helm-display-buffer-default-height nil
              helm-default-display-buffer-functions nil)))
-  (my/helm-layout-toggle) ;; toggle to behavior: new buffer at bottom.
+  ;; (my/helm-layout-toggle) ;; toggle to behavior: new buffer at bottom.
 
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
@@ -84,7 +84,7 @@
   :after helm
   :custom
   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
-  (helm-ag-insert-at-point 'word) ; value: word/symbol etc
+  (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
   (helm-ag-fuzzy-match t)
   :bind
   ("M-s g" . helm-ag)
