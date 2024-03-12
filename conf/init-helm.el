@@ -9,6 +9,8 @@
   :diminish
   :demand
   :custom
+  (helm-grep-default-command "grep --color=always -d skip %e -n%cH -e %p %f")
+  (helm-grep-default-recurse-command "grep --color=always -d recurse %e -n%cH -e %p %f")
   (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
@@ -60,11 +62,9 @@
     (interactive)
     (if helm-always-two-windows
         (setq  helm-always-two-windows nil
-               helm-display-buffer-default-height 25
-               helm-default-display-buffer-functions '(display-buffer-in-side-window))
+               helm-display-buffer-default-height 25)
       (setq  helm-always-two-windows t
-             helm-display-buffer-default-height nil
-             helm-default-display-buffer-functions nil)))
+             helm-display-buffer-default-height nil)))
   ;; (my/helm-layout-toggle) ;; toggle to behavior: new buffer at bottom.
 
   (setq helm-mode-fuzzy-match t
@@ -75,20 +75,6 @@
                                     helm-source-buffer-not-found))
   (helm-mode 1))
 
-
-;; helm-ag
-;; C-l search in parent directory
-;; by default insert word, M-n to insert symbol
-;; C-c C-f enable helm-follow-mode
-(use-package helm-ag
-  :after helm
-  :custom
-  (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
-  (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
-  (helm-ag-fuzzy-match t)
-  :bind
-  ("M-s g" . helm-ag)
-  ("M-s G" . helm-do-ag))
 
 ;; wgrep-helm
 ;; C-x C-s to make result to a buffer
@@ -118,19 +104,30 @@
   :after (helm projectile)
   :init
   (helm-projectile-on)
-  (defun helm-grep-ag-projectile (arg)
+  (defun helm-grep-ag-projectile ()
     "Search projectile project with ripgrep"
-    (interactive "P")
+    (interactive)
     (let ((project-root (or (projectile-project-root)
                             (error "You're not in a project"))))
       (require 'helm-files)
-      (helm-grep-ag project-root arg)))
+      (helm-grep-ag project-root nil)))
+  (defun helm-grep-ag-projectile-again ()
+    "Search projectile project with ripgrep, within a helm grep session"
+    (interactive)
+    (let ((project-root (or (projectile-project-root)
+                            (error "You're not in a project"))))
+      (with-helm-alive-p
+        (helm-run-after-exit
+         (lambda ()
+           (require 'helm-files)
+           (helm-grep-ag project-root nil))))))
   :bind
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c F" . helm-grep-ag-projectile)))
-
+        ("C-c F" . helm-grep-ag-projectile))
+  (:map helm-grep-map
+        ("C-c f" . helm-grep-ag-projectile-again)))
 
 (provide 'init-helm)
 ;;; init-helm.el ends here
