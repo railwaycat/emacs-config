@@ -116,7 +116,7 @@
   :after flyspell
   :bind
   (:map flyspell-mode-map
-        ("C-;" . flyspell-correct-wrapper)))
+        ("C-c ;" . flyspell-correct-wrapper)))
 
 
 (define-key global-map [remap dabbrev-expand] #'hippie-expand)

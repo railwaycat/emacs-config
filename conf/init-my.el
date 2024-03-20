@@ -4,19 +4,19 @@
 
 ;;; Code:
 
-
+;; This function is replaced by whole-line-or-region package.
 ;;;###autoload
-(defun my/comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
-  (interactive)
-  (let (beg end)
-    (if (region-active-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)))
-(define-key global-map (kbd "C-c ;") 'my/comment-or-uncomment-region-or-line)
-(if (eq system-type 'darwin)
-    (define-key global-map [(hyper /)] 'my/comment-or-uncomment-region-or-line))
+;; (defun my/comment-or-uncomment-region-or-line ()
+;;   "Comments or uncomments the region or the current line if there's no active region."
+;;   (interactive)
+;;   (let (beg end)
+;;     (if (region-active-p)
+;;         (setq beg (region-beginning) end (region-end))
+;;       (setq beg (line-beginning-position) end (line-end-position)))
+;;     (comment-or-uncomment-region beg end)))
+;; (define-key global-map (kbd "C-c ;") 'my/comment-or-uncomment-region-or-line)
+;; (if (eq system-type 'darwin)
+;;     (define-key global-map [(hyper /)] 'my/comment-or-uncomment-region-or-line))
 
 
 ;;;###autoload
