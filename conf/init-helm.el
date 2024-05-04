@@ -14,6 +14,7 @@
   (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
+  (helm-buffer-max-length 40)
   ;; put visible buffers near the top
   (helm-buffer-list-reorder-fn (lambda (visibles others)
                                  (nconc (list (car others)) (delete-dups visibles) (cdr others))))
@@ -41,6 +42,8 @@
   ("M-s d" . helm-find)
   ("M-s o" . helm-occur)
   ([remap switch-to-buffer] . helm-mini)
+  (:map helm-buffer-map
+        ("C-c ]" . helm-toggle-buffers-details))
   (:map minibuffer-local-map
         ("C-c C-l" . helm-minibuffer-history))
   (:map isearch-mode-map
