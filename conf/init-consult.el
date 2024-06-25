@@ -62,7 +62,7 @@
 
 
 (use-package consult
-  ;; Replace bindings. Lazily loaded due by `use-package'.
+  :demand
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ;; ("C-c h" . consult-history)
