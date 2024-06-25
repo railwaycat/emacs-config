@@ -54,7 +54,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "local"))
 
 (require 'init-env)
-(require 'init-straight)
+(require 'init-elpa)
 (require 'init-common)
 (require 'init-editor)
 (require 'init-utils)

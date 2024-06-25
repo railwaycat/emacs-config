@@ -30,6 +30,7 @@
 ;; disable beep
 (setq ring-bell-function '(lambda ()))
 ;; visible bell on mode line
+(ensure-package 'mode-line-bell)
 (use-package mode-line-bell
   :hook
   (after-init . mode-line-bell-mode))
@@ -115,7 +116,8 @@
 
 
 ;; ibuffer
-(use-package ibuffer-vc)
+(ensure-package 'ibuffer-vc)
+(require 'ibuffer-vc)
 (global-set-key [remap list-buffers] #'ibuffer)
 (add-hook 'ibuffer-hook (lambda ()
                           (ibuffer-auto-mode)

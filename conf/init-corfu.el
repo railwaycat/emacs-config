@@ -9,6 +9,7 @@
 
 ;; Duplicate setup for orderless. Ensure the case when consult and
 ;; corfu are not be used together.
+(ensure-package 'orderless)
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)
@@ -17,6 +18,7 @@
         completion-category-overrides nil)
   (setq completion-cycle-threshold 4))
 
+(ensure-package 'corfu)
 (use-package corfu
   :bind
   (:map corfu-map
@@ -40,12 +42,14 @@
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
+(ensure-package 'corfu-terminal)
 (use-package corfu-terminal
   :after corfu
   :init
   (unless (display-graphic-p)
     (corfu-terminal-mode +1)))
 
+(ensure-package 'cape)
 (use-package cape
   :after corfu
   :init
@@ -64,6 +68,7 @@
   )
 
 
+(ensure-package 'kind-icon)
 (use-package kind-icon
   :after corfu
   :custom

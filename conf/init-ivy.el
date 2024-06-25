@@ -5,9 +5,11 @@
 ;;; Code:
 
 
-(use-package smex)
+(ensure-package 'smex)
+(require 'smex)
 
 
+(ensure-package 'ivy)
 (use-package ivy
   :diminish
   :hook (after-init . ivy-mode)
@@ -25,6 +27,7 @@
   (enable-recursive-minibuffers t))
 
 
+(ensure-package 'swiper)
 (use-package swiper
   :bind
   ([remap isearch-forward] . swiper-isearch)
@@ -33,6 +36,7 @@
         ("C-s" . swiper)))
 
 
+(ensure-package 'counsel)
 (use-package counsel
   :diminish
   :hook (ivy-mode . counsel-mode)
@@ -87,6 +91,7 @@
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
 
+(ensure-package 'ivy-rich)
 (use-package ivy-rich
   :after counsel
   :config
@@ -129,6 +134,7 @@
   (ivy-rich-mode t))
 
 
+(ensure-package 'ivy-xref)
 (use-package ivy-xref
   :init
   (when (>= emacs-major-version 27)
@@ -136,10 +142,12 @@
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 
-(use-package flyspell-correct-ivy
-  :after flyspell-correct)
+(ensure-package 'flyspell-correct-ivy)
+(with-eval-after-load 'flyspell-correct
+  (require 'flyspell-correct-ivy))
 
 
+(ensure-package 'counsel-projectile)
 (use-package counsel-projectile
   :after projectile
   :init

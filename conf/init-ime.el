@@ -6,6 +6,7 @@
 
 
 ;; setup for pyim
+(ensure-package 'pyim)
 (use-package pyim
   :demand
   :bind
@@ -32,6 +33,7 @@
   ;; (setq pyim-default-scheme 'cangjie)
 
   ;; 五笔设置
+  (ensure-package 'pyim-wbdict)
   (use-package pyim-wbdict
     :config
     (pyim-wbdict-v86-single-enable))
