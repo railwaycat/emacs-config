@@ -22,6 +22,7 @@
 
 (global-so-long-mode 1)
 
+(ensure-package 'vlf)
 (use-package vlf
   :config
   (defun ffap-vlf ()
@@ -56,6 +57,7 @@
 
 
 ;; paren highlight style
+(ensure-package 'paren)
 (use-package paren
   :custom
   (show-paren-style 'parenthesis)
@@ -90,7 +92,8 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 
-(use-package unfill)
+(ensure-package 'unfill)
+(require 'unfill)
 
 
 (add-hook 'after-init-hook 'global-subword-mode)
@@ -112,6 +115,7 @@
 (with-eval-after-load 'flyspell
   (diminish 'flyspell-mode))
 
+(ensure-package 'flyspell-correct)
 (use-package flyspell-correct
   :after flyspell
   :bind
@@ -136,6 +140,7 @@
                 (< (buffer-size other-buffer) (* 1 1024 1024))))
 
 
+(ensure-package 'symbol-overlay)
 (use-package symbol-overlay
   :hook
   (text-mode . symbol-overlay-mode)
@@ -145,13 +150,15 @@
   ([f4] . symbol-overlay-jump-next))
 
 
+(ensure-package 'whole-line-or-region)
 (use-package whole-line-or-region
   :diminish whole-line-or-region-local-mode
   :hook
   (after-init . whole-line-or-region-global-mode))
 
 
-(use-package separedit)
+(ensure-package 'separedit)
+(require 'separedit)
 
 
 (define-key global-map (kbd "M-c") #'capitalize-dwim)

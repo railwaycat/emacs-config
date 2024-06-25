@@ -5,6 +5,7 @@
 ;;; Code:
 
 
+(ensure-package 'company)
 (use-package company
   :diminish
   :hook
@@ -64,6 +65,7 @@
                       company-dabbrev
                       )))
 
+(ensure-package 'company-statistics)
 (use-package company-statistics
   :after company
   :config

@@ -5,6 +5,7 @@
 ;;; Code:
 
 
+(ensure-package 'projectile)
 (use-package projectile
   :demand
   :bind
@@ -26,6 +27,7 @@
 
 
 ;; bm
+(ensure-package 'bm)
 (use-package bm
   :bind
   ("<f9>" . bm-toggle)
@@ -34,6 +36,7 @@
 
 
 ;; rg
+(ensure-package 'rg)
 (use-package rg
   :bind
   ("M-s r" . rg-dwim)
@@ -41,6 +44,7 @@
 
 
 ;; citre/ctags
+(ensure-package 'citre)
 (use-package citre
   :init
   (require 'citre-config)
@@ -109,16 +113,19 @@ This saves time when working on a large tags file."
 ;;   (dashboard-setup-startup-hook))
 
 
+(ensure-package 'magit)
 (use-package magit
   :bind
   ("C-x g" . magit-status))
 
 
+(ensure-package 'scratch)
 (use-package scratch
   :bind
   ("C-c s" . scratch))
 
 
+(ensure-package 'vundo)
 (use-package vundo
   :bind
   ("C-x u" . vundo))
@@ -126,6 +133,7 @@ This saves time when working on a large tags file."
 
 ;; Popper
 ;; Setup from roife@github
+(ensure-package 'popper)
 (use-package popper
   :bind (:map popper-mode-map
               ("M-<tab>"   . popper-cycle)

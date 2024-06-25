@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(ensure-package 'vertico)
 (use-package vertico
   :init
   (vertico-mode)
@@ -22,6 +23,7 @@
 
 ;; Duplicate setup for orderless. Ensure the case when consult and
 ;; corfu are not be used together.
+(ensure-package 'orderless)
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)
@@ -31,6 +33,7 @@
   (setq completion-cycle-threshold 4))
 
 
+(ensure-package 'embark)
 (use-package embark
   :bind
   (:map vertico-map
@@ -61,6 +64,7 @@
                  (window-parameters (mode-line-format . none)))))
 
 
+(ensure-package 'consult)
 (use-package consult
   :demand
   :bind (;; C-c bindings in `mode-specific-map'
@@ -191,18 +195,21 @@
 )
 
 
+(ensure-package 'embark-consult)
 (use-package embark-consult
   :after consult embark
   :hook
   (embark-collect-mode-hook . embark-consult-preview-minor-mode))
 
 
+(ensure-package 'consult-projectile)
 (use-package consult-projectile
   :after consult projectile
   :bind
   (:map projectile-mode-map
         ("C-c SPC" . consult-projectile)))
 
+(ensure-package 'marginalia)
 (use-package marginalia
   :init
   (marginalia-mode)

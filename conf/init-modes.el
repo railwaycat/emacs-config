@@ -5,6 +5,7 @@
 ;;; Code:
 
 
+(ensure-package 'markdown-mode)
 (use-package markdown-mode
   :custom
   (markdown-header-scaling nil)
@@ -65,22 +66,26 @@
                             (flyspell-mode -1)))
 
 
-(use-package dockerfile-mode
-  :mode
-  ("Dockerfile\\'" . dockerfile-mode))
+(ensure-package 'dockerfile-mode)
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 
-(use-package yaml-mode)
+(ensure-package 'yaml-mode)
+(require 'yaml-mode)
 
 
-(use-package go-mode)
+(ensure-package 'go-mode)
+(require 'go-mode)
 
 
-(use-package bazel)
+(ensure-package 'bazel)
+(require 'bazel)
 
 
 ;; terraform mode
-(use-package hcl-mode)
+(ensure-package 'hcl-mode)
+(require 'hcl-mode)
 (add-to-list 'auto-mode-alist '("\\.tf\\'" . hcl-mode))
 (add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
 

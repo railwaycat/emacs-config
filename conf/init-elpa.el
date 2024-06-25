@@ -26,6 +26,13 @@
 (package-initialize)
 
 
+(defun ensure-package (package)
+  "Ensure PACKAGE is installed.
+This is the ELPA version for the same interface."
+  (unless (package-installed-p package)
+    (package-install package)))
+
+
 ;; use-package
 ;; Since Emacs 29.1, use-package is a built-in.
 (when (version< emacs-version "29.1")
@@ -33,7 +40,7 @@
     (package-refresh-contents)
     (package-install 'use-package))
   (eval-and-compile
-    (setq use-package-always-ensure t)
+    ;; (setq use-package-always-ensure t)
     ;; (setq use-package-always-defer nil)
     ;; (setq use-package-always-demand nil)
     ;; (setq use-package-expand-minimally nil)
@@ -41,14 +48,16 @@
   (eval-when-compile
     (require 'use-package)))
 
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
 (setq use-package-enable-imenu-support t)
 
 
-(use-package diminish)
+(ensure-package 'diminish)
+(require 'diminish)
 
 
 ;; bootstrap quelpa as an addition for melpa
+(ensure-package 'quelpa)
 (use-package quelpa
   :commands quelpa
   :custom

@@ -8,7 +8,8 @@
 (setq read-process-output-max (* 1024 1024))
 
 
-(use-package eglot)
+;; (ensure-package 'eglot)
+(require 'eglot)
 
 
 (provide 'init-lsp)

@@ -5,6 +5,7 @@
 ;;; Code:
 
 
+(ensure-package 'helm)
 (use-package helm
   :diminish
   :demand
@@ -83,13 +84,17 @@
 ;; C-x C-s to make result to a buffer
 ;; C-c C-p to start edit with wgrep-helm
 ;; C-c C-c or C-x C-s when edit finish
-(use-package wgrep-helm
-  :after helm)
+(ensure-package 'wgrep-helm)
+(with-eval-after-load 'helm
+  (require 'wgrep-helm))
 
 
-(use-package helm-ls-git
-  :after helm)
+(ensure-package 'helm-ls-git)
+(with-eval-after-load 'helm
+  (require 'helm-ls-git))
 
+
+(ensure-package 'helm-xref)
 (use-package helm-xref
   :after helm
   :init
@@ -99,10 +104,12 @@
         ))
 
 
+(ensure-package 'flyspell-correct-helm)
 (use-package flyspell-correct-helm
   :after (helm flyspell-correct))
 
 
+(ensure-package 'helm-projectile)
 (use-package helm-projectile
   :after (helm projectile)
   :init
