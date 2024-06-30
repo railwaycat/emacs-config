@@ -20,6 +20,10 @@
   (vertico-resize t)
   (vertico-cycle nil))
 
+(with-eval-after-load 'vertico
+  (vertico-multiform-mode)
+  (setq vertico-multiform-commands
+        '((find-file (vertico-sort-function . vertico-sort-history-alpha)))))
 
 ;; Duplicate setup for orderless. Ensure the case when consult and
 ;; corfu are not be used together.
