@@ -516,7 +516,7 @@ names to which it refers are bound."
       (helm-match (:inherit match))
       (helm-selection (:inherit highlight))
       (helm-separator (:foreground ,magenta))
-      (helm-source-header (:weight bold :foreground ,yellow :height 1.44))
+      (helm-source-header (:weight bold :foreground ,yellow :height 1.0))
 
       ;; company
       (company-tooltip (:foreground ,faint :background ,alt-background))
