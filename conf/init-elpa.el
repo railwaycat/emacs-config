@@ -28,9 +28,15 @@
 
 (defun ensure-package (package)
   "Ensure PACKAGE is installed.
-This is the ELPA version for the same interface."
+This is the ELPA version for the unified interface."
   (unless (package-installed-p package)
     (package-install package)))
+
+(defun upgrade-all-packages ()
+  "Upgrade all installed packages.
+This is the ELPA version for the unified interface."
+  (interactive)
+  (package-upgrade-all))
 
 
 ;; use-package

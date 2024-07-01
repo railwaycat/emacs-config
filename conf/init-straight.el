@@ -39,8 +39,14 @@
 
 (defun ensure-package (package)
   "Ensure PACKAGE is installed.
-This is the Straight version for the same interface."
+This is the Straight version for the unified interface."
   (straight-use-package package))
+
+(defun upgrade-all-packages ()
+  "Upgrade all installed packages.
+This is the Straight version for the unified interface."
+  (interactive)
+  (straight-pull-all))
 
 
 ;; use-package
