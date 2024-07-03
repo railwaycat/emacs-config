@@ -568,7 +568,7 @@ names to which it refers are bound."
       (org-date (:foreground ,blue :underline t))
       (org-document-info (:foreground ,cyan))
       (org-document-info-keyword (:foreground ,green))
-      (org-document-title (:weight bold :foreground ,yellow :height 1.44))
+      (org-document-title (:weight bold :foreground ,yellow :height 1.0))
       (org-done (:foreground ,green))
       (org-ellipsis (:foreground ,faint))
       (org-footnote (:foreground ,cyan))
