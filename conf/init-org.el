@@ -71,6 +71,7 @@
 (let ((org-capture-file-diary "diary.org")
       (org-capture-file-capture "capture.org")
       (org-capture-file-capture-work "capture_work.org")
+      (org-capture-file-public "public/inbox.org")
       (org-capture-file-journal "logs/journal.org")
       (org-capture-file-inbox "logs/inbox.org")
       (org-capture-file-work "logs/work.org"))
@@ -90,7 +91,10 @@
            "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
           ("w" "Tasks Work"
            entry (file ,org-capture-file-work)
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n"))))
+           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
+          ("p" "Public Inbox"
+           plain (file ,org-capture-file-public)
+           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t))))
 
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
