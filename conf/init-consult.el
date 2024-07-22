@@ -111,9 +111,7 @@
          ("C-c f" . (lambda ()
                       (interactive)
                       (consult-ripgrep default-directory (thing-at-point 'symbol))))
-         ("M-s l" . (lambda ()
-                      (interactive)
-                      (consult-line (thing-at-point 'symbol))))
+         ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines)
@@ -154,6 +152,13 @@
   ;; after lazily loading the package.
   :config
 
+  ;; https://emacs-china.org/t/xxx-thing-at-point/18047/18
+  (defun consult-delete-default-contents ()
+    (remove-hook 'pre-command-hook 'consult-delete-default-contents)
+    (cond ((member this-command '(self-insert-command))
+           (delete-minibuffer-contents))
+          (t (put-text-property (minibuffer-prompt-end) (point-max) 'face 'default))))
+
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
   ;; (setq consult-preview-key 'any)
@@ -168,7 +173,11 @@
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
-   :preview-key '(:debounce 0.4 any))
+   :preview-key '(:debounce 0.4 any)
+   consult-line consult-line-multi consult-ripgrep consult-grep
+   :initial (when-let ((string (thing-at-point 'symbol)))
+              (add-hook 'pre-command-hook 'consult-delete-default-contents)
+              (propertize string 'face 'shadow)))
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
