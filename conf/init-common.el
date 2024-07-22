@@ -82,10 +82,10 @@
               global-auto-revert-non-file-buffers t)
 
 
-;; avoid dired error on OS X
-(if (eq system-type 'darwin)
-    (customize-set-variable 'dired-use-ls-dired nil)
-  )
+;; Use ls-lisp instead of GNU coreutils ls, when not on a GNU OS.
+(when (not (eq system-type 'gnu))
+  (customize-set-variable 'dired-use-ls-dired nil))
+(customize-set-variable 'dired-listing-switches "-alFh")
 
 
 ;; bookmarks
