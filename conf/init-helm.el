@@ -28,6 +28,7 @@
      "\\`\\*straight-process"
      "\\`\\*Async-native-compile-log"
      ))
+  (helm-grep-file-path-style 'relative)
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
