@@ -62,15 +62,11 @@
     (interactive "P")
     (helm-find-files-1 my/notes-directory))
 
-  (defun my/helm-layout-toggle ()
-    "Toggle helm layout for buffer display."
-    (interactive)
-    (if helm-always-two-windows
-        (setq  helm-always-two-windows nil
-               helm-display-buffer-default-height 25)
-      (setq  helm-always-two-windows t
-             helm-display-buffer-default-height nil)))
-  ;; (my/helm-layout-toggle) ;; toggle to behavior: new buffer at bottom.
+  ;; (helm-autoresize-mode t)
+  ;; helm layout -- always shows at bottom
+  (setq helm-always-two-windows nil
+        helm-display-buffer-default-height 23
+        helm-default-display-buffer-functions '(display-buffer-in-side-window))
 
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
@@ -79,6 +75,22 @@
                                     helm-source-bookmarks
                                     helm-source-buffer-not-found))
   (helm-mode 1))
+
+
+;; helm-ag
+;; C-l search in parent directory
+;; by default insert word, M-n to insert symbol
+;; C-c C-f enable helm-follow-mode
+(ensure-package 'helm-ag)
+(use-package helm-ag
+  :after helm
+  :custom
+  (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
+  (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
+  (helm-ag-fuzzy-match t)
+  :bind
+  ("M-s g" . helm-ag)
+  ("M-s G" . helm-do-ag))
 
 
 ;; wgrep-helm
