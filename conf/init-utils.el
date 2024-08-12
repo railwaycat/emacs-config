@@ -39,8 +39,8 @@
 (ensure-package 'rg)
 (use-package rg
   :bind
-  ("M-s r" . rg-dwim)
-  ("M-s R" . rg))
+  ("C-c r" . rg-dwim)
+  ("C-c R" . rg))
 
 
 ;; citre/ctags

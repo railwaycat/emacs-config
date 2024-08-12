@@ -186,5 +186,8 @@ https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
                 (beginning-of-line))))
 
 
+(setq kill-ring-max 1000)
+
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
