@@ -133,20 +133,19 @@ directory to make multiple eshell windows easier."
 
 
 ;;;###autoload
-(defun my/other-window-or-split ()
-  "split window and/or move other window"
-  (interactive)
-  (when (one-window-p)
-    (split-window-horizontally))
+(defun my/split-window-other (prefix)
+  "Split the window.
+If called with a prefix argument (C-u), split the window vertically.
+If called without a prefix argument, split the window horizontally.
+In either case, if the current window is not the only window, delete other windows first."
+  (interactive "P")
+  (when (not (one-window-p))
+    (delete-other-windows))
+  (if prefix
+      (split-window-below)
+    (split-window-right))
   (other-window 1))
-(define-key global-map (kbd "C-c t") 'my/other-window-or-split)
-;; C-T is split window and/or move other window
-(defun my/other-window-or-split-v ()
-  (interactive)
-  (when (one-window-p)
-    (split-window-vertically))
-  (other-window 1))
-(define-key global-map (kbd "C-c T") 'my/other-window-or-split-v)
+(define-key global-map (kbd "C-c t") 'my/split-window-other)
 
 
 (provide 'init-my)
