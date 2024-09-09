@@ -64,9 +64,9 @@
 
   ;; (helm-autoresize-mode t)
   ;; helm layout -- always shows at bottom
-  (setq helm-always-two-windows nil
-        helm-display-buffer-default-height 23
-        helm-default-display-buffer-functions '(display-buffer-in-side-window))
+  ;; (setq helm-always-two-windows nil
+  ;;       helm-display-buffer-default-height 23
+  ;;       helm-default-display-buffer-functions '(display-buffer-in-side-window))
 
   (setq helm-mode-fuzzy-match t
         ;; helm-split-window-in-side-p t
