@@ -21,8 +21,10 @@
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "DOING(i!)" "|" "DONE(d@)")
-        (sequence "HOLD(h@/!)" "|" "ABORT(a@/!)")))
+      '((sequence "TODO(t)" "DOING(i!)" "|" "DONE(d@)")
+        ;; Defer: not do it now but may in the next days
+        ;; Hold: not do it now and may never
+        (sequence "DEFER(f!)" "HOLD(h@/!)" "|" "ABORT(a@/!)")))
 
 
 (setq org-support-shift-select t
@@ -39,13 +41,12 @@
 
 
 (setq org-refile-use-outline-path 'file
-      org-outline-path-complete-in-steps nil
-      org-refile-targets
-      '(
-        ("inbox.org" :maxlevel . 1)
-        ("work.org" :maxlevel . 1)
-        ("life.org" :maxlevel . 1)
-        (nil :maxlevel . 5)))
+      org-outline-path-complete-in-steps nil)
+(let ((target-todobox (concat org-directory "/logbook/todobox.org")))
+  (setq org-refile-targets
+        `(
+          (,target-todobox :maxlevel . 1)
+          (nil :maxlevel . 3))))
 
 
 (with-eval-after-load 'org
@@ -72,9 +73,8 @@
       (org-capture-file-capture "capture.org")
       (org-capture-file-capture-work "capture_work.org")
       (org-capture-file-public "public/inbox.org")
-      (org-capture-file-journal "logs/journal.org")
-      (org-capture-file-inbox "logs/inbox.org")
-      (org-capture-file-work "logs/work.org"))
+      (org-capture-file-todo "logbook/todobox.org")
+      (org-capture-file-inbox "journal.org"))
   (setq org-capture-templates
         `(
           ("c" "Capture"
@@ -86,16 +86,19 @@
           ("d" "Diary - timestamp"
            entry (file+olp+datetree ,org-capture-file-diary)
            "* %U\n%?" :kill-buffer t)
-          ("i" "Tasks Inbox"
-           entry (file ,org-capture-file-inbox)
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
-          ("w" "Tasks Work"
-           entry (file ,org-capture-file-work)
-           "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
+          ("i" "Tasks into Journal Inbox"
+           entry (file+datetree ,org-capture-file-inbox)
+           "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
+          ("t" "Tasks into Todo-Box"
+           entry (file ,org-capture-file-todo)
+           "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("p" "Public Inbox"
            plain (file ,org-capture-file-public)
            "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t))))
 
+          ;; ("i" "Tasks into Journal Inbox"
+          ;;  entry (file+datetree ,org-capture-file-inbox)
+          ;;  "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
@@ -170,15 +173,20 @@
   org-log-state-notes-insert-after-drawers nil)
 
 (setq org-agenda-files (list
-                        (concat org-directory "/plan")
-                        (concat org-directory "/logs")))
+                        (concat org-directory "/journal.org")
+                        (concat org-directory "/logbook")))
+                        ;; (concat org-directory "/plan")
+                        ;; (concat org-directory "/logs")))
 (setq org-agenda-custom-commands
       '(("n" "All TODO tasks"
-         todo "TODO"
-         ((org-agenda-overriding-header "TODO list")))
+         ((todo "TODO"
+                ((org-agenda-overriding-header "TODO list")))
+          (todo "DEFER"
+                ((org-agenda-overriding-header "\nDEFER todo")
+                 (org-agenda-block-separator nil)))))
         ("c" "Current Tasks"
          ((todo "DOING"
-                ((org-agenda-overriding-header "In Progress")))
+                ((org-agenda-overriding-header "In Progress")))))))
           ;; (agenda "" ((org-agenda-start-on-weekday nil)
           ;;             (org-agenda-span 3)
           ;;             (org-deadline-warning-days 0)
@@ -193,9 +201,9 @@
           ;;             (org-agenda-block-separator nil)
           ;;             (org-agenda-entry-types '(:deadline))
           ;;             (org-agenda-overriding-header "\nDeadlines in 14 Days")))
-          (todo "NEXT"
-                ((org-agenda-overriding-header "\nNEXT todo")
-                 (org-agenda-block-separator nil)))))))
+          ;; (todo "DEFER"
+          ;;       ((org-agenda-overriding-header "\nDEFER todo")
+          ;;        (org-agenda-block-separator nil)))))))
 
 
 (provide 'init-org)
