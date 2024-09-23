@@ -206,5 +206,17 @@
           ;;        (org-agenda-block-separator nil)))))))
 
 
+(defun save-org-buffers ()
+  "Save all `org-mode` buffers that are in `org-directory`."
+  (interactive)
+  (let ((org-dir (expand-file-name (file-truename org-directory))))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (let ((file-name (and buffer-file-name (expand-file-name (file-truename buffer-file-name)))))
+          (when (and (derived-mode-p 'org-mode)
+                     file-name
+                     (string-prefix-p org-dir file-name))
+            (save-buffer)))))))
+
 (provide 'init-org)
 ;;; init-org.el ends here
