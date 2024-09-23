@@ -13,8 +13,6 @@
              (concat user-emacs-directory "themes/solarized"))
 
 
-(setq default-text-properties '(line-spacing 0.25 line-height 1.25))
-
 ;; modus-operandi
 ;; satisfy macOS terminal.app
 (when (not window-system)

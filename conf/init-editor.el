@@ -14,7 +14,8 @@
 
 ;; line spacing, only for GUI. Value aligns with macOS Terminal
 ;; setting.
-(setq-default line-spacing 0.1)
+(when window-system
+  (setq default-text-properties '(line-spacing 0.3 line-height 1.3)))
 
 
 ;; set "large file" size to 100MB
