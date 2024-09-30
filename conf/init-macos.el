@@ -16,10 +16,11 @@
             mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
             mouse-wheel-follow-mouse 't ;; scroll window under mouse
             )
-      (setq visible-bell nil))
-    (ensure-package 'osx-dictionary)
-    (global-set-key (kbd "C-c d") 'osx-dictionary-search-word-at-point)
-    )
+      (setq visible-bell nil)))
+
+
+(ensure-package 'osx-dictionary)
+(global-set-key (kbd "C-c d") 'osx-dictionary-search-word-at-point)
 
 
 ;; Mac Key mode by Xu Xin <railwaycat@gmail.com>
@@ -125,7 +126,7 @@
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13))
-  (my/set-font-cjk-pingfang 12))
+  (my/set-font-cjk-xinshusong 13))
 
 
 (defun my/set-font-large ()

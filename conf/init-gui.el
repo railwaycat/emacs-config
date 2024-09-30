@@ -74,6 +74,7 @@
 (when (eq window-system 'mac)
   (mac-auto-ascii-mode 1))
 
+(server-start)
 
 (provide 'init-gui)
 ;;; init-gui.el ends here
