@@ -42,9 +42,11 @@
 
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
-(let ((target-todobox (concat org-directory "/logbook/todobox.org")))
+(let ((target-todobox (concat org-directory "/logbook/todobox.org"))
+      (target-journal (concat org-directory "/journal.org")))
   (setq org-refile-targets
         `(
+          (,target-journal :maxlevel . 3)
           (,target-todobox :maxlevel . 1)
           (nil :maxlevel . 3))))
 
