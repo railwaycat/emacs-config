@@ -21,7 +21,7 @@
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "DOING(i!)" "|" "DONE(d@)")
+      '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
         ;; Defer: not do it now but may in the next days
         ;; Hold: not do it now and may never
         (sequence "DEFER(f!)" "HOLD(h@/!)" "|" "ABORT(a@/!)")))
@@ -180,15 +180,21 @@
                         ;; (concat org-directory "/plan")
                         ;; (concat org-directory "/logs")))
 (setq org-agenda-custom-commands
-      '(("n" "All TODO tasks"
+      '(("n" "All TODO Tasks"
          ((todo "TODO"
                 ((org-agenda-overriding-header "TODO list")))
           (todo "DEFER"
-                ((org-agenda-overriding-header "\nDEFER todo")
+                ((org-agenda-overriding-header "\nDeferred. Will do, not now")
                  (org-agenda-block-separator nil)))))
         ("c" "Current Tasks"
-         ((todo "DOING"
-                ((org-agenda-overriding-header "In Progress")))))))
+         ((todo "NEXT"
+                ((org-agenda-overriding-header "Next to do or in Progress")))))
+        ("h" "Tasks on Hold"
+         ((todo "HOLD"
+                ((org-agenda-overriding-header "Tasks on hold. Will do, maybe")))
+          (todo "ABORT"
+                ((org-agenda-overriding-header "\nAborted Tasks FYI. Will not to do")
+                 (org-agenda-block-separator nil)))))))
           ;; (agenda "" ((org-agenda-start-on-weekday nil)
           ;;             (org-agenda-span 3)
           ;;             (org-deadline-warning-days 0)
