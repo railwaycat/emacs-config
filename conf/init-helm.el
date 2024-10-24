@@ -28,7 +28,7 @@
      "\\`\\*straight-process"
      "\\`\\*Async-native-compile-log"
      ))
-  (helm-grep-file-path-style 'relative)
+  (helm-grep-file-path-style 'basename)
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
@@ -74,6 +74,10 @@
                                     helm-source-recentf
                                     helm-source-bookmarks
                                     helm-source-buffer-not-found))
+  ;; use with `helm-grep-file-path-style 'basename`', to show filename
+  ;; in basename, but with a "popup-tip" at the end of result when
+  ;; cursor stops there.
+  (helm-popup-tip-mode 1)
   (helm-mode 1))
 
 
