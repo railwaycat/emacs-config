@@ -36,6 +36,7 @@ This is the ELPA version for the unified interface."
   "Upgrade all installed packages.
 This is the ELPA version for the unified interface."
   (interactive)
+  (package-refresh-contents)
   (package-upgrade-all))
 
 
