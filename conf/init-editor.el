@@ -190,5 +190,32 @@ https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
 (setq kill-ring-max 1000)
 
 
+;; tab bar, default prefix: C-x t
+(setq
+ tab-bar-show 1 ;; hide tab-bar when only one tab
+ tab-bar-new-tab-choice #'ibuffer
+ tab-bar-close-button-show nil
+ tab-bar-tab-hints t
+ ;; tab-bar-separator "┃"
+ )
+(define-key tab-prefix-map (kbd "v") #'tab-next)
+(define-key tab-prefix-map (kbd "b") #'tab-previous)
+(define-key tab-prefix-map (kbd "l") #'tab-list)
+(set-face-attribute 'tab-bar nil :height 1)
+
+
+;; Dogears, cursor position management
+(ensure-package 'dogears)
+(use-package dogears
+  :bind (:map global-map
+              ("M-g d" . dogears-go)
+              ("M-g M-b" . dogears-back)
+              ("M-g M-f" . dogears-forward)
+              ("M-g M-d" . dogears-list)
+              ("M-g M-D" . dogears-sidebar))
+  :init
+  (dogears-mode t))
+
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
