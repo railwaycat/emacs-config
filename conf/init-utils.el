@@ -63,8 +63,8 @@ This saves time when working on a large tags file."
   :bind
   ("M-\"" . citre-peek+)
   ("ESC M-." . xref-goto)
-  :custom
-  (citre-auto-enable-citre-mode-modes '(prog-mode))
+  ;; :custom
+  ;; (citre-auto-enable-citre-mode-modes '(prog-mode))
   :config
   (setq
    ;; Set these if readtags/ctags is not in your path.
