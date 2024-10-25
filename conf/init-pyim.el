@@ -1,4 +1,4 @@
-;;; init-ime.el --- input method setup -*- lexical-binding: t -*-
+;;; init-pyim.el --- input method setup -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -46,5 +46,5 @@
   )
 
 
-(provide 'init-ime)
-;;; init-ime.el ends here
+(provide 'init-pyim)
+;;; init-pyim.el ends here
