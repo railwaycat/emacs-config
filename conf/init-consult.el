@@ -184,6 +184,11 @@
   (embark-collect-mode-hook . embark-consult-preview-minor-mode))
 
 
+;; make sure wgrep is installed
+(ensure-package 'wgrep)
+(require 'wgrep)
+
+
 (ensure-package 'consult-projectile)
 (use-package consult-projectile
   :after consult projectile
