@@ -19,10 +19,6 @@
       (setq visible-bell nil)))
 
 
-(ensure-package 'osx-dictionary)
-(global-set-key (kbd "C-c d") 'osx-dictionary-search-word-at-point)
-
-
 ;; Mac Key mode by Xu Xin <railwaycat@gmail.com>
 ;; usage: M-x mac-switch-meta
 ;;   switch meta between option and command on a Mac Keyboard

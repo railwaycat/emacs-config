@@ -217,5 +217,14 @@ https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
   (dogears-mode t))
 
 
+;; dictionary. system dictionary for macOS, Bing for others.
+(if (eq system-type 'darwin)
+    (progn
+      (ensure-package 'osx-dictionary)
+      (global-set-key (kbd "C-c d") 'osx-dictionary-search-word-at-point))
+  (progn
+    (ensure-package 'bing-dict)
+    (global-set-key (kbd "C-c d") 'bing-dict-brief)))
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
