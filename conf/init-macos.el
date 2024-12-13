@@ -113,6 +113,29 @@
                     (font-spec :family "Source Han Serif K" :size size)))
 
 
+;; Noto Serif
+(defun my/set-font-cjk-NotoSerif (size)
+  "Set CJK font to Noto Serif"
+  (dolist (charset '(han cjk-misc symbol bopomofo))
+    (set-fontset-font t charset
+                      (font-spec :family "Noto Serif CJK SC" :size size)))
+  (set-fontset-font t 'kana
+                    (font-spec :family "Noto Serif CJK JP" :size size))
+  (set-fontset-font t 'hangul
+                    (font-spec :family "Noto Serif CJK KR" :size size)))
+
+
+;; Noto Sans
+(defun my/set-font-cjk-NotoSans (size)
+  "Set CJK font to Noto Sans"
+  (dolist (charset '(han cjk-misc symbol bopomofo))
+    (set-fontset-font t charset
+                      (font-spec :family "Noto Sans CJK SC" :size size)))
+  (set-fontset-font t 'kana
+                    (font-spec :family "Noto Sans CJK JP" :size size))
+  (set-fontset-font t 'hangul
+                    (font-spec :family "Noto Sans CJK KR" :size size)))
+
 
 (defun my/set-font-normal ()
   "Using normal size font"
@@ -123,7 +146,7 @@
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13))
-  (my/set-font-cjk-xinshusong 13))
+  (my/set-font-cjk-NotoSans 12))
 
 
 (defun my/set-font-large ()
@@ -135,7 +158,7 @@
                       :font (font-spec :name "PragmataPro Mono" :size 14))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 14))
-  (my/set-font-cjk-xinshusong 14))
+  (my/set-font-cjk-NotoSerif 14))
 
 
 ;; Emoji
