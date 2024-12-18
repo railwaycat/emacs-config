@@ -136,7 +136,8 @@ This saves time when working on a large tags file."
 (ensure-package 'popper)
 (use-package popper
   :bind (:map popper-mode-map
-              ("M-<tab>"   . popper-cycle)
+              ("M-<tab>" . popper-cycle)
+              ("C-M-i" . popper-cycle)
               ("M-`" . popper-toggle-type))
   :hook (emacs-startup . popper-mode)
   :init

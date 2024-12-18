@@ -111,7 +111,7 @@
          ("M-s r" . consult-ripgrep)
          ("C-c f" . (lambda ()
                       (interactive)
-                      (consult-ripgrep default-directory (thing-at-point 'symbol))))
+                      (consult-ripgrep default-directory)))
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s k" . consult-keep-lines)
