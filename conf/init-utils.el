@@ -116,7 +116,7 @@ This saves time when working on a large tags file."
 (ensure-package 'magit)
 (use-package magit
   :bind
-  ("C-x g" . magit-status))
+  ("C-x g" . magit-status-quick))
 
 
 (ensure-package 'scratch)
