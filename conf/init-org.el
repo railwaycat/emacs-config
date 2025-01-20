@@ -76,6 +76,7 @@
       (org-capture-file-capture-work "capture_work.org")
       (org-capture-file-public "public/inbox.org")
       (org-capture-file-todo "logbook/todobox.org")
+      (org-capture-file-biji "biji.org")
       (org-capture-file-inbox "journal.org"))
   (setq org-capture-templates
         `(
@@ -87,6 +88,9 @@
            "%?%i" :kill-buffer t :empty-lines 1)
           ("d" "Diary - timestamp"
            entry (file+olp+datetree ,org-capture-file-diary)
+           "* %U\n%?" :kill-buffer t)
+          ("b" "笔记 - timestamp"
+           entry (file+olp+datetree ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
           ("i" "Tasks into Journal Inbox"
            entry (file+datetree ,org-capture-file-inbox)
