@@ -19,9 +19,24 @@
           (const :tag "Claude" claude))
   :group 'gptel)
 
+(defcustom llm-ollama-host "localhost:11434"
+  "Host address for Ollama server."
+  :type 'string
+  :group 'gptel)
+
 (defcustom llm-ollama-model "deepseek-coder:6.7b"
   "The default model to use with Ollama backend."
   :type 'string
+  :group 'gptel)
+
+(defcustom llm-claude-model 'claude-3-5-sonnet-20241022
+  "The default model to use with Claude backend."
+  :type 'symbol
+  :group 'gptel)
+
+(defcustom llm-claude-models '(claude-3-5-haiku-20241022 claude-3-5-sonnet-20241022)
+  "Available Claude models."
+  :type '(repeat symbol)
   :group 'gptel)
 
 (defun llm-load-config ()
@@ -33,7 +48,7 @@
   "Configure Ollama backend."
   (setq gptel-backend
         (gptel-make-ollama "Ollama"
-          :host "localhost:11434"
+          :host llm-ollama-host
           :stream t
           :models (list (intern llm-ollama-model)))
         gptel-model (intern llm-ollama-model)))
@@ -44,8 +59,8 @@
         (gptel-make-anthropic "Claude"
           :key gptel-anthropic-key
           :stream t
-          :models '(claude-3-5-haiku-20241022 claude-3-5-sonnet-20241022))
-        gptel-model 'claude-3-5-sonnet-20241022))
+          :models llm-claude-models)
+        gptel-model llm-claude-model))
 
 (defun llm-setup ()
   "Set up LLM backend based on configuration."
