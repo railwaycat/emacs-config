@@ -64,7 +64,6 @@
 
 (defun llm-setup ()
   "Set up LLM backend based on configuration."
-  (llm-load-config)
   (pcase llm-backend-type
     ('ollama (llm-setup-ollama))
     ('claude (llm-setup-claude))
@@ -82,6 +81,7 @@ BACKEND should be one of: 'ollama or 'claude"
   (message "Switched to %s backend" backend))
 
 ;; Initialize LLM setup
+(llm-load-config)
 (llm-setup)
 
 (provide 'init-llm)
