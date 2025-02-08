@@ -39,6 +39,16 @@
   :type '(repeat symbol)
   :group 'gptel)
 
+(defcustom llm-openai-model 'o3-mini
+  "The default model to use with OpenAI backend."
+  :type 'symbol
+  :group 'gptel)
+
+(defcustom llm-openai-models '(o1-mini o3-mini)
+  "Available OpenAI models."
+  :type '(repeat symbol)
+  :group 'gptel)
+
 (defun llm-load-config ()
   "Load LLM configuration from external file."
   (when (file-exists-p llm-config-file)
@@ -62,11 +72,21 @@
           :models llm-claude-models)
         gptel-model llm-claude-model))
 
+(defun llm-setup-openai ()
+  "Configure OpenAI backend."
+  (setq gptel-backend
+        (gptel-make-openai "OpenAI"
+          :key gptel-openai-key
+          :stream t
+          :models llm-openai-models)
+        gptel-model llm-openai-model))
+
 (defun llm-setup ()
   "Set up LLM backend based on configuration."
   (pcase llm-backend-type
     ('ollama (llm-setup-ollama))
     ('claude (llm-setup-claude))
+    ('openai (llm-setup-openai))
     (_ (message "No LLM backend configured"))))
 
 (defun llm-switch-backend (backend)
@@ -74,7 +94,7 @@
 BACKEND should be one of: 'ollama or 'claude"
   (interactive
    (list (intern (completing-read "Select backend: "
-                                 '("ollama" "claude")
+                                 '("ollama" "claude" "openai")
                                  nil t))))
   (setq llm-backend-type backend)
   (llm-setup)
