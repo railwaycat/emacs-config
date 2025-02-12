@@ -67,6 +67,10 @@
      (emacs-lisp . t))))
 
 
+;; org-tempo, for org mode in terminal
+(require 'org-tempo)
+
+
 ;; org-capture
 (with-eval-after-load 'org-capture
   (add-hook 'org-capture-mode-hook #'delete-other-windows))
