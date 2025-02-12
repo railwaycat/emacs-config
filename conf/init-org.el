@@ -124,57 +124,42 @@
       (find-file (concat org-directory "/journal.org"))
       (goto-char (point-max)))))
 
+
 (defun org-journal-today ()
-  "Insert a date hierarchy based on the current date, if it doesn't already exist."
+  "Create or visit today's journal entry with date hierarchy."
   (interactive)
-  (if (derived-mode-p 'org-mode)
-      (let* ((current-date (calendar-current-date))
-             (year (nth 2 current-date))
-             (month (nth 0 current-date))
-             (day (nth 1 current-date))
-             (weekday (calendar-day-name current-date))
-             (month-name (calendar-month-name month))
-             (formatted-month (format "%d-%02d %s" year month month-name))
-             (formatted-day (format "%d-%02d-%02d %s" year month day weekday))
-             (notes-heading "Notes"))
+  (unless (derived-mode-p 'org-mode)
+    (user-error "This function requires org-mode"))
 
-        ;; Helper function to check for heading existence
-        (defun heading-exists-p (heading level)
-          "Check if a heading with text HEADING at LEVEL exists using org-element."
-          (catch 'found
-            (org-element-map (org-element-parse-buffer 'headline)
-                'headline
-              (lambda (hl)
-                (when (and (= (org-element-property :level hl) level)
-                           (string= (org-element-property :raw-value hl) heading))
-                  (throw 'found t)))
-              nil 'first-match)))
+  (let* ((notes-heading "Notes")
+         (date (calendar-current-date))
+         (year (number-to-string (nth 2 date)))
+         (month (format "%d-%02d %s"
+                       (nth 2 date)
+                       (nth 0 date)
+                       (calendar-month-name (nth 0 date))))
+         (day (format "%d-%02d-%02d %s"
+                     (nth 2 date)
+                     (nth 0 date)
+                     (nth 1 date)
+                     (calendar-day-name date)))
+         (heading-exists-p
+          (lambda (heading level)
+            (save-excursion
+              (goto-char (point-min))
+              (re-search-forward (format "^\\*\\{%d\\} %s$" level heading) nil t)))))
 
-        ;; Insert heading if it doesn't exist
-        (defun insert-heading-if-missing (heading level)
-          "Insert HEADING at LEVEL if it doesn't exist."
-          (unless (heading-exists-p heading level)
-            ;; Move to the correct position before inserting
-            (goto-char (point-max))
-            ;; Ensure that there's a blank line before inserting a new heading
-            (unless (or (bolp) (looking-at-p "^\\s-*$"))
-              (insert "\n"))
-            (insert (make-string level ?*) " " heading "\n")))
+    (goto-char (point-max))
+    (unless (funcall heading-exists-p year 1)
+      (insert "* " year "\n"))
+    (unless (funcall heading-exists-p month 2)
+      (insert "** " month "\n"))
+    (unless (funcall heading-exists-p day 3)
+      (insert "*** " day "\n"
+              "**** " notes-heading "\n"))
 
-        ;; Insert year, month, and day if missing
-        (insert-heading-if-missing (format "%d" year) 1)
-        (insert-heading-if-missing formatted-month 2)
-        (insert-heading-if-missing formatted-day 3)
-
-        ;; Move to the day heading and insert the "Notes" heading if missing
-        (save-excursion
-          (org-end-of-subtree t t) ;; Move to end of the current day heading
-          (unless (re-search-forward (format "^\\*\\*\\*\\* %s$" notes-heading) nil t)
-            (insert (format "**** %s\n" notes-heading))))
-
-        ;; Move cursor to the end of the file
-        (goto-char (point-max)))
-    (message "This function works only in Org-mode buffers.")))
+    (org-show-all)
+    (goto-char (point-max))))
 
 
 ;; org-agenda
