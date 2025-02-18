@@ -53,6 +53,17 @@
   (company-dabbrev-ignore-case nil)
   (company-tooltip-align-annotations t)
   (company-minimum-prefix-length 2)
+
+  (company-tooltip-idle-delay nil)
+  (company-tooltip-minimum-width 60)
+  (company-tooltip-maximum-width 120)
+  (company-tooltip-limit 20)
+  (company-selection-wrap-around t)
+  (company-show-quick-access nil)
+  (company-box-enable-icon t)
+  (company-async-redisplay-delay 0.5)
+  (company-async-wait 0.5)
+
   (company-backends '(
                       company-capf
                       ;; (company-capf
@@ -70,6 +81,11 @@
   :after company
   :config
   (company-statistics-mode))
+
+
+(ensure-package 'company-box)
+(require 'company-box)
+(add-hook 'company-mode-hook 'company-box-mode)
 
 
 (provide 'init-company)
