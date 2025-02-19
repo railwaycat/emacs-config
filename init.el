@@ -63,6 +63,7 @@
 (require 'init-company)
 (require 'init-lsp)
 (require 'init-modes)
+(require 'init-yasnippet)
 (require 'init-pyim)
 (require 'init-org)
 (require 'init-notes)
