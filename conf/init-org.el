@@ -143,20 +143,33 @@
                      (nth 0 date)
                      (nth 1 date)
                      (calendar-day-name date)))
-         (heading-exists-p
-          (lambda (heading level)
-            (save-excursion
-              (goto-char (point-min))
-              (re-search-forward (format "^\\*\\{%d\\} %s$" level heading) nil t)))))
+         (day-pos (save-excursion
+                    (goto-char (point-min))
+                    (re-search-forward (format "^\\*\\{3\\} %s$" day) nil t))))
+
 
     (goto-char (point-max))
-    (unless (funcall heading-exists-p year 1)
+    (unless (save-excursion
+              (goto-char (point-min))
+              (re-search-forward (format "^\\* %s$" year) nil t))
       (insert "* " year "\n"))
-    (unless (funcall heading-exists-p month 2)
+    (unless (save-excursion
+              (goto-char (point-min))
+              (re-search-forward (format "^\\*\\* %s$" month) nil t))
       (insert "** " month "\n"))
-    (unless (funcall heading-exists-p day 3)
+    (unless day-pos
       (insert "*** " day "\n"
               "**** " notes-heading "\n"))
+    (when day-pos
+      (unless (save-excursion
+                (goto-char day-pos)
+                (re-search-forward (format "^\\*\\{4\\} %s$" notes-heading)
+                                   (save-excursion
+                                     (or (re-search-forward "^\\*\\{3\\} " nil t)
+                                         (point-max)))
+                                   t))
+        (goto-char (point-max))
+        (insert "**** " notes-heading "\n")))
 
     (org-show-all)
     (goto-char (point-max))))
