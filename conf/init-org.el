@@ -68,7 +68,7 @@
 
 
 ;; org-tempo, for org mode in terminal
-(require 'org-tempo)
+;; (require 'org-tempo)
 
 
 ;; org-capture
