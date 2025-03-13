@@ -33,7 +33,7 @@
        (normal (cond (is-mac "mac:system:textColor") (is-term "unspecified-fg") (t "#000000")))
        (background (cond (is-mac "mac:system:textBackgroundColor") (is-term "unspecified-bg") (t "#ffffff")))
        (alt-background (cond (is-mac "mac:system:selectedTextBackgroundColor") (t "lightskyblue1")))
-       (contrast-background (cond (is-mac "mac:system:windowBackgroundColor") (t "grey95")))
+       (contrast-background (cond (is-mac "mac:system:windowBackgroundColor") (t "grey93")))
        )
 
   (custom-theme-set-variables
@@ -53,8 +53,8 @@
 
    ;; emacs interface
    `(line-number-current-line ((t (:background ,contrast-background :weight bold))))
-   `(mode-line ((t (:background "grey75" :foreground "black" :box (:line-width 1 :color "grey75")))))
-   `(mode-line-inactive ((t (:inverse-video nil :box (:line-width 1 :color "grey75")))))
+   `(mode-line ((t (:background nil :foreground "black" :box (:line-width 1 :color "grey70")))))
+   `(mode-line-inactive ((t (:foreground "grey70" :inverse-video nil :box (:line-width 1 :color "grey70")))))
 
    ;; company
    `(company-tooltip ((t (:foreground ,normal :background ,contrast-background))))
@@ -78,9 +78,9 @@
    ;; whitespace mode
    `(whitespace-hspace ((t (:foreground "grey82" :background ,background))))
    `(whitespace-space ((t (:foreground "grey82" :background ,background))))
-   `(whitespace-tab ((t (:foreground "grey69" :background ,background))))
-   `(whitespace-indentation ((t (:foreground "grey69" :background ,background))))
-   `(whitespace-newline ((t (:foreground "grey69" :background ,background))))
+   `(whitespace-tab ((t (:foreground "grey70" :background ,background))))
+   `(whitespace-indentation ((t (:foreground "grey70" :background ,background))))
+   `(whitespace-newline ((t (:foreground "grey70" :background ,background))))
    `(whitespace-space-after-tab ((t (:foreground ,normal :background ,background))))
    `(whitespace-space-before-tab ((t (:foreground ,normal :background ,background))))
    `(whitespace-line ((t (:foreground "brightred" :background ,background))))
