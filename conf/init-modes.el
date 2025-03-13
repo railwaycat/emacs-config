@@ -79,16 +79,5 @@
 (require 'go-mode)
 
 
-(ensure-package 'bazel)
-(require 'bazel)
-
-
-;; terraform mode
-(ensure-package 'hcl-mode)
-(require 'hcl-mode)
-(add-to-list 'auto-mode-alist '("\\.tf\\'" . hcl-mode))
-(add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
-
-
 (provide 'init-modes)
 ;;; init-modes.el ends here
