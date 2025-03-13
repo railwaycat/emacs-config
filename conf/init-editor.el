@@ -226,5 +226,14 @@ https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
     (ensure-package 'bing-dict)
     (global-set-key (kbd "C-c d") 'bing-dict-brief)))
 
+
+;; no warning for narrowing
+;; C-x n n : narrow down, region
+;; C-x n d : narrow down, current defun
+;; C-x n w : widen
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-defun 'disabled nil)
+
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
