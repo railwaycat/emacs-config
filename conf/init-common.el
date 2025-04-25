@@ -10,11 +10,11 @@
 (let ((saves-dir (concat user-emacs-directory "saves")))
   (my/ensure-dir-exists saves-dir)
   (setq backup-by-copying t      ; don't clobber symlinks
-        backup-directory-alist `(("." . ,saves-dir)
+        backup-directory-alist `(("." . ,saves-dir))
         delete-old-versions t
         kept-new-versions 6
         kept-old-versions 2
-        version-control t)))
+        version-control t))
 (let ((tmp-dir (concat user-emacs-directory "tmp")))
   (my/ensure-dir-exists tmp-dir)
   (setq auto-save-file-name-transforms
@@ -214,6 +214,9 @@
 (define-key global-map (kbd "<f12>") 'bookmark-bmenu-list)
 (define-key global-map (kbd "C-x M-c") 'save-buffers-kill-emacs)
 
+;; 在 mode-line 最后追加一个半角空格，一个全角空格，防止因为字体高度原
+;; 因，导致 mode-line 抖动。
+(setq mode-line-format `(,mode-line-format "  "))
 
 (provide 'init-common)
 ;;; init-common.el ends here

@@ -16,6 +16,11 @@
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
   (helm-buffer-max-length 40)
+  (helm-split-window-inside-p t)
+  (helm-ff-search-library-in-sexp t)
+  (helm-scroll-amount 8)
+  (helm-autoresize-max-height 35)
+  (helm-autoresize-min-height 20)
   ;; put visible buffers near the top
   (helm-buffer-list-reorder-fn (lambda (visibles others)
                                  (nconc (list (car others)) (delete-dups visibles) (cdr others))))
@@ -78,6 +83,7 @@
   ;; in basename, but with a "popup-tip" at the end of result when
   ;; cursor stops there.
   (helm-popup-tip-mode 1)
+  (helm-autoresize-mode 1)
   (helm-mode 1))
 
 
@@ -152,7 +158,8 @@
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
         ("C-c SPC" . helm-projectile)
-        ("C-c F" . helm-grep-ag-projectile))
+        ("C-c F" . helm-grep-ag-projectile)
+        ("M-s r" . helm-grep-ag-projectile))
   (:map helm-grep-map
         ("C-c f" . helm-grep-ag-projectile-again)))
 
