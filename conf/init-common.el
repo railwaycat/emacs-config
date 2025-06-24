@@ -6,8 +6,7 @@
 
 
 ;; do backup and temp files to user-emacs-directory
-;; (setq make-backup-files nil)
-(let ((saves-dir (concat user-emacs-directory "saves")))
+(let ((saves-dir (expand-file-name "tmp/" user-emacs-directory)))
   (my/ensure-dir-exists saves-dir)
   (setq backup-by-copying t      ; don't clobber symlinks
         backup-directory-alist `(("." . ,saves-dir))
@@ -15,10 +14,19 @@
         kept-new-versions 6
         kept-old-versions 2
         version-control t))
-(let ((tmp-dir (concat user-emacs-directory "tmp")))
+(let ((tmp-dir (expand-file-name "tmp/" user-emacs-directory)))
   (my/ensure-dir-exists tmp-dir)
   (setq auto-save-file-name-transforms
-      `((".*" ,tmp-dir t))))
+      `((".*" ,tmp-dir t)))
+  (setq lock-file-name-transforms
+        `((".*" ,tmp-dir t))))
+
+;; disable backup and autosave stuff
+;; (setq make-backup-files nil)
+;; (setq delete-auto-save-files t)
+;; (setq auto-save-default nil)
+;; disable lock files
+;; (setq create-lockfiles nil)
 
 
 ;; hide startup message
@@ -36,17 +44,12 @@
   (after-init . mode-line-bell-mode))
 
 
-;; disable backup and autosave stuff
-(setq make-backup-files nil)
-(setq delete-auto-save-files t)
-(setq auto-save-default nil)
-
-
 ;; text-mode as default mode
 (customize-set-variable 'major-mode 'text-mode)
 
 
-;; backspace for delete
+;; backspace for delete and delete selected region when continue
+;; type-in
 (delete-selection-mode t)
 
 
@@ -108,8 +111,6 @@
     (setq delete-by-moving-to-trash t
           trash-directory "~/.Trash/emacs"))
 
-;; no lock files
-(setq create-lockfiles nil)
 
 ;; always load the newest el/elc file
 (setq load-prefer-newer t)
@@ -184,12 +185,12 @@
 
 
 ;; semantic mode
-(add-hook 'after-init-hook
-          (lambda ()
-            (dolist (x (default-value 'completion-at-point-functions))
-              (when (string-prefix-p "semantic-" (symbol-name x))
-                (remove-hook 'completion-at-point-functions x)))))
-(semantic-mode t)
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (dolist (x (default-value 'completion-at-point-functions))
+;;               (when (string-prefix-p "semantic-" (symbol-name x))
+;;                 (remove-hook 'completion-at-point-functions x)))))
+;; (semantic-mode t)
 
 
 ;; better indicator for buffer with the same name

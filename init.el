@@ -5,14 +5,9 @@
 ;;; Code:
 
 
-;; Speed up startup
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 1)
-(add-hook 'after-init-hook
-          `(lambda ()
-             (setq gc-cons-threshold 100000000
-                   gc-cons-percentage 0.1)
-             (garbage-collect)) t)
+;; Run GC when memory allocation reach 50%, higher percent than
+;; default.
+(setq gc-cons-percentage 0.5)
 
 
 (prefer-coding-system 'utf-8)
@@ -53,8 +48,8 @@
 (add-to-list 'load-path (concat user-emacs-directory "conf"))
 (add-to-list 'load-path (concat user-emacs-directory "local"))
 
-(require 'init-env)
 (require 'init-elpa)
+(require 'init-env)
 (require 'init-common)
 (require 'init-editor)
 (require 'init-utils)

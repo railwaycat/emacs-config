@@ -5,22 +5,10 @@
 ;;; Code:
 
 
-(let*
-    ((path '("~/.bin"
-             "~/.cargo/bin"
-             "~/.go/bin")))
-  (dolist (p path)
-    (add-to-list 'exec-path (expand-file-name p))
-    (setenv "PATH" (concat (expand-file-name p) ":" (getenv "PATH")))))
-
-
-(if (eq system-type 'darwin)
-    (let*
-        ((path '("/opt/local/bin"
-                 "/opt/homebrew/bin")))
-      (dolist (p path)
-        (add-to-list 'exec-path (expand-file-name p))
-        (setenv "PATH" (concat (expand-file-name p) ":" (getenv "PATH"))))))
+(ensure-package 'exec-path-from-shell)
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 
 (provide 'init-env)

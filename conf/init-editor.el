@@ -37,7 +37,7 @@
 
 ;; indent settings
 (setq-default indent-tabs-mode nil)
-(setq-default electric-indent-inhibit t)
+(setq-default electric-indent-inhibit nil)
 (electric-indent-mode t)
 (setq backward-delete-char-untabify-method 'hungry)
 (defun set-tab-width-all (size)
@@ -58,7 +58,6 @@
 
 
 ;; paren highlight style
-(ensure-package 'paren)
 (use-package paren
   :custom
   (show-paren-style 'parenthesis)
@@ -100,9 +99,6 @@
 (add-hook 'after-init-hook 'global-subword-mode)
 (with-eval-after-load 'subword
   (diminish 'subword-mode))
-
-;; delete selected region when continue type-in
-(add-hook 'after-init-hook 'delete-selection-mode)
 
 
 ;; spell

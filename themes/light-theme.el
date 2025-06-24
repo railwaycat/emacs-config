@@ -740,7 +740,7 @@ COLOR is like ”#RRGGBB”."
         (outline-5 (outline-3))
         (outline-6 (outline-4))
         (outline-7 (outline-3))
-        (outline-8 (outlint-4))
+        (outline-8 (outline-4))
 
         ;; (org-level-1 (info-title-3))
         ;; (org-level-2 (info-title-4 ,(brighten fg 0.3)) (:height 1.1))
@@ -781,7 +781,7 @@ COLOR is like ”#RRGGBB”."
 
         (widget-inactive (default))
 
-        (table-cell (defualt))
+        (table-cell (default))
 
         (tab-line              (mode-line-inactive))
         (tab-line-tab          (tab-line))

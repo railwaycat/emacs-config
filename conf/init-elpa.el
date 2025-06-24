@@ -51,7 +51,8 @@ This is the ELPA version for the unified interface."
     ;; (setq use-package-always-defer nil)
     ;; (setq use-package-always-demand nil)
     ;; (setq use-package-expand-minimally nil)
-    (setq use-package-enable-imenu-support t))
+    ;; (setq use-package-enable-imenu-support t)
+    )
   (eval-when-compile
     (require 'use-package)))
 
