@@ -16,10 +16,13 @@
             mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
             mouse-wheel-follow-mouse 't ;; scroll window under mouse
             )
-      (setq visible-bell nil)))
+      (setq visible-bell nil)
+      (setq ns-use-srgb-colorspace nil)
+      (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+      (add-to-list 'default-frame-alist '(ns-appearance . light))
+))
 
 
-;; Mac Key mode by Xu Xin <railwaycat@gmail.com>
 ;; usage: M-x mac-switch-meta
 ;;   switch meta between option and command on a Mac Keyboard
 
