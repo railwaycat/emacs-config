@@ -46,14 +46,11 @@
                                    (>= (length c) 15)))))
         company-transformers)
   (setq company-backends
-        '(company-capf
-          company-yasnippet
+        '((company-capf :with company-yasnippet)
           company-files
           company-dabbrev-code
           company-keywords
           company-dabbrev))
-  (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-web-html t)))
-
   :custom
   (company-idle-delay 0.2)
   (company-show-numbers t)
@@ -85,16 +82,14 @@
   (company-prescient-mode 1)
   (prescient-persist-mode 1))
 
-(use-package company-yasnippet
-  :after company)
 
-
-;; extra backends for mode
-(with-eval-after-load 'web-mode
-  (add-to-list 'company-backends 'company-web-html))
-
-(with-eval-after-load 'python-mode
-  (add-to-list 'company-backends 'company-jedi))
+;; company for web-mode, not often used, comment for now.
+;; (ensure-package 'company-web)
+;; (use-package company-web
+;;   :after (company web-mode)
+;;   :config
+;;   (add-hook 'web-mode-hook (lambda ()
+;;                              (add-to-list 'company-backends 'company-web-html t))))
 
 
 (provide 'init-company)
