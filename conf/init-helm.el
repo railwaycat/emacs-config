@@ -156,11 +156,13 @@
   :bind
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
-        ("C-c SPC" . helm-projectile)
         ("C-c F" . helm-grep-ag-projectile)
         ("M-s r" . helm-grep-ag-projectile))
   (:map helm-grep-map
         ("C-c f" . helm-grep-ag-projectile-again)))
+;; Add a global-map binding to avoid messy lazy loading dependency.
+(define-key global-map (kbd "C-c SPC") 'helm-projectile)
+
 
 (provide 'init-helm)
 ;;; init-helm.el ends here

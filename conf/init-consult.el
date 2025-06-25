@@ -180,12 +180,12 @@
 (ensure-package 'consult-projectile)
 (use-package consult-projectile
   :after consult projectile
-  :bind
-  (:map projectile-mode-map
-        ("C-c SPC" . consult-projectile))
   :custom
   (autoload 'projectile-project-root "projectile")
   (setq consult-project-function (lambda (_) (projectile-project-root))))
+;; Add a global-map binding to avoid messy lazy loading dependency.
+(define-key global-map (kbd "C-c SPC") 'consult-projectile)
+
 
 (ensure-package 'marginalia)
 (use-package marginalia
@@ -194,6 +194,7 @@
   :custom
   (marginalia-max-relative-age 0)
   (marginalia-align 'right))
+
 
 (provide 'init-consult)
 ;;; init-consult.el ends here
