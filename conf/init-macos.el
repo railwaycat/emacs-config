@@ -70,75 +70,62 @@
 ;; (set-fontset-font t 'latin "Noto Sans")
 
 ;; CJK
-;; 苹方
-(defun my/set-font-cjk-pingfang (size)
-  "Set CJK font to 苹方"
-  (dolist (charset '(han hangul cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "PingFang SC" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "YuGothic" :size size)))
+(defvar my-cjk-font-profiles
+  `((SourceHanSerif ;; 思源宋体
+     (han      . "Source Han Serif SC")
+     (cjk-misc . "Source Han Serif SC")
+     (symbol   . "Source Han Serif SC")
+     (bopomofo . "Source Han Serif SC")
+     (kana     . "YuMincho")
+     (hangul   . "Source Han Serif K"))
+    (SourceHanSans ;; 思源黑体
+     (han      . "Source Han Sans SC")
+     (cjk-misc . "Source Han Sans SC")
+     (symbol   . "Source Han Sans SC")
+     (bopomofo . "Source Han Sans SC")
+     (kana     . "YuGothic")
+     (hangul   . "Source Han Sans K"))
+    (NotoSans ;; Noto 黑体
+     (han      . "Noto Sans CJK SC")
+     (cjk-misc . "Noto Sans CJK SC")
+     (symbol   . "Noto Sans CJK SC")
+     (bopomofo . "Noto Sans CJK SC")
+     (kana     . "Noto Sans CJK JP")
+     (hangul   . "Noto Sans CJK KR"))
+    (NotoSerif ;; Noto 宋体
+     (han      . "Noto Serif CJK SC")
+     (cjk-misc . "Noto Serif CJK SC")
+     (symbol   . "Noto Serif CJK SC")
+     (bopomofo . "Noto Serif CJK SC")
+     (kana     . "Noto Serif CJK JP")
+     (hangul   . "Noto Serif CJK KR"))
+    (Pingfang ;; 苹方
+     (han      . "PingFang SC")
+     (cjk-misc . "PingFang SC")
+     (symbol   . "PingFang SC")
+     (bopomofo . "PingFang SC")
+     (kana     . "YuGothic")
+     (hangul   . "AppleGothic"))
+    (Xinshusong ;; 新书宋
+     (han      . "FZNewShuSong-Z10")
+     (cjk-misc . "FZNewShuSong-Z10")
+     (symbol   . "FZNewShuSong-Z10")
+     (bopomofo . "FZNewShuSong-Z10")
+     (kana     . "YuMincho")
+     (hangul   . "AppleMyungjo"))
+    )
+  "An alist of CJK font profiles for different character sets.")
 
-
-;; 思源宋体
-(defun my/set-font-cjk-SourceHanSerif (size)
-  "Set CJK font to 思源宋体"
-  (dolist (charset '(han cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "Source Han Serif SC" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "YuMinCho" :size size))
-  (set-fontset-font t 'hangul
-                    (font-spec :family "Source Han Serif K" :size size)))
-
-
-;; 思源黑体
-(defun my/set-font-cjk-SourceHanSans (size)
-  "Set CJK font to 思源黑体"
-  (dolist (charset '(han cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "Source Han Sans SC" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "YuGothic" :size size))
-  (set-fontset-font t 'hangul
-                    (font-spec :family "Source Han Sans K" :size size)))
-
-
-;; 新书宋
-(defun my/set-font-cjk-xinshusong (size)
-  "Set CJK font to 新书宋"
-  (dolist (charset '(han cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "FZNewShuSong-Z10" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "YuMinCho" :size size))
-  (set-fontset-font t 'hangul
-                    (font-spec :family "Source Han Serif K" :size size)))
-
-
-;; Noto Serif
-(defun my/set-font-cjk-NotoSerif (size)
-  "Set CJK font to Noto Serif"
-  (dolist (charset '(han cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "Noto Serif CJK SC" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "Noto Serif CJK JP" :size size))
-  (set-fontset-font t 'hangul
-                    (font-spec :family "Noto Serif CJK KR" :size size)))
-
-
-;; Noto Sans
-(defun my/set-font-cjk-NotoSans (size)
-  "Set CJK font to Noto Sans"
-  (dolist (charset '(han cjk-misc symbol bopomofo))
-    (set-fontset-font t charset
-                      (font-spec :family "Noto Sans CJK SC" :size size)))
-  (set-fontset-font t 'kana
-                    (font-spec :family "Noto Sans CJK JP" :size size))
-  (set-fontset-font t 'hangul
-                    (font-spec :family "Noto Sans CJK KR" :size size)))
-
+(defun my/apply-cjk-font-profile (profile-name size)
+  "Set all CJK fonts based on a profile defined in `my-cjk-font-profiles`.
+PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
+  (let ((profile-data (cdr (assoc profile-name my-cjk-font-profiles))))
+    (if profile-data
+        (dolist (charset-font-pair profile-data)
+          (let ((charset (car charset-font-pair))
+                (font-family (cdr charset-font-pair)))
+            (set-fontset-font t charset (font-spec :family font-family :size size))))
+      (warn "Font profile '%s' not found." profile-name))))
 
 (defun my/set-font-normal ()
   "Using normal size font"
@@ -149,8 +136,7 @@
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13))
-  (my/set-font-cjk-NotoSans 12))
-
+  (my/apply-cjk-font-profile 'Pingfang 12))
 
 (defun my/set-font-large ()
   "Using large size font"
@@ -161,7 +147,7 @@
                       :font (font-spec :name "PragmataPro Mono" :size 14))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 14))
-  (my/set-font-cjk-NotoSerif 14))
+  (my/apply-cjk-font-profile 'Xinshusong 14))
 
 
 ;; Emoji
