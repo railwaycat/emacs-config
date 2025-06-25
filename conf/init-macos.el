@@ -160,7 +160,12 @@ PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
 (setq use-default-font-for-symbols nil)
 
 
-(my/set-font-normal)
+;; auto-ascii, mac port only. switch input method to ascii after any prefix key
+(when (eq window-system 'mac)
+  (mac-auto-ascii-mode 1))
+
+
+(add-hook 'emacs-startup-hook #'my/set-font-normal)
 
 
 (provide 'init-macos)

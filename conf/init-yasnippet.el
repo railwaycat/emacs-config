@@ -8,10 +8,10 @@
 (ensure-package 'yasnippet)
 (use-package yasnippet
   :diminish yas-minor-mode
+  :hook (after-init . yas-global-mode)
   :bind
   ("C-c y" . yas-insert-snippet)
   :config
-  (yas-global-mode 1)
   (setq yas-snippet-dirs
         '("~/.emacs.d/snippets"
           "~/.emacs.d/snippets/work"

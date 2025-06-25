@@ -67,12 +67,13 @@
 
 
 (ensure-package 'dockerfile-mode)
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
 
 
 (ensure-package 'yaml-mode)
-(require 'yaml-mode)
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'")
 
 
 (ensure-package 'go-mode)

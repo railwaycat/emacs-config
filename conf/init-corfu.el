@@ -7,17 +7,6 @@
 (setq tab-always-indent 'complete)
 
 
-;; Duplicate setup for orderless. Ensure the case when consult and
-;; corfu are not be used together.
-(ensure-package 'orderless)
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless basic)
-        completion-category-overrides '((eglot (styles . (orderless basic)))))
-  (setq completion-category-defaults nil
-        completion-category-overrides nil)
-  (setq completion-cycle-threshold 4))
-
 (ensure-package 'corfu)
 (use-package corfu
   :bind

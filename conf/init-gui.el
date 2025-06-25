@@ -70,10 +70,6 @@
    #b00000000])
 
 
-;; auto-ascii, mac port only. switch input method to ascii after any prefix key
-(when (eq window-system 'mac)
-  (mac-auto-ascii-mode 1))
-
 (server-start)
 
 (provide 'init-gui)

@@ -176,10 +176,6 @@
 
 
 ;; org-agenda
-(setq org-log-done 'time
-  org-log-into-drawer t
-  org-log-state-notes-insert-after-drawers nil)
-
 (setq org-agenda-files (list
                         (concat org-directory "/journal.org")
                         (concat org-directory "/logbook")))

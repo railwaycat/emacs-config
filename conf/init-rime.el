@@ -7,7 +7,7 @@
 
 (ensure-package 'rime)
 (use-package rime
-  ;; :ensure t
+  :defer t
   :bind
   (:map rime-mode-map
         ("C-`" . 'rime-send-keybinding))

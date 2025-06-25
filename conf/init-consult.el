@@ -25,18 +25,6 @@
   (setq vertico-multiform-commands
         '((find-file (vertico-sort-function . vertico-sort-history-alpha)))))
 
-;; Duplicate setup for orderless. Ensure the case when consult and
-;; corfu are not be used together.
-(ensure-package 'orderless)
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless basic)
-        completion-category-overrides '((eglot (styles . (orderless basic)))
-                                        (file (styles basic partial-completion))))
-  (setq completion-category-defaults nil
-        completion-category-overrides nil)
-  (setq completion-cycle-threshold 4))
-
 
 (ensure-package 'embark)
 (use-package embark
@@ -71,7 +59,7 @@
 
 (ensure-package 'consult)
 (use-package consult
-  :demand
+  :defer t
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ;; ("C-c h" . consult-history)

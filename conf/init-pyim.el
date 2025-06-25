@@ -8,7 +8,7 @@
 ;; setup for pyim
 (ensure-package 'pyim)
 (use-package pyim
-  :demand
+  :defer
   :bind
   ;; ([remap forward-word] . pyim-forward-word)
   ;; ([remap backward-word] . pyim-backward-word)
@@ -34,14 +34,15 @@
 
   ;; 五笔设置
   (ensure-package 'pyim-wbdict)
-  (use-package pyim-wbdict
-    :config
+  (require 'pyim-wbdict)
+  (with-eval-after-load 'pyim-wbdict
     (pyim-wbdict-v86-single-enable))
   (setq pyim-default-scheme 'wubi)
 
   ;; 拼音设置
   (require 'pyim-tsinghua-dict)
-  (pyim-tsinghua-dict-enable)
+  (with-eval-after-load 'pyim-tsinghua-dict
+    (pyim-tsinghua-dict-enable))
   ;; (setq pyim-default-scheme 'quanpin)
   )
 

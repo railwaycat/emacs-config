@@ -219,5 +219,17 @@
 ;; 因，导致 mode-line 抖动。
 (setq mode-line-format `(,mode-line-format "  "))
 
+
+;; Orderless may needed by consult and corfu. Leave the config here to
+;; reduce duplicate.
+(ensure-package 'orderless)
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((eglot (styles . (orderless basic)))
+                                        (file (styles basic partial-completion))))
+  (setq completion-cycle-threshold 4))
+
+
 (provide 'init-common)
 ;;; init-common.el ends here

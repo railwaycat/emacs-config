@@ -8,11 +8,11 @@
 (ensure-package 'helm)
 (use-package helm
   :diminish
-  :demand
+  :defer t
   :custom
   (helm-grep-default-command "grep --color=always -d skip %e -n%cH -e %p %f")
   (helm-grep-default-recurse-command "grep --color=always -d recurse %e -n%cH -e %p %f")
-  (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+  (helm-grep-ag-command "rg --color=never --smart-case --no-heading --line-number %s %s %s")
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
   (helm-buffer-max-length 40)
@@ -134,15 +134,15 @@
 
 (ensure-package 'helm-projectile)
 (use-package helm-projectile
-  :after (helm projectile)
+  :after (helm projectile helm-files)
   :init
   (helm-projectile-on)
+  :config
   (defun helm-grep-ag-projectile ()
     "Search projectile project with ripgrep"
     (interactive)
     (let ((project-root (or (projectile-project-root)
                             (error "You're not in a project"))))
-      (require 'helm-files)
       (helm-grep-ag project-root nil)))
   (defun helm-grep-ag-projectile-again ()
     "Search projectile project with ripgrep, within a helm grep session"
@@ -152,7 +152,6 @@
       (with-helm-alive-p
         (helm-run-after-exit
          (lambda ()
-           (require 'helm-files)
            (helm-grep-ag project-root nil))))))
   :bind
   ;; ("C-c j". helm-grep-ag-projectile)

@@ -39,25 +39,23 @@
   ;;                   (funcall orig-fun)))))
   ;; 只补全 ascii 字符
   (push (apply-partially #'cl-remove-if
-                      (lambda (c)
-                        (or (string-match-p "[^\x00-\x7F]+" c)
-                            (string-match-p "[0-9]+" c)
-                            (if (equal major-mode "org")
-                                (>= (length c) 15)))))
-             company-transformers)
-  ;; backends for prog-modes
-  (defun my/setup-company-backends-for-prog ()
-    "Setup company backends for programming modes."
-    (setq-local company-backends
-                '((company-capf
-                   company-files
-                   company-yasnippet)
-                  (company-dabbrev-code
-                   company-keywords)
-                  company-dabbrev)))
-  (add-hook 'prog-mode-hook #'my/setup-company-backends-for-prog)
+                         (lambda (c)
+                           (or (string-match-p "[^\x00-\x7F]+" c)
+                               (string-match-p "[0-9]+" c)
+                               (if (equal major-mode "org")
+                                   (>= (length c) 15)))))
+        company-transformers)
+  (setq company-backends
+        '(company-capf
+          company-yasnippet
+          company-files
+          company-dabbrev-code
+          company-keywords
+          company-dabbrev))
+  (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-web-html t)))
+
   :custom
-  (company-idle-delay 0.1)
+  (company-idle-delay 0.2)
   (company-show-numbers t)
   ;; cancel selections by typing non-matching characters
   (company-require-match 'never)
@@ -69,8 +67,8 @@
   (company-dabbrev-ignore-case nil)
 
   (company-tooltip-align-annotations t)
-  (company-minimum-prefix-length 1)
-  (company-tooltip-idle-delay nil)
+  (company-minimum-prefix-length 2)
+  (company-tooltip-idle-delay 0.5)
   (company-tooltip-minimum-width 30)
   (company-tooltip-maximum-width 80)
   (company-tooltip-limit 15)
@@ -78,26 +76,7 @@
   (company-show-quick-access nil)
 
   (company-async-redisplay-delay 0.5)
-  (company-async-wait 0.5)
-
-  (company-backends '(
-                      company-capf
-                      ;; (company-capf
-                      ;;  :with company-dabbrev-code)
-                      company-files
-                      company-yasnippet
-                      company-semantic
-                      (company-dabbrev-code
-                       ;; company-etags
-                       company-keywords)
-                      company-dabbrev
-                      )))
-
-;; (ensure-package 'company-statistics)
-;; (use-package company-statistics
-;;   :after company
-;;   :config
-;;   (company-statistics-mode))
+  (company-async-wait 0.5))
 
 (ensure-package 'company-prescient)
 (use-package company-prescient
