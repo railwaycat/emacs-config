@@ -61,64 +61,63 @@
   :type '(repeat symbol)
   :group 'gptel)
 
+(defun llm-load-config ()
+  "Load LLM configuration from external file."
+  (if (file-exists-p llm-config-file)
+      (load-file llm-config-file)
+    (message "LLM config file not found at: %s" llm-config-file)))
+
+(defun llm-setup-ollama ()
+  "Configure Ollama backend."
+  (setq gptel-backend
+        (gptel-make-ollama "Ollama"
+          :host llm-ollama-host
+          :stream t
+          :models (list (intern llm-ollama-model)))
+        gptel-model (intern llm-ollama-model)))
+
+(defun llm-setup-claude ()
+  "Configure Claude backend."
+  (setq gptel-backend
+        (gptel-make-anthropic "Claude"
+          :key gptel-anthropic-key
+          :stream t
+          :models llm-claude-models)
+        gptel-model llm-claude-model))
+
+(defun llm-setup-openai ()
+  "Configure OpenAI backend."
+  (setq gptel-backend
+        (gptel-make-openai "OpenAI"
+          :key gptel-openai-key
+          :stream t
+          :models llm-openai-models)
+        gptel-model llm-openai-model))
+
+(defun llm-setup-deepseek ()
+  "Configure Deepseek backend."
+  (setq gptel-backend
+        (gptel-make-openai "Deepseek"
+          :key gptel-deepseek-key
+          :stream t
+          :models llm-deepseek-models
+          :host "api.deepseek.com"
+          :endpoint "/chat/completions")
+        ;; :header (lambda () `(("Content-Type" . "application/json")))
+        ;; :transformer #'gptel-openai-transformer
+        ;; :completion-filter #'gptel-openai-filter)
+        gptel-model llm-deepseek-model))
+
+(defun llm-setup ()
+  "Set up LLM backend based on configuration."
+  (pcase llm-backend-type
+    ('ollama (llm-setup-ollama))
+    ('claude (llm-setup-claude))
+    ('openai (llm-setup-openai))
+    ('deepseek (llm-setup-deepseek))
+    (_ (message "No LLM backend configured"))))
+
 (with-eval-after-load 'gptel
-
-  (defun llm-load-config ()
-    "Load LLM configuration from external file."
-    (if (file-exists-p llm-config-file)
-        (load-file llm-config-file)
-      (message "LLM config file not found at: %s" llm-config-file)))
-
-  (defun llm-setup-ollama ()
-    "Configure Ollama backend."
-    (setq gptel-backend
-          (gptel-make-ollama "Ollama"
-            :host llm-ollama-host
-            :stream t
-            :models (list (intern llm-ollama-model)))
-          gptel-model (intern llm-ollama-model)))
-
-  (defun llm-setup-claude ()
-    "Configure Claude backend."
-    (setq gptel-backend
-          (gptel-make-anthropic "Claude"
-            :key gptel-anthropic-key
-            :stream t
-            :models llm-claude-models)
-          gptel-model llm-claude-model))
-
-  (defun llm-setup-openai ()
-    "Configure OpenAI backend."
-    (setq gptel-backend
-          (gptel-make-openai "OpenAI"
-            :key gptel-openai-key
-            :stream t
-            :models llm-openai-models)
-          gptel-model llm-openai-model))
-
-  (defun llm-setup-deepseek ()
-    "Configure Deepseek backend."
-    (setq gptel-backend
-          (gptel-make-openai "Deepseek"
-            :key gptel-deepseek-key
-            :stream t
-            :models llm-deepseek-models
-            :host "api.deepseek.com"
-            :endpoint "/chat/completions")
-          ;; :header (lambda () `(("Content-Type" . "application/json")))
-          ;; :transformer #'gptel-openai-transformer
-          ;; :completion-filter #'gptel-openai-filter)
-          gptel-model llm-deepseek-model))
-
-  (defun llm-setup ()
-    "Set up LLM backend based on configuration."
-    (pcase llm-backend-type
-      ('ollama (llm-setup-ollama))
-      ('claude (llm-setup-claude))
-      ('openai (llm-setup-openai))
-      ('deepseek (llm-setup-deepseek))
-      (_ (message "No LLM backend configured"))))
-
   (llm-load-config)
   (llm-setup))
 
