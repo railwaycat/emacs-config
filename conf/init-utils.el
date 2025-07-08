@@ -223,7 +223,8 @@ This saves time when working on a large tags file."
 
 
 ;; tree-sitter
-(when (treesit-available-p)
+(when (and (fboundp 'treesit-available-p)
+           (treesit-available-p))
   (setq treesit-language-source-alist '((python "https://github.com/tree-sitter/tree-sitter-python")
                                         (bash "https://github.com/tree-sitter/tree-sitter-bash")
                                         (elisp "https://github.com/Wilfred/tree-sitter-elisp")
