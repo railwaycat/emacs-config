@@ -222,5 +222,32 @@ This saves time when working on a large tags file."
 ;;   )
 
 
+;; tree-sitter
+(when (treesit-available-p)
+  (setq treesit-language-source-alist '((python "https://github.com/tree-sitter/tree-sitter-python")
+                                        (bash "https://github.com/tree-sitter/tree-sitter-bash")
+                                        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+                                        (c "https://github.com/tree-sitter/tree-sitter-c")
+                                        (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+                                        (go "https://github.com/tree-sitter/tree-sitter-go")
+                                        (html "https://github.com/tree-sitter/tree-sitter-html")
+                                        (json "https://github.com/tree-sitter/tree-sitter-json")
+                                        (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+                                        (rust "https://github.com/tree-sitter/tree-sitter-rust")
+                                        (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+                                        (toml "https://github.com/tree-sitter/tree-sitter-toml")
+                                        (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
+                                        (typescript "https://github.com/tree-sitter/tree-sitter-typescript"))
+        major-mode-remap-alist '((python-mode . python-ts-mode)
+                                 (c-mode . c-ts-mode)
+                                 (c++-mode . c++-ts-mode)
+                                 (sh-mode . bash-ts-mode)
+                                 (go-mode . go-ts-mode)
+                                 (rust-mode . rust-ts-mode)
+                                 (json-mode . json-ts-mode)
+                                 (yaml-mode . yaml-ts-mode))
+        treesit-font-lock-level 4))
+
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
