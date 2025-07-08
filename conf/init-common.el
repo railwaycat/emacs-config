@@ -85,10 +85,12 @@
               global-auto-revert-non-file-buffers t)
 
 
-;; Use ls-lisp instead of GNU coreutils ls, when not on a GNU OS.
-(when (not (eq system-type 'gnu))
-  (customize-set-variable 'dired-use-ls-dired nil))
-(customize-set-variable 'dired-listing-switches "-alFh")
+;; setup ls for dired on different system
+(when (memq system-type '(darwin berkeley-unix))
+  (customize-set-variable 'dired-use-ls-dired nil)
+  (customize-set-variable 'dired-listing-switches "-alh"))
+(when (eq system-type 'gnu/linux)
+  (customize-set-variable 'dired-listing-switches "-alFh"))
 
 
 ;; bookmarks
