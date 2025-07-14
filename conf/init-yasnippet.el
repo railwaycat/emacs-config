@@ -12,10 +12,11 @@
   :bind
   ("C-c y" . yas-insert-snippet)
   :config
-  (setq yas-snippet-dirs
-        '("~/.emacs.d/snippets"
-          "~/.emacs.d/snippets/work"
-          )))
+  ;; (setq yas-snippet-dirs
+  ;;       '("~/.emacs.d/snippets"
+  ;;         "~/.emacs.d/snippets/work"
+  ;;         yasnippet-snippets-dir))
+  )
 
 
 (ensure-package 'yasnippet-snippets)
