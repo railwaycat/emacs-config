@@ -19,6 +19,8 @@
 
 ;; (custom-set-faces '(org-document-title ((t (:height 1 :weight bold)))))
 
+;; content indent in headline
+(setq org-startup-indented t)
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
