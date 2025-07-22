@@ -19,8 +19,9 @@
 
 ;; (custom-set-faces '(org-document-title ((t (:height 1 :weight bold)))))
 
-;; content indent in headline
-(setq org-startup-indented t)
+;; content indent in headline, but only 1 space.
+(setq org-startup-indented t
+      org-indent-indentation-per-level 1)
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
