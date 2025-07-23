@@ -231,5 +231,14 @@ https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
 (put 'narrow-to-defun 'disabled nil)
 
 
+;; indent bar: visible indention guide
+(ensure-package 'indent-bars)
+(use-package indent-bars
+  :hook
+  ((prog-mode org-mode) . indent-bars-mode)
+  :custom
+  ;; candidates: │┃┋║
+  (indent-bars-no-stipple-char ?┋))
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
