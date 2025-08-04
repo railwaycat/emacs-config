@@ -45,12 +45,14 @@
 
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
-(let ((target-todobox (concat org-directory "/logbook/todobox.org"))
+(let ((target-tasks (concat org-directory "/logbook/tasks.org"))
+      (target-archived (concat org-directory "/logbook/archived.org"))
       (target-journal (concat org-directory "/journal.org")))
   (setq org-refile-targets
         `(
           (,target-journal :maxlevel . 3)
-          (,target-todobox :maxlevel . 1)
+          (,target-tasks :maxlevel . 1)
+          (,target-archived :maxlevel . 1)
           (nil :maxlevel . 3))))
 
 
@@ -82,7 +84,7 @@
       (org-capture-file-capture "capture.org")
       (org-capture-file-capture-work "capture_work.org")
       (org-capture-file-public "public/inbox.org")
-      (org-capture-file-todo "logbook/todobox.org")
+      (org-capture-file-tasks "logbook/tasks.org")
       (org-capture-file-biji "biji.org")
       (org-capture-file-inbox "journal.org"))
   (setq org-capture-templates
@@ -99,11 +101,11 @@
           ("b" "笔记 - timestamp"
            entry (file+olp+datetree ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
-          ("i" "Tasks into Journal Inbox"
+          ("i" "Tasks, for Journal"
            entry (file+datetree ,org-capture-file-inbox)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
-          ("t" "Tasks into Todo-Box"
-           entry (file ,org-capture-file-todo)
+          ("t" "Tasks, not for a plan or journal"
+           entry (file ,org-capture-file-tasks)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("p" "Public Inbox"
            plain (file ,org-capture-file-public)
