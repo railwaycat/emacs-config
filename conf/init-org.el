@@ -136,48 +136,19 @@
   (unless (derived-mode-p 'org-mode)
     (user-error "This function requires org-mode"))
 
-  (let* ((notes-heading "Notes")
-         (date (calendar-current-date))
-         (year (number-to-string (nth 2 date)))
-         (month (format "%d-%02d %s"
-                       (nth 2 date)
-                       (nth 0 date)
-                       (calendar-month-name (nth 0 date))))
-         (day (format "%d-%02d-%02d %s"
-                     (nth 2 date)
-                     (nth 0 date)
-                     (nth 1 date)
-                     (calendar-day-name date)))
-         (day-pos (save-excursion
-                    (goto-char (point-min))
-                    (re-search-forward (format "^\\*\\{3\\} %s$" day) nil t))))
+  (org-datetree-find-date-create (calendar-current-date))
 
-
-    (goto-char (point-max))
-    (unless (save-excursion
-              (goto-char (point-min))
-              (re-search-forward (format "^\\* %s$" year) nil t))
-      (insert "* " year "\n"))
-    (unless (save-excursion
-              (goto-char (point-min))
-              (re-search-forward (format "^\\*\\* %s$" month) nil t))
-      (insert "** " month "\n"))
-    (unless day-pos
-      (insert "*** " day "\n"
-              "**** " notes-heading "\n"))
-    (when day-pos
-      (unless (save-excursion
-                (goto-char day-pos)
-                (re-search-forward (format "^\\*\\{4\\} %s$" notes-heading)
-                                   (save-excursion
-                                     (or (re-search-forward "^\\*\\{3\\} " nil t)
-                                         (point-max)))
-                                   t))
+  (let ((notes-heading "Notes"))
+    (save-restriction
+      (org-narrow-to-subtree)
+      (goto-char (point-min))
+      (if (re-search-forward (format "^\\*\\{4\\} %s$" notes-heading) nil t)
+          ;; Notes exists, go to end of its content
+          (org-end-of-subtree t)
+        ;; Notes doesn't exist, create it
         (goto-char (point-max))
-        (insert "**** " notes-heading "\n")))
-
-    (org-show-all)
-    (goto-char (point-max))))
+        (unless (bolp) (insert "\n"))
+        (insert "**** " notes-heading "\n")))))
 
 
 ;; org-agenda
