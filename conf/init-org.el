@@ -24,7 +24,7 @@
       org-indent-indentation-per-level 1)
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n!)" "|" "DONE(d@)")
+      '((sequence "TODO(t!)" "NEXT(n!)" "|" "DONE(d@)")
         ;; Defer: not do it now but may in the next days
         ;; Hold: not do it now and may never
         (sequence "DEFER(f!)" "HOLD(h@/!)" "|" "ABORT(a@/!)")))
