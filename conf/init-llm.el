@@ -39,7 +39,7 @@
           :key gptel-moonshot-key
           :stream t
           :models '(kimi-latest)))
-  (setq gptel-backend gptel-backend-moonshot)
+  (setq gptel-backend gptel-backend-anthropic)
   (setq gptel-model (car (gptel-backend-models gptel-backend)))
 
   (defun gptel-switch-backend()

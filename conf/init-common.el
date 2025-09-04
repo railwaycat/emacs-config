@@ -54,7 +54,9 @@
 
 
 ;; always use y/n
-(fset 'yes-or-no-p 'y-or-n-p)
+(if (>= emacs-major-version 28)
+    (setq use-short-answers t)
+  (fset 'yes-or-no-p 'y-or-n-p))
 
 
 ;; tramp
@@ -219,7 +221,7 @@
 
 ;; 在 mode-line 最后追加一个半角空格，一个全角空格，防止因为字体高度原
 ;; 因，导致 mode-line 抖动。
-(setq mode-line-format `(,mode-line-format "  "))
+(setq-default mode-line-format (append mode-line-format '("  ")))
 
 
 ;; Orderless may needed by consult and corfu. Leave the config here to
