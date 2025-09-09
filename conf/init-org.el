@@ -128,6 +128,7 @@
         (switch-to-buffer buffer)
       (find-file (concat org-directory "/journal.org"))
       (goto-char (point-max)))))
+(global-set-key (kbd "C-c j") 'org-journal)
 
 
 (defun org-journal-today ()
