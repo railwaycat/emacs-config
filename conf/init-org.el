@@ -91,10 +91,10 @@
         `(
           ("c" "Capture"
            plain (file ,org-capture-file-capture)
-           "%?%i" :kill-buffer t :empty-lines 1)
+           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
           ("a" "Capture for Work"
            plain (file ,org-capture-file-capture-work)
-           "%?%i" :kill-buffer t :empty-lines 1)
+           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
           ("d" "Diary - timestamp"
            entry (file+olp+datetree ,org-capture-file-diary)
            "* %U\n%?" :kill-buffer t)
