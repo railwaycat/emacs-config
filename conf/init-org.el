@@ -56,6 +56,15 @@
           (nil :maxlevel . 3))))
 
 
+;; Archive
+;; header example 1: #+ARCHIVE: ./logbook/archived.org::datetree/
+;; header example 2: #+ARCHIVE: ./archived.org::* Tasks
+(setq org-archive-location (concat org-directory "/logbook/archived.org::* Archived")
+      org-archive-mark-done nil  ; Preserve TODO state when archiving
+      org-archive-save-context-info '(time file ltags itags todo category olpath)
+      org-archive-subtree-add-inherited-tags t)  ; Include inherited tags
+
+
 (with-eval-after-load 'org
   ;; markup 记号前后中文
   (org-set-emph-re 'org-emphasis-regexp-components
@@ -139,7 +148,7 @@
 
   (org-datetree-find-date-create (calendar-current-date))
 
-  (let ((notes-heading "Notes"))
+  (let ((notes-heading "今天做了什么"))
     (save-restriction
       (org-narrow-to-subtree)
       (goto-char (point-min))

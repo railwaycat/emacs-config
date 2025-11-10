@@ -56,6 +56,7 @@
 ;; (require 'init-helm)
 (require 'init-consult)
 (require 'init-company)
+;; (require 'init-corfu)
 (require 'init-lsp)
 (require 'init-modes)
 (require 'init-yasnippet)
