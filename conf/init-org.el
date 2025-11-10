@@ -111,7 +111,7 @@
            entry (file+olp+datetree ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
           ("i" "Tasks, for Journal"
-           entry (file+datetree ,org-capture-file-inbox)
+           entry (file+olp+datetree ,org-capture-file-inbox)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("t" "Tasks, not for a plan or journal"
            entry (file ,org-capture-file-tasks)
