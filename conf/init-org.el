@@ -168,38 +168,44 @@
                         ;; (concat org-directory "/plan")
                         ;; (concat org-directory "/logs")))
 (setq org-agenda-custom-commands
-      '(("n" "All TODO Tasks"
-         ((todo "TODO"
-                ((org-agenda-overriding-header "TODO list")))
-          (todo "DEFER"
-                ((org-agenda-overriding-header "\nDeferred. Will do, not now")
-                 (org-agenda-block-separator nil)))))
-        ("c" "Current Tasks"
-         ((todo "NEXT"
-                ((org-agenda-overriding-header "Next to do or in Progress")))))
-        ("h" "Tasks on Hold"
-         ((todo "HOLD"
-                ((org-agenda-overriding-header "Tasks on hold. Will do, maybe")))
-          (todo "ABORT"
-                ((org-agenda-overriding-header "\nAborted Tasks FYI. Will not to do")
-                 (org-agenda-block-separator nil)))))))
-          ;; (agenda "" ((org-agenda-start-on-weekday nil)
-          ;;             (org-agenda-span 3)
-          ;;             (org-deadline-warning-days 0)
-          ;;             (org-agenda-block-separator nil)
-          ;;             (org-agenda-overriding-header "\nNext 3 days")))
-          ;; (agenda "" ((org-agenda-time-grid nil)
-          ;;             (org-agenda-start-on-weekday nil)
-          ;;             (org-agenda-start-day "+3d")
-          ;;             (org-agenda-span 14)
-          ;;             (org-agenda-show-all-dates nil)
-          ;;             (org-deadline-warning-days 0)
-          ;;             (org-agenda-block-separator nil)
-          ;;             (org-agenda-entry-types '(:deadline))
-          ;;             (org-agenda-overriding-header "\nDeadlines in 14 Days")))
-          ;; (todo "DEFER"
-          ;;       ((org-agenda-overriding-header "\nDEFER todo")
-          ;;        (org-agenda-block-separator nil)))))))
+      '(
+        ("d" "Dashboard: Daily Overview"
+         (
+          (agenda ""
+                  ((org-agenda-span 'day)
+                   (org-deadline-warning-days 7)
+                   (org-agenda-overriding-header "今日计划及即将到期")))
+          ;; journal
+          (tags-todo "FILE={journal.org}+TODO=\"TODO\"|TODO=\"NEXT\""
+                     ((org-agenda-overriding-header "TODO和NEXT - journal:")))
+          ;; tasks
+          (tags-todo "FILE={tasks.org}+TODO=\"NEXT\""
+                     ((org-agenda-overriding-header "NEXT - tasks")))
+          ;; DEFER and HOLD
+          (todo "DEFER|HOLD"
+                ((org-agenda-overriding-header "DEFER和HOLD:")
+                 (org-agenda-block-separator nil)))
+          ))
+
+        ("r" "Weekly Review"
+         (
+          (agenda ""
+                  ((org-agenda-span 8)
+                   (org-agenda-start-day "-7d")
+                   (org-agenda-start-on-weekday nil)
+                   (org-agenda-show-log 'only)
+                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
+                   (org-agenda-overriding-header "过去七天完成")
+                   (org-agenda-archives-mode t)))
+          (tags-todo "FILE={journal.org}+TODO=\"TODO\"|TODO=\"NEXT\""
+                     ((org-agenda-overriding-header "待评估 - 完成或移动:")))
+          (todo "DEFER|HOLD"
+                ((org-agenda-overriding-header "回顾:")))
+         ))
+        ("n" "All tasks"
+         ((todo "TODO" ((org-agenda-overriding-header "所有TODO")))
+          (todo "NEXT" ((org-agenda-overriding-header "所有NEXT")))))
+       ))
 
 
 (defun save-org-buffers ()
