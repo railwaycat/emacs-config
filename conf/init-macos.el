@@ -105,7 +105,7 @@
      (symbol   . "PingFang SC")
      (bopomofo . "PingFang SC")
      (kana     . "YuGothic")
-     (hangul   . "AppleGothic"))
+     (hangul   . "Apple SD Gothic Neo"))
     (Xinshusong ;; 新书宋
      (han      . "FZNewShuSong-Z10")
      (cjk-misc . "FZNewShuSong-Z10")
@@ -113,6 +113,20 @@
      (bopomofo . "FZNewShuSong-Z10")
      (kana     . "YuMincho")
      (hangul   . "AppleMyungjo"))
+    (STZhongsong ;; 华文中宋
+     (han      . "STZhongsong")
+     (cjk-misc . "STZhongsong")
+     (symbol   . "STZhongsong")
+     (bopomofo . "STZhongsong")
+     (kana     . "Hiragino Mincho ProN")
+     (hangul   . "AppleMyungjo"))
+    (BeiweiKaishu ;; 方正北魏楷书
+     (han      . "FZBeiWeiKaiShu-S19")
+     (cjk-misc . "FZBeiWeiKaiShu-S19")
+     (symbol   . "FZBeiWeiKaiShu-S19")
+     (bopomofo . "FZBeiWeiKaiShu-S19")
+     (kana     . "YuKyokasho")
+     (hangul   . "GungSeo"))
     )
   "An alist of CJK font profiles for different character sets.")
 
@@ -136,7 +150,7 @@ PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13))
-  (my/apply-cjk-font-profile 'Pingfang 12))
+  (my/apply-cjk-font-profile 'BeiweiKaishu 13))
 
 (defun my/set-font-large ()
   "Using large size font"
