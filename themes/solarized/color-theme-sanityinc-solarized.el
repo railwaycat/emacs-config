@@ -1,4 +1,4 @@
-;;; color-theme-sanityinc-solarized.el --- A version of Ethan Schoonover's Solarized themes
+;;; color-theme-sanityinc-solarized.el --- A version of Ethan Schoonover's Solarized themes  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2011-2014 Steve Purcell
 

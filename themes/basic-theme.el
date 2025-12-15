@@ -1,4 +1,4 @@
-;;; basic-theme.el --- Minimal color theme for Emacs
+;;; basic-theme.el --- Minimal color theme for Emacs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019 Xin Xu <railwaycat@gmail.com>
 
