@@ -150,7 +150,7 @@ PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13))
-  (my/apply-cjk-font-profile 'BeiweiKaishu 13))
+  (my/apply-cjk-font-profile 'Pingfang 12))
 
 (defun my/set-font-large ()
   "Using large size font"
