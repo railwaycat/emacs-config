@@ -16,11 +16,11 @@
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
   (helm-buffer-max-length 40)
-  (helm-split-window-inside-p t)
+  ;; (helm-split-window-inside-p t)
   (helm-ff-search-library-in-sexp t)
   (helm-scroll-amount 8)
-  (helm-autoresize-max-height 35)
-  (helm-autoresize-min-height 20)
+  ;; (helm-autoresize-max-height 35)
+  ;; (helm-autoresize-min-height 20)
   ;; put visible buffers near the top
   (helm-buffer-list-reorder-fn (lambda (visibles others)
                                  (nconc (list (car others)) (delete-dups visibles) (cdr others))))
@@ -34,6 +34,9 @@
      "\\`\\*Async-native-compile-log"
      ))
   (helm-grep-file-path-style 'basename)
+  (helm-display-header-line nil)
+  (helm-mode-line-string nil)
+  (helm-ff-file-name-history-use-hierarchical-display nil)
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
@@ -47,7 +50,7 @@
   ("M-g p" . helm-browse-project)
   ("M-g P" . helm-projects-history)
   ("M-s d" . helm-find)
-  ("M-s o" . helm-occur)
+  ;; ("M-s o" . helm-occur)
   ([remap switch-to-buffer] . helm-mini)
   (:map helm-buffer-map
         ("C-c ]" . helm-toggle-buffers-details))
@@ -87,20 +90,41 @@
   (helm-mode 1))
 
 
-;; helm-ag
-;; C-l search in parent directory
-;; by default insert word, M-n to insert symbol
-;; C-c C-f enable helm-follow-mode
-(ensure-package 'helm-ag)
+(use-package helm-swoop
+  :if (featurep 'straight)
+  :straight (helm-swoop :type git :host github :repo "emacsattic/helm-swoop")
+  :after helm
+  :bind
+  ("M-s o" . helm-swoop)
+  ("M-s O" . helm-multi-swoop)
+  )
+
 (use-package helm-ag
+  :if (featurep 'straight)
+  :straight (helm-ag :type git :host github :repo "emacsattic/helm-ag")
   :after helm
   :custom
   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
-  (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
+  (helm-ag-insert-at-point 'symbol)
   (helm-ag-fuzzy-match t)
   :bind
   ("M-s g" . helm-ag)
   ("M-s G" . helm-do-ag))
+
+;; helm-ag
+;; C-l search in parent directory
+;; by default insert word, M-n to insert symbol
+;; C-c C-f enable helm-follow-mode
+;; (ensure-package 'helm-ag)
+;; (use-package helm-ag
+;;   :after helm
+;;   :custom
+;;   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
+;;   (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
+;;   (helm-ag-fuzzy-match t)
+;;   :bind
+;;   ("M-s g" . helm-ag)
+;;   ("M-s G" . helm-do-ag))
 
 
 ;; wgrep-helm

@@ -25,8 +25,11 @@
 (setq straight-repository-branch "develop")
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
@@ -53,13 +56,12 @@ This is the Straight version for the unified interface."
 ;; Since Emacs 29.1, use-package is a built-in.
 (when (version< emacs-version "29.1")
   (straight-use-package 'use-package)
-  (eval-and-compile
+  ;; (eval-and-compile
     ;; (setq use-package-always-ensure t)
     ;; (setq use-package-always-defer nil)
     ;; (setq use-package-always-demand nil)
     ;; (setq use-package-expand-minimally nil)
-    (setq use-package-enable-imenu-support t))
-  (setq straight-use-package-by-default t)
+    ;; (setq use-package-enable-imenu-support t))
   (eval-when-compile
     (require 'use-package)))
 

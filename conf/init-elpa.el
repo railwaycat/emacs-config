@@ -64,6 +64,14 @@ This is the ELPA version for the unified interface."
 ;; (setq use-package-always-ensure t)
 (setq use-package-enable-imenu-support t)
 
+(with-eval-after-load 'use-package-core
+  (unless (memq :straight use-package-keywords)
+    (add-to-list 'use-package-keywords :straight)
+    (defun use-package-normalize/:straight (_name _keyword args)
+      args)
+    (defun use-package-handler/:straight (name _keyword _arg rest state)
+      (use-package-process-keywords name rest state))))
+
 
 (ensure-package 'diminish)
 (require 'diminish)
