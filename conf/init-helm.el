@@ -50,7 +50,7 @@
   ("M-g p" . helm-browse-project)
   ("M-g P" . helm-projects-history)
   ("M-s d" . helm-find)
-  ;; ("M-s o" . helm-occur)
+  ("M-s o" . helm-occur)
   ([remap switch-to-buffer] . helm-mini)
   (:map helm-buffer-map
         ("C-c ]" . helm-toggle-buffers-details))
