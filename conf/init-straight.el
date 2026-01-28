@@ -42,8 +42,14 @@
 
 (defun ensure-package (package)
   "Ensure PACKAGE is installed.
-This is the Straight version for the unified interface."
-  (straight-use-package package))
+PACKAGE can be a symbol or a recipe (name :url URL [:branch BRANCH])."
+  (if (listp package)
+      (let* ((name (car package))
+             (url (plist-get (cdr package) :url))
+             (branch (plist-get (cdr package) :branch)))
+        (straight-use-package
+         `(,name :type git :host nil :repo ,url ,@(when branch `(:branch ,branch)))))
+    (straight-use-package package)))
 
 (defun upgrade-all-packages ()
   "Upgrade all installed packages.

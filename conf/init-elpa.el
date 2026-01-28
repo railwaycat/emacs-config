@@ -30,13 +30,6 @@
 
 (package-initialize)
 
-
-(defun ensure-package (package)
-  "Ensure PACKAGE is installed.
-This is the ELPA version for the unified interface."
-  (unless (package-installed-p package)
-    (package-install package)))
-
 (defun upgrade-all-packages ()
   "Upgrade all installed packages.
 This is the ELPA version for the unified interface."
@@ -64,21 +57,10 @@ This is the ELPA version for the unified interface."
 ;; (setq use-package-always-ensure t)
 (setq use-package-enable-imenu-support t)
 
-(with-eval-after-load 'use-package-core
-  (unless (memq :straight use-package-keywords)
-    (add-to-list 'use-package-keywords :straight)
-    (defun use-package-normalize/:straight (_name _keyword args)
-      args)
-    (defun use-package-handler/:straight (name _keyword _arg rest state)
-      (use-package-process-keywords name rest state))))
 
-
-(ensure-package 'diminish)
-(require 'diminish)
-
-
-;; bootstrap quelpa as an addition for melpa
-(ensure-package 'quelpa)
+;; ensure-package and quelpa
+(unless (package-installed-p 'quelpa)
+  (package-install 'quelpa))
 (use-package quelpa
   :commands quelpa
   :custom
@@ -86,6 +68,18 @@ This is the ELPA version for the unified interface."
   (quelpa-self-upgrade-p nil)
   (quelpa-update-melpa-p nil)
   (quelpa-checkout-melpa-p nil))
+
+(defun ensure-package (package)
+  "Ensure PACKAGE is installed.
+PACKAGE can be a symbol or a recipe (name :url URL [:branch BRANCH])."
+  (if (listp package)
+      (quelpa `(,(car package) :fetcher git ,@(cdr package)))
+    (unless (package-installed-p package)
+      (package-install package))))
+
+
+(ensure-package 'diminish)
+(require 'diminish)
 
 
 (provide 'init-elpa)
