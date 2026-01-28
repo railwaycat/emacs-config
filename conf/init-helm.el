@@ -34,7 +34,7 @@
      "\\`\\*Async-native-compile-log"
      ))
   (helm-grep-file-path-style 'basename)
-  (helm-display-header-line nil)
+  (helm-display-header-line t)
   (helm-mode-line-string nil)
   (helm-ff-file-name-history-use-hierarchical-display nil)
   :bind
@@ -90,18 +90,18 @@
   (helm-mode 1))
 
 
+(ensure-package '(helm-swoop :url "https://github.com/emacsattic/helm-swoop.git"))
 (use-package helm-swoop
-  :if (featurep 'straight)
-  :straight (helm-swoop :type git :host github :repo "emacsattic/helm-swoop")
   :after helm
+  :demand t
   :bind
   ("M-s o" . helm-swoop)
   ("M-s O" . helm-multi-swoop)
   )
 
+
+(ensure-package '(helm-ag :url "https://github.com/emacsattic/helm-ag.git"))
 (use-package helm-ag
-  :if (featurep 'straight)
-  :straight (helm-ag :type git :host github :repo "emacsattic/helm-ag")
   :after helm
   :custom
   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
