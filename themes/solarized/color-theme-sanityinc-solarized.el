@@ -464,6 +464,7 @@ names to which it refers are bound."
       (helm-selection (:inherit highlight))
       (helm-separator (:foreground ,magenta))
       (helm-source-header (:weight bold :foreground ,yellow :height 1.0))
+      (helm-tooltip (:foreground ,faintest :inherit highlight))
 
       ;; company
       (company-preview (:foreground ,faint :background ,contrast-background))
