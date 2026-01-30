@@ -53,7 +53,7 @@
 
    ;; emacs interface
    `(line-number-current-line ((t (:background ,contrast-background :weight bold))))
-   `(mode-line ((t (:background nil :foreground "black" :box (:line-width 1 :color "grey70")))))
+   `(mode-line ((t (:background unspecified :foreground "black" :box (:line-width 1 :color "grey70")))))
    `(mode-line-inactive ((t (:foreground "grey70" :inverse-video nil :box (:line-width 1 :color "grey70")))))
 
    ;; company
@@ -71,6 +71,13 @@
    `(company-preview-search ((t (:inherit company-preview :foreground "magenta"))))
    `(company-template-field ((t (:foreground ,background :background "yellow"))))
 
+   ;; header line
+   `(header-line ((t (:foreground "grey20" :background "grey90"))))
+
+   ;; helm
+   `(helm-source-header ((t (:height 1.0))))
+   `(helm-selection ((t (:background "#b5ffd1"))))
+   `(helm-tooltip ((t (:inherit helm-selection :foreground "grey70"))))
    ;; helm-rg
    `(helm-rg-directory-header-face ((t (:inherit compilation-info))))
    `(helm-rg-file-match-face ((t (:inherit compilation-info))))
