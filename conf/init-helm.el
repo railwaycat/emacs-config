@@ -94,9 +94,9 @@
 (use-package helm-swoop
   :after helm
   :demand t
-  :bind
-  ("M-s o" . helm-swoop)
-  ("M-s O" . helm-multi-swoop)
+  ;; :bind
+  ;; ("M-s o" . helm-swoop)
+  ;; ("M-s O" . helm-multi-swoop)
   )
 
 
@@ -107,9 +107,10 @@
   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
   (helm-ag-insert-at-point 'symbol)
   (helm-ag-fuzzy-match t)
-  :bind
-  ("M-s g" . helm-ag)
-  ("M-s G" . helm-do-ag))
+  ;; :bind
+  ;; ("M-s g" . helm-ag)
+  ;; ("M-s G" . helm-do-ag)
+  )
 
 ;; helm-ag
 ;; C-l search in parent directory
