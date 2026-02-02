@@ -15,12 +15,12 @@
 
 ;; modus-operandi
 ;; satisfy macOS terminal.app
-(when (not window-system)
-  (if (version< emacs-version "29.1")
-      (setq modus-themes-operandi-color-overrides
-            '((bg-main . "unspecified-bg")))
-    (setq modus-operandi-palette-overrides
-          '((bg-main "unspecified-bg")))))
+;; (when (not window-system)
+;;   (if (version< emacs-version "29.1")
+;;       (setq modus-themes-operandi-color-overrides
+;;             '((bg-main . "unspecified-bg")))
+;;     (setq modus-operandi-palette-overrides
+;;           '((bg-main "unspecified-bg")))))
 
 
 (provide 'init-theme)
