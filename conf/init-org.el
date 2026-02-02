@@ -19,9 +19,13 @@
 
 ;; (custom-set-faces '(org-document-title ((t (:height 1 :weight bold)))))
 
+;; styles
 ;; content indent in headline, but only 1 space.
 (setq org-startup-indented t
       org-indent-indentation-per-level 1)
+;; no new line between entries (heading/list)
+(setq org-blank-before-new-entry '((heading . nil)
+                                   (plain-list-item . nil)))
 
 (setq org-todo-keywords
       '((sequence "TODO(t!)" "NEXT(n!)" "|" "DONE(d@)")
