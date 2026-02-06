@@ -50,14 +50,11 @@
 
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
-(let ((target-tasks (concat org-directory "/logbook/tasks.org"))
-      (target-archived (concat org-directory "/logbook/archived.org"))
-      (target-journal (concat org-directory "/journal.org")))
+(let ((refile-files
+       (cons (concat org-directory "/journal.org")
+             (file-expand-wildcards (concat org-directory "/logbook/*.org")))))
   (setq org-refile-targets
-        `(
-          (,target-journal :maxlevel . 3)
-          (,target-tasks :maxlevel . 1)
-          (,target-archived :maxlevel . 1)
+        `((,refile-files :maxlevel . 3)
           (nil :maxlevel . 3))))
 
 
