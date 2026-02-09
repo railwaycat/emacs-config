@@ -8,7 +8,7 @@
 (ensure-package 'helm)
 (use-package helm
   :diminish
-  :defer t
+  :demand t
   :custom
   (helm-grep-default-command "grep --color=always -d skip %e -n%cH -e %p %f")
   (helm-grep-default-recurse-command "grep --color=always -d recurse %e -n%cH -e %p %f")
