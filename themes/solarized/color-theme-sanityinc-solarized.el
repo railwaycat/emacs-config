@@ -302,6 +302,7 @@ names to which it refers are bound."
       (secondary-selection (:foreground ,strong :inverse-video t))
 
       (header-line (:inherit mode-line-inactive :foreground ,cyan :background unspecified))
+      (help-key-binding (:foreground ,cyan :background ,alt-background))
       (trailing-whitespace (:background ,red :underline nil))
 
       ;; Parenthesis matching (built-in)
