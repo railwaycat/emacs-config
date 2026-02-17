@@ -115,6 +115,10 @@
           ("i" "Tasks, for Journal"
            entry (file+olp+datetree ,org-capture-file-inbox)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
+          ("j" "Journal today"
+           plain (file+olp+datetree ,org-capture-file-inbox)
+           "**** TODO 事项列表%<%Y%m%d> [/]\n**** 今天做了什么"
+           :jump-to-captured t)
           ("t" "Tasks, not for a plan or journal"
            entry (file ,org-capture-file-tasks)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
@@ -140,28 +144,6 @@
       (find-file (concat org-directory "/journal.org"))
       (goto-char (point-max)))))
 (global-set-key (kbd "C-c j") 'org-journal)
-
-
-(defun org-journal-today ()
-  "Create or visit today's journal entry with date hierarchy."
-  (interactive)
-  (unless (derived-mode-p 'org-mode)
-    (user-error "This function requires org-mode"))
-
-  (org-datetree-find-date-create (calendar-current-date))
-
-  (let ((notes-heading "今天做了什么"))
-    (save-restriction
-      (org-narrow-to-subtree)
-      (goto-char (point-min))
-      (if (re-search-forward (format "^\\*\\{4\\} %s$" notes-heading) nil t)
-          ;; Notes exists, go to end of its content
-          (org-end-of-subtree t)
-        ;; Notes doesn't exist, create it
-        (goto-char (point-max))
-        (unless (bolp) (insert "\n"))
-        (insert "**** " notes-heading "\n")))))
-
 
 ;; org-agenda
 (setq org-agenda-files (list
