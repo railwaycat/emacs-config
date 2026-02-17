@@ -147,6 +147,7 @@
   :after helm
   :init
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs
+        xref-show-definitions-function 'helm-xref-show-xrefs
         helm-xref-candidate-formatting-function 'helm-xref-format-candidate-full-path
         ;; helm-xref-candidate-formatting-function 'helm-xref-format-candidate-long
         ))
