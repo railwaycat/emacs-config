@@ -44,50 +44,67 @@
 
 
 ;; citre/ctags
-(when (not (eq system-type 'darwin))
-  (ensure-package 'citre)
-  (use-package citre
-    :init
-    (require 'citre-config)
-    (require 'thingatpt)
-    (defun citre-peek+ ()
-      (interactive)
-      (if (thing-at-point 'symbol)
-          (citre-peek)
-        (citre-peek-restore)))
-    (defun xref-goto (symbol)
-      "Goto definition of the symbol without prompt for candidates.
-This saves time when working on a large tags file."
+;; (when (not (eq system-type 'darwin))
+;;   (ensure-package 'citre)
+;;   (use-package citre
+;;     :init
+;;     (require 'citre-config)
+;;     (require 'thingatpt)
+;;     (defun citre-peek+ ()
+;;       (interactive)
+;;       (if (thing-at-point 'symbol)
+;;           (citre-peek)
+;;         (citre-peek-restore)))
+;;     (defun xref-goto (symbol)
+;;       "Goto definition of the symbol without prompt for candidates.
+;; This saves time when working on a large tags file."
 
-      (interactive "sGoto definition: ")
-      (xref-find-definitions symbol))
-    :bind
-    ("M-\"" . citre-peek+)
-    ("ESC M-." . xref-goto)
-    ;; :custom
-    ;; (citre-auto-enable-citre-mode-modes '(prog-mode))
-    :config
-    (setq
-     ;; Set these if readtags/ctags is not in your path.
-     ;; citre-readtags-program "/path/to/readtags"
-     ;; citre-ctags-program "/path/to/ctags"
-     ;; Set this if you use project management plugin like projectile.  It's
-     ;; used for things like displaying paths relatively, see its docstring.
-     citre-project-root-function #'projectile-project-root
-     ;; Set this if you want to always use one location to create a tags file.
-     citre-default-create-tags-file-location 'global-cache
-     ;; See the "Create tags file" section above to know these options
-     citre-use-project-root-when-creating-tags t
-     citre-prompt-language-for-ctags-command t
-     citre-peek-fill-fringe nil)))
+;;       (interactive "sGoto definition: ")
+;;       (xref-find-definitions symbol))
+;;     :bind
+;;     ("M-\"" . citre-peek+)
+;;     ("ESC M-." . xref-goto)
+;;     ;; :custom
+;;     ;; (citre-auto-enable-citre-mode-modes '(prog-mode))
+;;     :config
+;;     (setq
+;;      ;; Set these if readtags/ctags is not in your path.
+;;      ;; citre-readtags-program "/path/to/readtags"
+;;      ;; citre-ctags-program "/path/to/ctags"
+;;      ;; Set this if you use project management plugin like projectile.  It's
+;;      ;; used for things like displaying paths relatively, see its docstring.
+;;      citre-project-root-function #'projectile-project-root
+;;      ;; Set this if you want to always use one location to create a tags file.
+;;      citre-default-create-tags-file-location 'global-cache
+;;      ;; See the "Create tags file" section above to know these options
+;;      citre-use-project-root-when-creating-tags t
+;;      citre-prompt-language-for-ctags-command t
+;;      citre-peek-fill-fringe nil)))
 
 ;; xref
 (setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
-;; configured in consult
+;; configured in helm/consult
 ;; (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
 ;; (setq xref-show-xrefs-function #'xref-show-definitions-buffer) ; for grep and the like
 ;; (setq xref-file-name-display 'project-relative)
 (setq xref-search-program 'ripgrep)
+(setq tags-revert-without-query t)
+
+;; `semantic-symref' still keys patterns by major mode.  Add ts-mode
+;; mappings so `M-?' (xref refs via semantic/grep backend) works for C/C++.
+(with-eval-after-load 'semantic/symref/grep
+  (setf (alist-get 'c-ts-mode semantic-symref-filepattern-alist)
+        '("*.[ch]"))
+  (setf (alist-get 'c++-ts-mode semantic-symref-filepattern-alist)
+        '("*.[chCH]" "*.[ch]pp" "*.cc" "*.hh"
+          "*.cxx" "*.hxx" "*.ipp" "*.tpp" "*.inl")))
+
+
+;; GNU Global frontend, manual only: M-x gtags-mode
+(ensure-package 'gtags-mode)
+(use-package gtags-mode
+  :commands (gtags-mode global-gtags-mode))
+
 
 
 ;; Dashboard
