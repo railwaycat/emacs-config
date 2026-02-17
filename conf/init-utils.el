@@ -103,7 +103,8 @@
 ;; GNU Global frontend, manual only: M-x gtags-mode
 (ensure-package 'gtags-mode)
 (use-package gtags-mode
-  :commands (gtags-mode global-gtags-mode))
+  :commands (gtags-mode global-gtags-mode)
+  :diminish)
 
 
 
