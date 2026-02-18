@@ -42,72 +42,6 @@
   ("C-c r" . rg-dwim)
   ("C-c R" . rg))
 
-
-;; citre/ctags
-;; (when (not (eq system-type 'darwin))
-;;   (ensure-package 'citre)
-;;   (use-package citre
-;;     :init
-;;     (require 'citre-config)
-;;     (require 'thingatpt)
-;;     (defun citre-peek+ ()
-;;       (interactive)
-;;       (if (thing-at-point 'symbol)
-;;           (citre-peek)
-;;         (citre-peek-restore)))
-;;     (defun xref-goto (symbol)
-;;       "Goto definition of the symbol without prompt for candidates.
-;; This saves time when working on a large tags file."
-
-;;       (interactive "sGoto definition: ")
-;;       (xref-find-definitions symbol))
-;;     :bind
-;;     ("M-\"" . citre-peek+)
-;;     ("ESC M-." . xref-goto)
-;;     ;; :custom
-;;     ;; (citre-auto-enable-citre-mode-modes '(prog-mode))
-;;     :config
-;;     (setq
-;;      ;; Set these if readtags/ctags is not in your path.
-;;      ;; citre-readtags-program "/path/to/readtags"
-;;      ;; citre-ctags-program "/path/to/ctags"
-;;      ;; Set this if you use project management plugin like projectile.  It's
-;;      ;; used for things like displaying paths relatively, see its docstring.
-;;      citre-project-root-function #'projectile-project-root
-;;      ;; Set this if you want to always use one location to create a tags file.
-;;      citre-default-create-tags-file-location 'global-cache
-;;      ;; See the "Create tags file" section above to know these options
-;;      citre-use-project-root-when-creating-tags t
-;;      citre-prompt-language-for-ctags-command t
-;;      citre-peek-fill-fringe nil)))
-
-;; xref
-(setq xref-prompt-for-identifier nil) ;; always find references of symbol at point
-;; configured in helm/consult
-;; (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
-;; (setq xref-show-xrefs-function #'xref-show-definitions-buffer) ; for grep and the like
-;; (setq xref-file-name-display 'project-relative)
-(setq xref-search-program 'ripgrep)
-(setq tags-revert-without-query t)
-
-;; `semantic-symref' still keys patterns by major mode.  Add ts-mode
-;; mappings so `M-?' (xref refs via semantic/grep backend) works for C/C++.
-(with-eval-after-load 'semantic/symref/grep
-  (setf (alist-get 'c-ts-mode semantic-symref-filepattern-alist)
-        '("*.[ch]"))
-  (setf (alist-get 'c++-ts-mode semantic-symref-filepattern-alist)
-        '("*.[chCH]" "*.[ch]pp" "*.cc" "*.hh"
-          "*.cxx" "*.hxx" "*.ipp" "*.tpp" "*.inl")))
-
-
-;; GNU Global frontend, manual only: M-x gtags-mode
-(ensure-package 'gtags-mode)
-(use-package gtags-mode
-  :commands (gtags-mode global-gtags-mode)
-  :diminish)
-
-
-
 ;; Dashboard
 ;; (use-package dashboard
 ;;   :init
@@ -238,35 +172,6 @@
 ;;           (delete-window window)))))
 ;;   (advice-add #'keyboard-quit :before #'+popper-close-window-hack)
 ;;   )
-
-
-;; tree-sitter
-(when (and (fboundp 'treesit-available-p)
-           (treesit-available-p))
-  (setq treesit-language-source-alist
-        '((python "https://github.com/tree-sitter/tree-sitter-python")
-          (bash "https://github.com/tree-sitter/tree-sitter-bash")
-          (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-          (c "https://github.com/tree-sitter/tree-sitter-c")
-          (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-          (go "https://github.com/tree-sitter/tree-sitter-go")
-          (html "https://github.com/tree-sitter/tree-sitter-html")
-          (json "https://github.com/tree-sitter/tree-sitter-json")
-          (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-          (rust "https://github.com/tree-sitter/tree-sitter-rust")
-          (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-          (toml "https://github.com/tree-sitter/tree-sitter-toml")
-          (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
-          (typescript "https://github.com/tree-sitter/tree-sitter-typescript"))
-        major-mode-remap-alist '((python-mode . python-ts-mode)
-                                 (c-mode . c-ts-mode)
-                                 (c++-mode . c++-ts-mode)
-                                 (sh-mode . bash-ts-mode)
-                                 (go-mode . go-ts-mode)
-                                 (rust-mode . rust-ts-mode)
-                                 (json-mode . json-ts-mode)
-                                 (yaml-mode . yaml-ts-mode))
-        treesit-font-lock-level 4))
 
 
 ;; ox-hugo

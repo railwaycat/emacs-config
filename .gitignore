@@ -10,3 +10,17 @@
 !themes/**
 !site-lisp
 !site-lisp/**
+
+# Byte-compiled Emacs Lisp
+*.elc
+
+# Editor / OS artifacts
+*~
+.#*
+\#*\#
+*.swp
+*.swo
+*.orig
+*.rej
+.DS_Store
+Thumbs.db
