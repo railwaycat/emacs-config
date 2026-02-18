@@ -117,7 +117,7 @@
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("j" "Journal today"
            plain (file+olp+datetree ,org-capture-file-inbox)
-           "**** TODO 事项列表%<%Y%m%d> [/]\n**** 今天做了什么"
+           "**** 事项列表 [/]\n**** 今天做了什么"
            :jump-to-captured t)
           ("t" "Tasks, not for a plan or journal"
            entry (file ,org-capture-file-tasks)
