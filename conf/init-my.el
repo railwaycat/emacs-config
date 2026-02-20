@@ -44,13 +44,6 @@ A place is considered `tab-width' character columns."
 
 
 ;;;###autoload
-(defun my/generate-tmp-buffer ()
-  (interactive)
-  (switch-to-buffer (make-temp-name "scratch-")))
-;; (define-key global-map (kbd "C-c s") 'my/generate-tmp-buffer)
-
-
-;;;###autoload
 (defun my/unfill-paragraph-or-region (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."
   (interactive (progn (barf-if-buffer-read-only) '(t)))
