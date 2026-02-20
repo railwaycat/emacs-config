@@ -122,11 +122,9 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; reload bookmarks from default file
 (defun my/bookmark-reload ()
-  "reload bookmarks from default file"
+  "Reload bookmarks from `bookmark-default-file'."
   (interactive)
-  (if (file-exists-p "~/Dropbox/dropbox.bmk")
-      (bookmark-load "~/Dropbox/dropbox.bmk" t t)
-    (bookmark-load (concat user-emacs-directory "bookmarks") t t)))
+  (bookmark-load bookmark-default-file t t))
 
 
 ;;;###autoload
