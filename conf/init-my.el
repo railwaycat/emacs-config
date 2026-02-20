@@ -5,11 +5,11 @@
 ;;; Code:
 
 ;;;###autoload
-(defun my/insert-time ()
-  (interactive)
-  ;; (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))
-  (insert (format-time-string "[%H:%M:%S]" (current-time)))
-  )
+(defun my/insert-time (&optional prefix)
+  "Insert current time, or full date-time when PREFIX is non-nil."
+  (interactive "P")
+  (insert (format-time-string
+           (if prefix "%Y-%m-%d %H:%M:%S" "[%H:%M:%S]"))))
 ;; (define-key global-map (kbd "C-c t t") 'my/insert-time)
 
 
