@@ -73,6 +73,8 @@
 
 (ensure-package 'scratch)
 (use-package scratch
+  ;; `M-x scratch` creates a scratch buffer with the current major mode.
+  ;; With `C-u`, prompt for the major mode. If region is active, copy it.
   :bind
   ("C-c s" . scratch))
 
