@@ -71,25 +71,54 @@ point reaches the beginning or end of the buffer, stop there."
   'my/smarter-move-beginning-of-line)
 
 
-;;;###autoload
-(defun my/eshell-here ()
-  "Opens up a new shell in the directory associated with the
-current buffer's file. The eshell is renamed to match that
-directory to make multiple eshell windows easier."
-  (interactive)
+(defun my/shell-here--open (label create-fn)
   (let* ((parent (if (buffer-file-name)
                      (file-name-directory (buffer-file-name))
                    default-directory))
          (height (/ (window-total-height) 2))
-         (name   (car (last (split-string parent "/" t)))))
+         (components (split-string (directory-file-name
+                                    (abbreviate-file-name parent)) "/" t))
+         (last (car (last components)))
+         (prefix-parts (butlast components))
+         (prefix (when prefix-parts
+                   (mapconcat (lambda (s) (substring s 0 1))
+                              prefix-parts "/")))
+         (name (if prefix (concat prefix "/" last) last))
+         (buffer-name (concat "*" label ": " name "*"))
+         (existing (get-buffer buffer-name))
+         (existing-dir (when existing
+                         (buffer-local-value 'default-directory existing))))
+    (when (and existing existing-dir (not (file-equal-p parent existing-dir)))
+      (setq buffer-name (generate-new-buffer-name buffer-name))
+      (setq existing nil))
     (split-window-vertically (- height))
     (other-window 1)
-    (eshell "new")
-    (rename-buffer (concat "*eshell: " name "*"))
+    (if existing
+        (switch-to-buffer existing)
+      (let ((default-directory parent))
+        (funcall create-fn buffer-name)))))
 
-    (insert (concat "ls"))
-    (eshell-send-input)))
+;;;###autoload
+(defun my/eshell-here ()
+  "Open an eshell in the directory associated with the current buffer."
+  (interactive)
+  (my/shell-here--open
+   "eshell"
+   (lambda (buffer-name)
+     (eshell "new")
+     (rename-buffer buffer-name))))
 ;; (define-key global-map (kbd "C-!") 'my/eshell-here)
+
+;;;###autoload
+(defun my/shell-here ()
+  "Open a shell in the directory associated with the current buffer."
+  (interactive)
+  (my/shell-here--open
+   "shell"
+   (lambda (buffer-name)
+     (shell buffer-name))))
+;; (define-key global-map (kbd "C-!") 'my/shell-here)
+
 
 ;; reload bookmarks from default file
 (defun my/bookmark-reload ()
