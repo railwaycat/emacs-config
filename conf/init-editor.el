@@ -147,6 +147,10 @@
   ([f4] . symbol-overlay-jump-next))
 
 
+;; whole-line-or-region: when there is no active region, make common region
+;; commands act on the current line. This remaps `comment-dwim`, so `M-;`
+;; keeps its usual behavior but comments/uncomments the current line when
+;; no region is active. It also remaps kill/copy/delete region commands.
 (ensure-package 'whole-line-or-region)
 (use-package whole-line-or-region
   :diminish whole-line-or-region-local-mode
