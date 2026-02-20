@@ -15,13 +15,13 @@
 
 ;;;###autoload
 (defun my/textmate-shift-right (&optional arg)
-  "Shift the line or region to the ARG places to the right.
-       A place is considered `tab-width' character columns."
-  (interactive)
+  "Shift the line or region ARG places to the right.
+A place is considered `tab-width' character columns."
+  (interactive "p")
   (let ((deactivate-mark nil)
-        (beg (or (and mark-active (region-beginning))
+        (beg (or (and (use-region-p) (region-beginning))
                  (line-beginning-position)))
-        (end (or (and mark-active (region-end)) (line-end-position))))
+        (end (or (and (use-region-p) (region-end)) (line-end-position))))
     (indent-rigidly beg end (* (or arg 1) tab-width))))
 (define-key global-map (kbd "M-]") 'my/textmate-shift-right)
 (define-key global-map (kbd "M-】") 'my/textmate-shift-right)
@@ -29,8 +29,9 @@
 
 ;;;###autoload
 (defun my/textmate-shift-left (&optional arg)
-  "Shift the line or region to the ARG places to the left."
-  (interactive)
+  "Shift the line or region ARG places to the left.
+A place is considered `tab-width' character columns."
+  (interactive "p")
   (my/textmate-shift-right (* -1 (or arg 1))))
 (if window-system
     (progn
