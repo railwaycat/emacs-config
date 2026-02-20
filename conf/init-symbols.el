@@ -15,6 +15,21 @@
 (use-package citre
   :defer t
   :preface
+  (defun citre-global-mode ()
+    "Toggle auto-enabling `citre-mode' for `prog-mode' buffers.
+When enabled, add `citre-mode' to `prog-mode-hook'; when disabled, remove it.
+Also apply the toggle immediately to current buffer when it's a `prog-mode'."
+    (interactive)
+    (if (member #'citre-mode prog-mode-hook)
+        (progn
+          (remove-hook 'prog-mode-hook #'citre-mode)
+          (when (derived-mode-p 'prog-mode)
+            (citre-mode -1))
+          (message "citre-mode global disabled"))
+      (add-hook 'prog-mode-hook #'citre-mode)
+      (when (derived-mode-p 'prog-mode)
+        (citre-mode 1))
+      (message "citre-mode global enabled")))
   (defun citre-peek+ ()
     "Peek symbol at point, or restore last peek session."
     (interactive)
@@ -59,7 +74,7 @@
 ;; Optional fallback setup: manual gtags-mode
 ;; (ensure-package 'gtags-mode)
 ;; (use-package gtags-mode
-;;   :commands (gtags-mode global-gtags-mode)
+;;   :commands (gtags-mode)
 ;;   :diminish)
 
 
