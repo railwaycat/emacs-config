@@ -42,7 +42,7 @@
                          (lambda (c)
                            (or (string-match-p "[^\x00-\x7F]+" c)
                                (string-match-p "[0-9]+" c)
-                               (if (equal major-mode "org")
+                               (if (derived-mode-p 'org-mode)
                                    (>= (length c) 15)))))
         company-transformers)
   (setq company-backends
