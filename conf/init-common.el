@@ -21,10 +21,7 @@
   (setq lock-file-name-transforms
         `((".*" ,tmp-dir t))))
 
-;; disable backup and autosave stuff
-;; (setq make-backup-files nil)
-;; (setq delete-auto-save-files t)
-;; (setq auto-save-default nil)
+
 ;; disable lock files
 ;; (setq create-lockfiles nil)
 
@@ -69,22 +66,15 @@
       scroll-conservatively 100)
 
 
-;; C-x k just kill current buffer
-;; (defun kill-current-buffer ()
-;;   (interactive)
-;;   (kill-buffer))
-;; (define-key global-map (kbd "C-x k") 'kill-current-buffer)
-
-
 ;; Update buffer whenever file changes
 ;; Also revert dired buffer.
 (add-hook 'after-init-hook 'global-auto-revert-mode)
-(setq-default auto-revert-interval 3
-              auto-revert-avoid-polling t
-              auto-revert-verbose nil
-              auto-revert-remote-files t
-              auto-revert-check-vc-info t
-              global-auto-revert-non-file-buffers t)
+(setq auto-revert-interval 3
+      auto-revert-avoid-polling t
+      auto-revert-verbose nil
+      auto-revert-remote-files t
+      auto-revert-check-vc-info t
+      global-auto-revert-non-file-buffers t)
 
 
 ;; setup ls for dired on different system
@@ -106,8 +96,10 @@
 ;; jump to end of file, for capture files
 (add-hook 'bookmark-after-jump-hook
           (lambda ()
-            (when (string-prefix-p "capture" (file-name-base buffer-file-name))
-              (end-of-buffer))))
+            (when-let* ((file-name buffer-file-name)
+                        (base-name (file-name-base file-name)))
+              (when (string-prefix-p "capture" base-name)
+                (goto-char (point-max))))))
 
 
 ;; trash bin for OS X
@@ -218,10 +210,6 @@
 (define-key global-map (kbd "<f8>") 'rename-buffer)
 (define-key global-map (kbd "<f12>") 'bookmark-bmenu-list)
 (define-key global-map (kbd "C-x M-c") 'save-buffers-kill-emacs)
-
-;; 在 mode-line 最后追加一个半角空格，一个全角空格，防止因为字体高度原
-;; 因，导致 mode-line 抖动。
-(setq-default mode-line-format (append mode-line-format '("  ")))
 
 
 ;; Orderless may needed by consult and corfu. Leave the config here to
