@@ -10,7 +10,7 @@
   :defer t
   :bind
   (:map rime-mode-map
-        ("C-`" . 'rime-send-keybinding))
+        ("C-c `" . 'rime-send-keybinding))
   :custom
   (rime-librime-root (concat user-emacs-directory "librime/dist"))
   (rime-title "[R]")
