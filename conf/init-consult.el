@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'consult))
+
 (ensure-package 'vertico)
 (use-package vertico
   :init
@@ -59,6 +62,11 @@
 
 (ensure-package 'consult)
 (use-package consult
+  :preface
+  (defun notes-grep (&optional initial)
+    "Grep notes with Consult."
+    (interactive)
+    (consult-ripgrep my/notes-directory initial))
   :defer t
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
@@ -158,11 +166,7 @@
 
   ;; If use project by default
   ;; (setq consult-project-function #'consult--default-project--function)
-
-  (defun notes-grep (&optional dir initial)
-    "grep my notes"
-    (interactive "P")
-    (consult--grep "grep notes" #'consult--ripgrep-make-builder my/notes-directory initial)))
+  )
 
 
 (ensure-package 'embark-consult)
@@ -180,9 +184,10 @@
 (ensure-package 'consult-projectile)
 (use-package consult-projectile
   :after consult projectile
-  :custom
+  :init
   (autoload 'projectile-project-root "projectile")
-  (setq consult-project-function (lambda (_) (projectile-project-root))))
+  :custom
+  (consult-project-function (lambda (_) (projectile-project-root))))
 ;; Add a global-map binding to avoid messy lazy loading dependency.
 (define-key global-map (kbd "C-c SPC") 'consult-projectile)
 

@@ -25,18 +25,20 @@
   (corfu-on-exact-match nil)
   (corfu-auto-prefix 2)
   (corfu-cycle t)
-  (corfu-preselect-first t)
+  (corfu-preselect 'prompt)
   (corfu-popupinfo-delay 0.5)
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode))
 
-(ensure-package 'corfu-terminal)
-(use-package corfu-terminal
-  :after corfu
-  :init
-  (unless (display-graphic-p)
-    (corfu-terminal-mode +1)))
+;; emacs 31+ has child frame available in terminal.
+(when (< emacs-major-version 31)
+  (ensure-package 'corfu-terminal)
+  (use-package corfu-terminal
+    :after corfu
+    :init
+    (unless (display-graphic-p)
+      (corfu-terminal-mode +1))))
 
 (ensure-package 'cape)
 (use-package cape
