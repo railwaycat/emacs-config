@@ -40,21 +40,22 @@
 (setq-default electric-indent-inhibit nil)
 (electric-indent-mode t)
 (setq backward-delete-char-untabify-method 'hungry)
-(defun set-tab-width-all (size)
-  (setq tab-width size)
-  (setq-default perl-indent-level size)
-  (setq-default python-indent-offset size)
-  (setq-default sh-basic-offset size)
-  (setq-default c-basic-offset size)
-  (setq-default js-indent-level size)
-  (setq nxml-child-indent size
-        nxml-attribute-indent size))
-(set-tab-width-all 2)
-;; interactive function to switch tab size
-(defun my/set-tab-width (size)
-  "set global tab width for almost all mode"
-  (interactive "nTab Size: ")
-  (set-tab-width-all size))
+
+
+;; tab width
+(setq-default tab-width 2
+              perl-indent-level 2
+              sh-basic-offset 2
+              c-basic-offset 2
+              js-indent-level 2)
+(with-eval-after-load 'python
+  (setq-default python-indent-offset 2))
+(with-eval-after-load 'nxml-mode
+  (setq nxml-child-indent 2
+        nxml-attribute-indent 2))
+;; Example `.dir-locals.el':
+;; ((nil . ((tab-width . 4)))
+;;  (python-mode . ((python-indent-offset . 4))))
 
 
 ;; paren highlight style
@@ -172,17 +173,14 @@
 
 (define-key global-map (kbd "C-<return>")
             (lambda (arg)
-              "Move to the next line (like vi) and then opens a line. This
-function is a copy from
-https://github.com/manateelazycat/open-newline/blob/master/open-newline.el."
+              "Move to the end of line, open ARG lines below, and move to the
+first newly opened line."
               (interactive "p")
               (end-of-line)
               (open-line arg)
-              (call-interactively 'next-line arg)
-              (if (not (member major-mode
-                               '(haskell-mode
-                                 org-mode
-                                 literate-haskell-mode)))
+              (forward-line 1)
+              (if (not (memq major-mode
+                             '(org-mode)))
                   (indent-according-to-mode)
                 (beginning-of-line))))
 
