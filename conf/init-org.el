@@ -67,25 +67,22 @@
       org-archive-subtree-add-inherited-tags t)  ; Include inherited tags
 
 
+;; markup 记号前后中文
+(setq org-emphasis-regexp-components
+      '("-[:space:]('\"{[:nonascii:][:alpha:]"
+        "-[:space:].,:!?;'\")}\\[[:nonascii:][:alpha:]"
+        "[:space:]"
+        "."
+        1))
 (with-eval-after-load 'org
-  ;; markup 记号前后中文
   (org-set-emph-re 'org-emphasis-regexp-components
-                   '("-[:space:]('\"{[:nonascii:][:alpha:]"
-                     "-[:space:].,:!?;'\")}\\[[:nonascii:][:alpha:]"
-                     "[:space:]"
-                     "."
-                     1))
+                   org-emphasis-regexp-components)
   (setq org-babel-python-command "python3")
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)
      (python . t)
      (emacs-lisp . t))))
-
-
-;; org-tempo, for org mode in terminal
-;; (require 'org-tempo)
-
 
 ;; org-capture
 (with-eval-after-load 'org-capture
@@ -146,6 +143,9 @@
 (global-set-key (kbd "C-c j") 'org-journal)
 
 ;; org-agenda
+;; Changes made from agenda update the underlying Org buffers, but are not
+;; always saved to disk immediately. Use the built-in
+;; `org-save-all-org-buffers' when you want to flush them to files.
 (setq org-agenda-files (list
                         (concat org-directory "/journal.org")
                         (concat org-directory "/logbook")))
@@ -190,19 +190,6 @@
          ((todo "TODO" ((org-agenda-overriding-header "所有TODO")))
           (todo "NEXT" ((org-agenda-overriding-header "所有NEXT")))))
        ))
-
-
-(defun save-org-buffers ()
-  "Save all `org-mode` buffers that are in `org-directory`."
-  (interactive)
-  (let ((org-dir (expand-file-name (file-truename org-directory))))
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (let ((file-name (and buffer-file-name (expand-file-name (file-truename buffer-file-name)))))
-          (when (and (derived-mode-p 'org-mode)
-                     file-name
-                     (string-prefix-p org-dir file-name))
-            (save-buffer)))))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
