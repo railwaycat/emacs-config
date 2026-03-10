@@ -35,7 +35,6 @@
      ))
   (helm-grep-file-path-style 'basename)
   (helm-display-header-line t)
-  (helm-mode-line-string nil)
   (helm-ff-file-name-history-use-hierarchical-display nil)
   :bind
   ([remap execute-extended-command] . helm-M-x)
