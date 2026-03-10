@@ -15,7 +15,7 @@
 (use-package citre
   :defer t
   :preface
-  (defun citre-global-mode ()
+  (defun citre-global-toggle ()
     "Toggle auto-enabling `citre-mode' for `prog-mode' buffers.
 When enabled, add `citre-mode' to `prog-mode-hook'; when disabled, remove it.
 Also apply the toggle immediately to current buffer when it's a `prog-mode'."
@@ -109,21 +109,22 @@ Also apply the toggle immediately to current buffer when it's a `prog-mode'."
           (go "https://github.com/tree-sitter/tree-sitter-go")
           (html "https://github.com/tree-sitter/tree-sitter-html")
           (json "https://github.com/tree-sitter/tree-sitter-json")
-          (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+          (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown")
           (rust "https://github.com/tree-sitter/tree-sitter-rust")
-          (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+          (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")
           (toml "https://github.com/tree-sitter/tree-sitter-toml")
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
           (typescript "https://github.com/tree-sitter/tree-sitter-typescript"))
-        major-mode-remap-alist '((python-mode . python-ts-mode)
-                                 (c-mode . c-ts-mode)
-                                 (c++-mode . c++-ts-mode)
-                                 (sh-mode . bash-ts-mode)
-                                 (go-mode . go-ts-mode)
-                                 (rust-mode . rust-ts-mode)
-                                 (json-mode . json-ts-mode)
-                                 (yaml-mode . yaml-ts-mode))
-        treesit-font-lock-level 4))
+        treesit-font-lock-level 4)
+  (dolist (remap '((python-mode . python-ts-mode)
+                   (c-mode . c-ts-mode)
+                   (c++-mode . c++-ts-mode)
+                   (sh-mode . bash-ts-mode)
+                   (go-mode . go-ts-mode)
+                   (rust-mode . rust-ts-mode)
+                   (json-mode . json-ts-mode)
+                   (yaml-mode . yaml-ts-mode)))
+    (add-to-list 'major-mode-remap-alist remap)))
 
 
 (provide 'init-symbols)
