@@ -12,7 +12,7 @@
   :custom
   (helm-grep-default-command "grep --color=always -d skip %e -n%cH -e %p %f")
   (helm-grep-default-recurse-command "grep --color=always -d recurse %e -n%cH -e %p %f")
-  (helm-grep-ag-command "rg --color=never --smart-case --no-heading --line-number %s %s %s")
+  (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s -- %s %s")
   (helm-inherit-input-method nil)
   (helm-move-to-line-cycle-in-source nil)
   (helm-buffer-max-length 40)
@@ -65,6 +65,11 @@
     "grep my notes."
     (interactive "P")
     (helm-grep-ag (expand-file-name my/notes-directory) arg))
+  (defun my/helm-do-grep ()
+    "Search `default-directory' recursively with plain grep."
+    (interactive)
+    (require 'helm-files)
+    (helm-do-grep-1 `(,(expand-file-name default-directory)) t))
   (defun notes-find (arg)
     "find my notes."
     (interactive "P")
@@ -100,6 +105,10 @@
   )
 
 
+;; helm-ag
+;; C-l search in parent directory
+;; M-n to insert symbol
+;; C-c C-f enable helm-follow-mode
 (ensure-package '(helm-ag :url "https://github.com/emacsattic/helm-ag.git"))
 (use-package helm-ag
   :after helm
@@ -111,21 +120,6 @@
   ;; ("M-s g" . helm-ag)
   ;; ("M-s G" . helm-do-ag)
   )
-
-;; helm-ag
-;; C-l search in parent directory
-;; by default insert word, M-n to insert symbol
-;; C-c C-f enable helm-follow-mode
-;; (ensure-package 'helm-ag)
-;; (use-package helm-ag
-;;   :after helm
-;;   :custom
-;;   (helm-ag-base-command "rg --smart-case --no-heading --color=never --line-number")
-;;   (helm-ag-insert-at-point 'symbol) ; value: word/symbol etc
-;;   (helm-ag-fuzzy-match t)
-;;   :bind
-;;   ("M-s g" . helm-ag)
-;;   ("M-s G" . helm-do-ag))
 
 
 ;; wgrep-helm
