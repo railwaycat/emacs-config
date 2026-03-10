@@ -62,11 +62,6 @@
 
 (ensure-package 'consult)
 (use-package consult
-  :preface
-  (defun notes-grep (&optional initial)
-    "Grep notes with Consult."
-    (interactive)
-    (consult-ripgrep my/notes-directory initial))
   :defer t
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
@@ -163,6 +158,10 @@
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<") ;; "C-+"
+
+  (setq my/notes-grep-function
+        (lambda (dir initial)
+          (consult-ripgrep dir initial)))
 
   ;; If use project by default
   ;; (setq consult-project-function #'consult--default-project--function)

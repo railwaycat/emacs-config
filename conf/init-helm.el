@@ -60,19 +60,17 @@
         ("M-s O" . helm-multi-occur-from-isearch))
   :config
   ;; Notes
-  (defun notes-grep (arg)
-    "grep my notes."
-    (interactive "P")
-    (helm-grep-ag (expand-file-name my/notes-directory) arg))
+  (setq my/notes-grep-function
+        (lambda (dir initial)
+          (helm-grep-ag (expand-file-name dir) initial))
+        my/notes-find-function
+        (lambda (dir)
+          (helm-find-files-1 dir)))
   (defun my/helm-do-grep ()
     "Search `default-directory' recursively with plain grep."
     (interactive)
     (require 'helm-files)
     (helm-do-grep-1 `(,(expand-file-name default-directory)) t))
-  (defun notes-find (arg)
-    "find my notes."
-    (interactive "P")
-    (helm-find-files-1 my/notes-directory))
 
   ;; (helm-autoresize-mode t)
   ;; helm layout -- always shows at bottom
