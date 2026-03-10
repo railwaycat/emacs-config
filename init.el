@@ -63,7 +63,6 @@
 (require 'init-pyim)
 (require 'init-org)
 (require 'init-notes)
-;; (require 'init-llm)
 (require 'init-my)
 (require 'init-theme)
 (require 'init-local nil t)
