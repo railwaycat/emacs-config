@@ -7,9 +7,12 @@
 
 (set-face-attribute 'default nil
                     :font (font-spec :name "PragmataPro Mono" :size 12))
+;; Generic family `monospace' is safer across distros than any specific font.
+;; (set-face-attribute 'default nil :family "monospace" :height 120)
 
 
-(setq x-alt-keysym 'meta)
+(when (eq window-system 'x)
+  (setq x-alt-keysym 'meta))
 
 
 (menu-bar-mode -1)

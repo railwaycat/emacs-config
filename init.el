@@ -77,7 +77,7 @@
           (equal window-system 'ns))
   (require 'init-macos))
 
-(when (equal window-system 'x)
+(when (memq window-system '(x pgtk))
   (require 'init-x11))
 
 (load custom-file)
