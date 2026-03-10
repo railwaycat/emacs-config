@@ -10,16 +10,29 @@
                                      "~/Dropbox/notes/"
                                    "~/notes/"))
 
+(defvar my/notes-find-function nil
+  "Backend function used by `notes-find'.")
 
-(unless (fboundp #'notes-find)
-  (defun notes-find ()
-    "Find my notes"
-    (interactive)
+(defvar my/notes-grep-function nil
+  "Backend function used by `notes-grep'.")
+
+
+(defun notes-find ()
+  "Find my notes."
+  (interactive)
+  (if my/notes-find-function
+      (funcall my/notes-find-function my/notes-directory)
     (let ((default-directory my/notes-directory))
       (find-file (read-file-name "Find Notes: ")))))
 
-;; notes-grep and notes-find should already be defined by helm, ivy or
-;; consult setup.
+
+(defun notes-grep (&optional initial)
+  "Search my notes."
+  (interactive)
+  (if my/notes-grep-function
+      (funcall my/notes-grep-function my/notes-directory initial)
+    (rgrep (read-string "Search notes: " initial) "*" my/notes-directory)))
+
 (define-key global-map (kbd "C-c n g") #'notes-grep)
 (define-key global-map (kbd "C-c n f") #'notes-find)
 
