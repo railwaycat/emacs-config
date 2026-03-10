@@ -14,7 +14,7 @@
 
 
 ;; modus-operandi
-;; satisfy macOS terminal.app
+;; fallback config for no-truecolor terminals
 ;; (when (not window-system)
 ;;   (if (version< emacs-version "29.1")
 ;;       (setq modus-themes-operandi-color-overrides
