@@ -85,8 +85,16 @@
      (emacs-lisp . t))))
 
 ;; org-capture
+(defun my/org-capture-setup-windows ()
+  "Prepare a simple writing layout for `org-capture'."
+  (delete-other-windows)
+  (when (>= (window-total-width) 160)
+    (let ((original-buffer (org-capture-get :original-buffer))
+          (right-window (split-window-right 80)))
+      (when (buffer-live-p original-buffer)
+        (set-window-buffer right-window original-buffer)))))
 (with-eval-after-load 'org-capture
-  (add-hook 'org-capture-mode-hook #'delete-other-windows))
+  (add-hook 'org-capture-mode-hook #'my/org-capture-setup-windows))
 
 (let ((org-capture-file-diary "diary.org")
       (org-capture-file-capture "capture.org")
