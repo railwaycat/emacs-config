@@ -57,6 +57,8 @@
 
 (ensure-package 'magit)
 (use-package magit
+  :custom
+  (magit-process-connection-type nil)
   :bind
   ("C-x g" . magit-status-quick))
 
