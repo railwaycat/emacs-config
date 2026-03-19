@@ -23,7 +23,7 @@
 ;; content indent in headline, but only 1 space.
 (setq org-startup-indented t
       org-indent-indentation-per-level 1
-      org-indent-mode-turns-on-hiding-stars nil)
+      org-indent-mode-turns-on-hiding-stars t)
 ;; no new line between entries (heading/list)
 (setq org-blank-before-new-entry '((heading . nil)
                                    (plain-list-item . nil)))
@@ -90,7 +90,7 @@
   (delete-other-windows)
   (when (>= (window-total-width) 160)
     (let ((original-buffer (org-capture-get :original-buffer))
-          (right-window (split-window-right 80)))
+          (right-window (split-window-right 100)))
       (when (buffer-live-p original-buffer)
         (set-window-buffer right-window original-buffer)))))
 (with-eval-after-load 'org-capture
