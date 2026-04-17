@@ -14,9 +14,13 @@
 
 ;; line spacing, only for GUI. Value aligns with macOS Terminal
 ;; setting.
+;; For >=31, use a cons cell for spacing above and below.
 (when window-system
-  (setq default-text-properties '(line-spacing 0.3 line-height 1.3)))
-
+  (if (version<= "31.0.50" emacs-version)
+      (setq default-text-properties '(line-spacing (0.15 . 0.15)
+                                      line-height 1.3))
+    (setq default-text-properties '(line-spacing 0.3
+                                    line-height 1.3))))
 
 ;; set "large file" size to 100MB
 (setq large-file-warning-threshold 100000000)
