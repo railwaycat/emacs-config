@@ -17,8 +17,7 @@
 ;; For >=31, use a cons cell for spacing above and below.
 (when window-system
   (if (version<= "31.0.50" emacs-version)
-      (setq default-text-properties '(line-spacing (0.15 . 0.15)
-                                      line-height 1.3))
+      (setq-default line-spacing '(0.2 . 0.2))
     (setq default-text-properties '(line-spacing 0.3
                                     line-height 1.3))))
 
