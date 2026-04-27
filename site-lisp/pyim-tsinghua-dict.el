@@ -1,4 +1,4 @@
-;;; pyim-tsinghua-dict.el --- tsinghua pinyin (quanpin) dict for pyim.
+;;; pyim-tsinghua-dict.el --- tsinghua pinyin (quanpin) dict for pyim.  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021 Chen Bin <chenbin.sh@gmail.com>
 
