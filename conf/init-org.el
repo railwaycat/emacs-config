@@ -156,6 +156,8 @@
 ;; `org-save-all-org-buffers' when you want to flush them to files.
 (setq org-agenda-files (list
                         (concat org-directory "/journal.org")
+                        (concat org-directory "/tasks.org")
+                        (concat org-directory "/projects.org")
                         (concat org-directory "/logbook")))
                         ;; (concat org-directory "/plan")
                         ;; (concat org-directory "/logs")))
@@ -173,10 +175,14 @@
           ;; tasks
           (tags-todo "FILE={tasks.org}+TODO=\"NEXT\""
                      ((org-agenda-overriding-header "NEXT - tasks")))
+          ;; projects
+          (tags-todo "FILE={projects.org}+TODO=\"NEXT\""
+                     ((org-agenda-overriding-header "NEXT - projects")))
           ;; DEFER and HOLD
           (todo "DEFER|HOLD"
                 ((org-agenda-overriding-header "DEFER和HOLD:")
-                 (org-agenda-block-separator nil)))
+                 ;; (org-agenda-block-separator nil)
+                 ))
           ))
 
         ("r" "Weekly Review"
