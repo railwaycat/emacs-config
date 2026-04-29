@@ -117,7 +117,7 @@
            entry (file+olp+datetree ,org-capture-file-diary)
            "* %U\n%?" :kill-buffer t)
           ("b" "笔记 - timestamp"
-           entry (file+olp+datetree ,org-capture-file-biji)
+           entry (file ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
           ("i" "Tasks, for Journal"
            entry (file+olp+datetree ,org-capture-file-inbox)
