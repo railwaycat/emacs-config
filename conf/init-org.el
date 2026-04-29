@@ -51,8 +51,10 @@
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 (let ((refile-files
-       (cons (concat org-directory "/journal.org")
-             (file-expand-wildcards (concat org-directory "/logbook/*.org")))))
+       (append (list (concat org-directory "/journal.org")
+                     (concat org-directory "/tasks.org")
+                     (concat org-directory "/projects.org"))
+               (file-expand-wildcards (concat org-directory "/logbook/*.org")))))
   (setq org-refile-targets
         `((,refile-files :maxlevel . 3)
           (nil :maxlevel . 3))))
@@ -100,7 +102,7 @@
       (org-capture-file-capture "capture.org")
       (org-capture-file-capture-work "capture_work.org")
       (org-capture-file-public "public/inbox.org")
-      (org-capture-file-tasks "logbook/tasks.org")
+      (org-capture-file-tasks "tasks.org")
       (org-capture-file-biji "biji.org")
       (org-capture-file-inbox "journal.org"))
   (setq org-capture-templates
