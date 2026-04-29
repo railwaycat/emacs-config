@@ -23,6 +23,7 @@
 ;; (setenv "PATH" (concat "/opt/homebrew/opt/texinfo/bin:" (getenv "PATH")))
 
 (setq straight-repository-branch "develop")
+(setq straight-vc-git-default-clone-depth 1)
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -38,6 +39,11 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+
+;; Recipe overrides: prefer real upstreams over emacs-straight/* mirrors
+(setq straight-recipe-overrides
+      '((nil . ((xr :type git :host github :repo "mattiase/xr")))))
 
 
 (defun ensure-package (package)
