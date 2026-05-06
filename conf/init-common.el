@@ -220,7 +220,10 @@
   (setq completion-styles '(orderless basic)
         completion-category-overrides '((eglot (styles . (orderless basic)))
                                         (file (styles basic partial-completion))))
-  (setq completion-cycle-threshold 4))
+  (setq completion-cycle-threshold 4)
+  ;; Emacs 31+: keep partial-completion's substring-like behavior for files.
+  (when (boundp 'completion-pcm-leading-wildcard)
+    (setq completion-pcm-leading-wildcard t)))
 
 
 (provide 'init-common)

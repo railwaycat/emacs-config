@@ -4,9 +4,6 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'consult))
-
 (ensure-package 'vertico)
 (use-package vertico
   :init
@@ -21,12 +18,17 @@
   :custom
   (vertico-count 13)
   (vertico-resize t)
-  (vertico-cycle nil))
+  (vertico-cycle nil)
+  (vertico-sort-history-duplicate 10)
+  (vertico-sort-history-decay 20))
 
 (with-eval-after-load 'vertico
+  (require 'vertico-repeat)
   (vertico-multiform-mode)
   (setq vertico-multiform-commands
-        '((find-file (vertico-sort-function . vertico-sort-history-alpha)))))
+        '((find-file (vertico-sort-function . vertico-sort-history-alpha))))
+  (setq vertico-multiform-categories
+        '((file (vertico-sort-function . vertico-sort-directories-first)))))
 
 
 (ensure-package 'embark)
@@ -119,10 +121,6 @@
          ("M-s" . consult-history)                 ;; orig. next-matching-history-element
          ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-
   :init
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
@@ -151,7 +149,7 @@
           (t (put-text-property (minibuffer-prompt-end) (point-max) 'face 'default))))
   (consult-customize
    consult-line consult-line-multi consult-ripgrep consult-grep
-   :initial (when-let ((string (thing-at-point 'symbol)))
+   :initial (when-let* ((string (thing-at-point 'symbol)))
               (add-hook 'pre-command-hook 'consult-delete-default-contents)
               (propertize string 'face 'shadow)))
 
