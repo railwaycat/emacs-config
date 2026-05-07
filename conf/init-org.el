@@ -172,17 +172,20 @@
                    (org-deadline-warning-days 7)
                    (org-agenda-overriding-header "今日计划及即将到期")))
           ;; journal
-          (tags-todo "FILE={journal.org}+TODO=\"TODO\"|TODO=\"NEXT\""
+          (tags-todo "FILE={journal.org}/TODO|NEXT"
                      ((org-agenda-overriding-header "TODO和NEXT - journal:")))
           ;; tasks
-          (tags-todo "FILE={tasks.org}+TODO=\"NEXT\""
+          (tags-todo "FILE={tasks.org}/NEXT"
                      ((org-agenda-overriding-header "NEXT - tasks")))
           ;; projects
-          (tags-todo "FILE={projects.org}+TODO=\"NEXT\""
-                     ((org-agenda-overriding-header "NEXT - projects")))
-          ;; DEFER and HOLD
-          (todo "DEFER|HOLD"
-                ((org-agenda-overriding-header "DEFER和HOLD:")
+          (tags-todo "FILE={projects.org}/NEXT"
+                     ((org-agenda-overriding-header "NEXT - projects")
+                      ;; (org-tags-match-list-sublevels 'indented)
+                      (org-agenda-prefix-format '((tags . " %i %-12:c %b")))
+                      (org-agenda-breadcrumbs-separator " > ")))
+          ;; HOLD
+          (todo "HOLD"
+                ((org-agenda-overriding-header "HOLD:")
                  ;; (org-agenda-block-separator nil)
                  ))
           ))
@@ -197,14 +200,15 @@
                    (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
                    (org-agenda-overriding-header "过去七天完成")
                    (org-agenda-archives-mode t)))
-          (tags-todo "FILE={journal.org}+TODO=\"TODO\"|TODO=\"NEXT\""
+          (tags-todo "FILE={journal.org}/TODO|NEXT"
                      ((org-agenda-overriding-header "待评估 - 完成或移动:")))
           (todo "DEFER|HOLD"
                 ((org-agenda-overriding-header "回顾:")))
          ))
         ("n" "All tasks"
          ((todo "TODO" ((org-agenda-overriding-header "所有TODO")))
-          (todo "NEXT" ((org-agenda-overriding-header "所有NEXT")))))
+          (todo "NEXT" ((org-agenda-overriding-header "所有NEXT")))
+          (todo "HOLD|DEFER" ((org-agenda-overriding-header "所有HOLD和DEFER")))))
        ))
 
 (provide 'init-org)
