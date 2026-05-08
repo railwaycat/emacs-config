@@ -156,13 +156,9 @@
 ;; Changes made from agenda update the underlying Org buffers, but are not
 ;; always saved to disk immediately. Use the built-in
 ;; `org-save-all-org-buffers' when you want to flush them to files.
-(setq org-agenda-files (list
-                        (concat org-directory "/journal.org")
-                        (concat org-directory "/tasks.org")
-                        (concat org-directory "/projects.org")
-                        (concat org-directory "/logbook")))
-                        ;; (concat org-directory "/plan")
-                        ;; (concat org-directory "/logs")))
+
+;; The actual list lives in org-directory/.agenda-files
+(setq org-agenda-files (concat org-directory "/.agenda-files"))
 (setq org-agenda-custom-commands
       '(
         ("d" "Dashboard: Daily Overview"
