@@ -38,12 +38,25 @@
   ;;                     nil
   ;;                   (funcall orig-fun)))))
   ;; 只补全 ascii 字符
-  (push (apply-partially #'cl-remove-if
-                         (lambda (c)
-                           (or (string-match-p "[^\x00-\x7F]+" c)
-                               (string-match-p "[0-9]+" c)
-                               (if (derived-mode-p 'org-mode)
-                                   (>= (length c) 15)))))
+  ;; (push (apply-partially #'cl-remove-if
+  ;;                        (lambda (c)
+  ;;                          (or (string-match-p "[^\x00-\x7F]+" c)
+  ;;                              (string-match-p "[0-9]+" c)
+  ;;                              (if (derived-mode-p 'org-mode)
+  ;;                                  (>= (length c) 15)))))
+  ;;       company-transformers)
+  (defun my/company-good-candidate-p (cand)
+    "Filter for company candidates: drop full-CJK runs, full-digit runs, overly long blobs.
+Mixed identifiers like foo1 / utf8 / int32 / 中文变量 still pass."
+    (let* ((s (if (symbolp cand) (symbol-name cand) cand))
+           (len (length s)))
+      (cond
+       ((>= len 30) nil)
+       ((and (> len 4) (string-match-p "\\`[^\x00-\x7F]+\\'" s)) nil)
+       ((and (>= len 6) (string-match-p "\\`[0-9]+\\'" s)) nil)
+       ((and (derived-mode-p 'org-mode) (>= len 20)) nil)
+       (t t))))
+  (push (apply-partially #'cl-remove-if-not #'my/company-good-candidate-p)
         company-transformers)
   (setq company-backends
         '((company-capf :with company-yasnippet)
