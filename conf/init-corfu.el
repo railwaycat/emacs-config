@@ -14,7 +14,8 @@
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
+        ([backtab] . corfu-previous)
+        ("C-s" . corfu-insert-separator))
   :custom
   (corfu-auto t)
   (corfu-min-width 35)
@@ -22,7 +23,7 @@
   (corfu-quit-no-match 'separator)
   (corfu-quit-at-boundary 'separator)
   ;; (corfu-quit-no-match 'separator)
-  (corfu-on-exact-match nil)
+  (corfu-on-exact-match 'quit)
   (corfu-auto-prefix 2)
   (corfu-cycle t)
   (corfu-preselect 'prompt)
@@ -85,6 +86,14 @@ Mixed identifiers like foo1 / utf8 / int32 / 中文变量 still pass."
   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+
+(ensure-package 'corfu-prescient)
+(use-package corfu-prescient
+  :after corfu
+  :config
+  (corfu-prescient-mode 1)
+  (prescient-persist-mode 1))
 
 
 (provide 'init-corfu)
