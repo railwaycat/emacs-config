@@ -119,19 +119,19 @@
           ("b" "笔记 - timestamp"
            entry (file ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
-          ("i" "Tasks, for Journal"
-           entry (file+olp+datetree ,org-capture-file-inbox)
-           "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
+          ;; ("i" "Tasks, for Journal"
+          ;;  entry (file+olp+datetree ,org-capture-file-inbox)
+          ;;  "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("j" "Journal today"
            plain (file+olp+datetree ,org-capture-file-inbox)
            "**** 事项列表 [/]\n**** 今天做了什么"
            :jump-to-captured t)
-          ("t" "Tasks, not for a plan or journal"
+          ("t" "Tasks"
            entry (file ,org-capture-file-tasks)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
-          ("p" "Public Inbox"
-           plain (file ,org-capture-file-public)
-           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t))))
+          ;; ("p" "Public Inbox"
+          ;;  plain (file ,org-capture-file-public)
+          ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
 
           ;; ("i" "Tasks into Journal Inbox"
           ;;  entry (file+datetree ,org-capture-file-inbox)
@@ -139,7 +139,7 @@
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
-
+          )))
 
 ;; home-made org-journal
 (defun org-journal ()
