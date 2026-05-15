@@ -49,19 +49,16 @@
   :after corfu
   :init
   (defun my/corfu-good-candidate-p (cand)
-    "Filter for cape-dabbrev: drop full-CJK runs, full-digit runs, overly long blobs.
-Mixed identifiers like foo1 / utf8 / int32 / 中文变量 still pass."
+    "补全过滤规则：
+1. 不补全带中文字符的
+2. 不补全全数字的
+3. 不补全长度大于30字符的"
     (let* ((s (if (symbolp cand) (symbol-name cand) cand))
            (len (length s)))
       (cond
-       ;; 30: whole-line blob cap (raise if you legitimately complete long names)
        ((>= len 30) nil)
-       ;; 4: keep 四字成语 and shorter; reject pure-CJK runs of 5+ chars (dabbrev ate a sentence)
-       ((and (> len 4) (string-match-p "\\`[^\x00-\x7F]+\\'" s)) nil)
-       ;; 6: allow years/short numerics (2024); reject pure-digit runs 6+ (hash/timestamp)
+       ((string-match-p "\\cc" s) nil)
        ((and (>= len 6) (string-match-p "\\`[0-9]+\\'" s)) nil)
-       ;; 20: tighter cap in org-mode prose buffers
-       ((and (derived-mode-p 'org-mode) (>= len 20)) nil)
        (t t))))
   (add-to-list 'completion-at-point-functions
                (cape-capf-predicate #'cape-dabbrev #'my/corfu-good-candidate-p))
