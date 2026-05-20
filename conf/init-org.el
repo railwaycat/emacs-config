@@ -92,7 +92,7 @@
   (delete-other-windows)
   (when (>= (window-total-width) 160)
     (let ((original-buffer (org-capture-get :original-buffer))
-          (right-window (split-window-right 100)))
+          (right-window (split-window-right 90)))
       (when (buffer-live-p original-buffer)
         (set-window-buffer right-window original-buffer)))))
 (with-eval-after-load 'org-capture
