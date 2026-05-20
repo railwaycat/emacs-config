@@ -143,5 +143,19 @@ In either case, if the current window is not the only window, delete other windo
 (define-key global-map (kbd "C-c t") 'my/split-window-other)
 
 
+;;;###autoload
+(defun my/split-window-for-writing ()
+  "Prepare a writing layout for the current buffer.
+If the window is wide enough, split right and keep the current
+buffer on the left at 100 columns; show the previous buffer on
+the right."
+  (interactive)
+  (delete-other-windows)
+  (when (>= (window-total-width) 160)
+    (let ((right-window (split-window-right 90)))
+      (set-window-buffer right-window (other-buffer (current-buffer) t)))))
+(define-key global-map (kbd "C-c T") 'my/split-window-for-writing)
+
+
 (provide 'init-my)
 ;;; init-my.el ends here
