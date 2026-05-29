@@ -38,7 +38,6 @@
 ;; Dashboard
 (ensure-package 'dashboard)
 (use-package dashboard
-  :demand t
   :init
   (setq dashboard-items '((bookmarks . 7)
                           (projects . 5))
@@ -74,12 +73,13 @@
            (runtime-items (delq nil
                                 (list
                                  (format "Uptime %s" (emacs-uptime "%dd%hh%mm%ss"))
-                                 (format "Buffers %d" (length (buffer-list)))
-                                 (format "Frames %d" (length (frame-list)))
                                  memory
-                                 load-average-info
                                  (format "GC %d / %.2fs" gcs-done gc-elapsed)
-                                 (format "Daemon %s" (if (daemonp) "yes" "no"))))))
+                                 load-average-info)))
+           (session-items (list
+                           (format "Buffers %d" (length (buffer-list)))
+                           (format "Frames %d" (length (frame-list)))
+                           (format "Daemon %s" (if (daemonp) "yes" "no")))))
       (dolist (buffer (buffer-list))
         (with-current-buffer buffer
           (when (and buffer-file-name (buffer-modified-p))
@@ -98,6 +98,10 @@
       (insert "\n"
               (spaces-string (or standard-indent tab-width 4))
               (propertize (mapconcat #'identity runtime-items " | ")
+                          'face 'font-lock-comment-face))
+      (insert "\n"
+              (spaces-string (or standard-indent tab-width 4))
+              (propertize (mapconcat #'identity session-items " | ")
                           'face 'font-lock-comment-face))
       (insert "\n"
               (spaces-string (or standard-indent tab-width 4))
@@ -125,8 +129,7 @@
         (append (delq 'my/dashboard-insert-emacs-status
                       (delq 'dashboard-insert-footer
                             (copy-sequence dashboard-startupify-list)))
-                '(my/dashboard-insert-emacs-status)))
-  (dashboard-setup-startup-hook))
+                '(my/dashboard-insert-emacs-status))))
 
 
 (ensure-package 'magit)
