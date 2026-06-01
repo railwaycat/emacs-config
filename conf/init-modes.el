@@ -80,5 +80,10 @@
 (require 'go-mode)
 
 
+(ensure-package 'beancount)
+(use-package beancount
+  :defer t)
+
+
 (provide 'init-modes)
 ;;; init-modes.el ends here
