@@ -164,6 +164,11 @@
 
 ;; save cursor location
 (save-place-mode t)
+;; don't stat files on external disks (mostly for HDD)
+(when (eq system-type 'darwin)
+  (with-eval-after-load 'saveplace
+    (setq save-place-skip-check-regexp
+          (concat save-place-skip-check-regexp "\\|\\`/Volumes/"))))
 
 
 ;; recentf
