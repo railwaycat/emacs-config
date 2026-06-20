@@ -101,10 +101,10 @@
 (let ((org-capture-file-diary "diary.org")
       (org-capture-file-capture "capture.org")
       (org-capture-file-capture-work "capture_work.org")
-      (org-capture-file-public "public/inbox.org")
+      (org-capture-file-inbox "inbox.org")
       (org-capture-file-tasks "tasks.org")
       (org-capture-file-biji "biji.org")
-      (org-capture-file-inbox "journal.org"))
+      (org-capture-file-journal "journal.org"))
   (setq org-capture-templates
         `(
           ("c" "Capture"
@@ -123,7 +123,7 @@
           ;;  entry (file+olp+datetree ,org-capture-file-inbox)
           ;;  "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ("j" "Journal today"
-           plain (file+olp+datetree ,org-capture-file-inbox)
+           plain (file+olp+datetree ,org-capture-file-journal)
            "**** 事项列表 [/]\n**** 今天做了什么"
            :jump-to-captured t)
           ("t" "Tasks"
@@ -132,10 +132,9 @@
           ;; ("p" "Public Inbox"
           ;;  plain (file ,org-capture-file-public)
           ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
-
-          ;; ("i" "Tasks into Journal Inbox"
-          ;;  entry (file+datetree ,org-capture-file-inbox)
-          ;;  "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n")
+          ("i" "Tasks into Journal Inbox"
+           plain (file ,org-capture-file-inbox)
+           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
