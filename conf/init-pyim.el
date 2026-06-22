@@ -17,14 +17,16 @@
   (setq default-input-method "pyim")
   (setq pyim-page-tooltip 'minibuffer)
   (setq pyim-page-length 9)
-  ;; 探针设置
-  ;; (setq-default pyim-english-input-switch-functions
-  ;;               '(pyim-probe-auto-english
-  ;;                 pyim-probe-program-mode
-  ;;                 pyim-probe-org-structure-template))
-  ;; (setq-default pyim-punctuation-half-width-functions
-  ;;               '(pyim-probe-punctuation-line-beginning
-  ;;                 pyim-probe-punctuation-after-punctuation))
+  ;; 探针：对应 init-rime.el 的规则，命中任一条则走英文（M-j 转中文）。
+  ;; 代码区英文(注释/字符串中文) / ascii 后默认英文 / minibuffer 默认英文。
+  (setq-default pyim-english-input-switch-functions
+                '(pyim-probe-program-mode
+                  pyim-probe-dynamic-english
+                  (lambda () (minibufferp))))
+  ;; 标点宽度是独立变量：行首标点半角；半角标点后继续半角。
+  (setq-default pyim-punctuation-half-width-functions
+                '(pyim-probe-punctuation-line-beginning
+                  pyim-probe-punctuation-after-punctuation))
 
   ;; 仓颉设置
   ;; (use-package pyim-cangjiedict
