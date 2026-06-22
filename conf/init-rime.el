@@ -19,6 +19,13 @@
   (rime-disable-predicates '(rime-predicate-after-alphabet-char-p
                              rime-predicate-space-after-ascii-p)))
 
+;; Trigger finalize to avoid librime crash
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (when (and (bound-and-true-p rime--lib-loaded)
+                       (fboundp 'rime-lib-finalize))
+              (rime-lib-finalize))))
+
 
 (provide 'init-rime)
 ;;; init-rime.el ends here
