@@ -26,8 +26,24 @@
   (rime-title "[R]")
   (default-input-method "rime")
   (rime-show-candidate 'minibuffer)
-  (rime-disable-predicates '(rime-predicate-after-alphabet-char-p
-                             rime-predicate-space-after-ascii-p)))
+  ;; 命中任一条则该次输入走英文（默认中文，M-j 可强制中文）。
+  ;; 依次：代码区 / 大写字母 / 行首标点(半角) / ascii 后 / 英文+空格后保持英文 / minibuffer。
+  (rime-disable-predicates '(rime-predicate-prog-in-code-p
+                             rime-predicate-current-uppercase-letter-p
+                             rime-predicate-punctuation-line-begin-p
+                             rime-predicate-after-ascii-char-p
+                             ;; rime-predicate-after-alphabet-char-p
+                             rime-predicate-space-after-ascii-p
+                             ;; minibuffer 默认英文（继承下 rime 仍可用，M-j 切中文）
+                             (lambda () (minibufferp)))))
+
+;; minibuffer 继承调用处 buffer 的输入法
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (when-let* ((win (minibuffer-selected-window))
+                        (im (buffer-local-value 'current-input-method
+                                                (window-buffer win))))
+              (activate-input-method im))))
 
 ;; Trigger finalize to avoid librime crash
 (add-hook 'kill-emacs-hook
