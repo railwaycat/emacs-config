@@ -39,13 +39,13 @@
   (require 'pyim-wbdict)
   (with-eval-after-load 'pyim-wbdict
     (pyim-wbdict-v86-single-enable))
-  (setq pyim-default-scheme 'wubi)
+  ;; (setq pyim-default-scheme 'wubi)
 
   ;; 拼音设置
   (require 'pyim-tsinghua-dict)
   (with-eval-after-load 'pyim-tsinghua-dict
     (pyim-tsinghua-dict-enable))
-  ;; (setq pyim-default-scheme 'quanpin)
+  (setq pyim-default-scheme 'quanpin)
   )
 
 
