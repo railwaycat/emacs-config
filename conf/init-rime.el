@@ -37,14 +37,6 @@
                              ;; minibuffer 默认英文（继承下 rime 仍可用，M-j 切中文）
                              (lambda () (minibufferp)))))
 
-;; minibuffer 继承调用处 buffer 的输入法
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-            (when-let* ((win (minibuffer-selected-window))
-                        (im (buffer-local-value 'current-input-method
-                                                (window-buffer win))))
-              (activate-input-method im))))
-
 ;; Trigger finalize to avoid librime crash
 (add-hook 'kill-emacs-hook
           (lambda ()

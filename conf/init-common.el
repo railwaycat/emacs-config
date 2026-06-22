@@ -162,6 +162,16 @@
         extended-command-history))
 
 
+;; minibuffer 继承调用处 buffer 的输入法（输入法无关；各 IME 的
+;; “minibuffer 默认英文” 在各自 init-rime/init-pyim 里设置）。
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (when-let* ((win (minibuffer-selected-window))
+                        (im (buffer-local-value 'current-input-method
+                                                (window-buffer win))))
+              (activate-input-method im))))
+
+
 ;; save cursor location
 (save-place-mode t)
 ;; don't stat files on external disks (mostly for HDD)
