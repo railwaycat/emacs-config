@@ -34,22 +34,14 @@
 (ensure-package 'embark)
 (use-package embark
   :bind
-  (:map vertico-map
-        ("C-c C-c" . embark-act)       ;; pick some comfortable binding
-        ("C-c C-o" . embark-export)
-        ("C-c ." . embark-dwim)        ;; good alternative: M-.
-        ("C-h B" . embark-bindings))   ;; alternative for `describe-bindings'
+  (("C-." . embark-act)               ;; act on the thing at point in any buffer
+   ("C-h B" . embark-bindings)        ;; alternative for `describe-bindings'
+   :map vertico-map
+   ("C-." . embark-act)               ;; same key inside the minibuffer
+   ("C-c C-o" . embark-export))
   :init
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
-  ;; Show the Embark target at point via Eldoc. You may adjust the
-  ;; Eldoc strategy, if you want to see the documentation from
-  ;; multiple providers. Beware that using this can be a little
-  ;; jarring since the message shown in the minibuffer can be more
-  ;; than one line, causing the modeline to move up and down:
-
-  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
-  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
   (setq embark-verbose-indicator-display-action
         '(display-buffer-in-side-window
           (side . bottom)
@@ -60,6 +52,12 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
+
+;; Free up C-. so the global `embark-act' is not shadowed.
+(with-eval-after-load 'flyspell
+  (define-key flyspell-mode-map [(control ?\.)] nil))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-.") nil))
 
 
 (ensure-package 'consult)
