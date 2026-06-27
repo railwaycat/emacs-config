@@ -10,9 +10,10 @@
 (ensure-package 'corfu)
 (use-package corfu
   :bind
-  (:map corfu-map
-        ("TAB" . corfu-next)
-        ([tab] . corfu-next)
+  (("C-;" . completion-at-point)
+   :map corfu-map
+        ("TAB" . corfu-expand)
+        ([tab] . corfu-expand)
         ("S-TAB" . corfu-previous)
         ([backtab] . corfu-previous)
         ("C-s" . corfu-insert-separator))
@@ -26,14 +27,19 @@
   (corfu-on-exact-match 'quit)
   (corfu-auto-prefix 2)
   (corfu-cycle t)
-  (corfu-preselect 'prompt)
+  (corfu-preselect 'first)
   (corfu-popupinfo-delay 0.5)
   (corfu-history-duplicate 10)
   (corfu-history-decay 0.005)
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
-  (corfu-history-mode 1))
+  (corfu-history-mode 1)
+  :config
+  ;; 让 C-a / C-e 像 company 一样退出补全：取消 corfu 对行首/行尾命令的 remap。
+  ;; 取消后它们成为“外部命令”，corfu 会先提交当前候选再关闭弹窗（与方向键一致）。
+  (keymap-set corfu-map "<remap> <move-beginning-of-line>" nil)
+  (keymap-set corfu-map "<remap> <move-end-of-line>" nil))
 
 ;; emacs 31+ has child frame available in terminal.
 (when (< emacs-major-version 31)
@@ -88,6 +94,10 @@
 (ensure-package 'corfu-prescient)
 (use-package corfu-prescient
   :after corfu
+  :custom
+  ;; 过滤交给 orderless（completion-styles 保持 '(orderless basic)），
+  ;; 这样 TAB(corfu-expand) 能补公共前缀；prescient 仅保留 frecency 排序。
+  (corfu-prescient-enable-filtering nil)
   :config
   (corfu-prescient-mode 1)
   (prescient-persist-mode 1))
