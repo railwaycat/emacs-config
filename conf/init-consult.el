@@ -159,9 +159,6 @@
   (setq my/notes-grep-function
         (lambda (dir initial)
           (consult-ripgrep dir initial)))
-
-  ;; If use project by default
-  ;; (setq consult-project-function #'consult--default-project--function)
   )
 
 
