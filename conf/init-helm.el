@@ -42,7 +42,7 @@
   ([remap bookmark-jump] . helm-filtered-bookmarks)
   ([remap find-file] . helm-find-files)
   ("C-c v" . helm-resume)
-  ("C-c f" . helm-do-grep-ag)
+  ("C-c g" . helm-do-grep-ag)
 
   ("M-g i" . helm-semantic-or-imenu)
   ("M-g I" . helm-imenu-in-all-buffers)
@@ -173,10 +173,10 @@
   :bind
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
-        ("C-c F" . helm-grep-ag-projectile)
-        ("M-s r" . helm-grep-ag-projectile))
+        ("C-c G" . helm-grep-ag-projectile)
+        ("M-s g" . helm-grep-ag-projectile))
   (:map helm-grep-map
-        ("C-c f" . helm-grep-ag-projectile-again)))
+        ("C-c g" . helm-grep-ag-projectile-again)))
 ;; Add a global-map binding to avoid messy lazy loading dependency.
 (define-key global-map (kbd "C-c SPC") 'helm-projectile)
 

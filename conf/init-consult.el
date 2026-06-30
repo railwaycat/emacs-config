@@ -95,13 +95,11 @@
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings in `search-map'
-         ("M-s d" . consult-find)                  ;; Alternative: consult-fd
-         ("M-s f" . consult-fd)
+         ("M-s f" . consult-fd) ;; use M-x for consult-find
          ("M-s c" . consult-locate)
-         ("M-s g" . consult-grep)
+         ("M-s g" . consult-ripgrep) ;; use M-x for consult-grep
          ("M-s G" . consult-git-grep)
-         ("M-s r" . consult-ripgrep)
-         ("C-c f" . (lambda ()
+         ("C-c g" . (lambda ()
                       (interactive)
                       (consult-ripgrep default-directory)))
          ("M-s l" . consult-line)
