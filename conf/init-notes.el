@@ -41,10 +41,10 @@
 (defun notes-inbox ()
   "Open the notes inbox file"
   (interactive)
-  (let ((buffer (find-buffer-visiting (concat my/notes-directory "/inbox.md"))))
+  (let ((buffer (find-buffer-visiting (concat my/notes-directory "inbox.org"))))
     (if buffer
         (switch-to-buffer buffer)
-      (find-file (concat my/notes-directory "/inbox.md"))
+      (find-file (concat my/notes-directory "inbox.org"))
       (goto-char (point-max)))))
 (define-key global-map (kbd "C-c n i") #'notes-inbox)
 

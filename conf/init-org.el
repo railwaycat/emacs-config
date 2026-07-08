@@ -134,7 +134,7 @@
           ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
           ("i" "Tasks into Journal Inbox"
            plain (file ,org-capture-file-inbox)
-           "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
+           "- %U :: %i%?" :kill-buffer t)
           ;; ("w" "Lifelog - timestamp"
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
