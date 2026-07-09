@@ -63,6 +63,18 @@
 (ensure-package 'consult)
 (use-package consult
   :defer t
+  :preface
+  (defun my/consult-ripgrep-here ()
+    "Search `default-directory' recursively with ripgrep."
+    (interactive)
+    (consult-ripgrep default-directory))
+  (defun my/consult-ripgrep-project-again ()
+    "Search the whole project with ripgrep, within a consult grep session.
+Keep the current input as the input of the new session."
+    (interactive)
+    (let ((input (minibuffer-contents-no-properties)))
+      (run-at-time 0 nil #'consult-ripgrep nil input)
+      (minibuffer-quit-recursive-edit)))
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ;; ("C-c h" . consult-history)
@@ -99,9 +111,7 @@
          ("M-s c" . consult-locate)
          ("M-s g" . consult-ripgrep) ;; use M-x for consult-grep
          ("M-s G" . consult-git-grep)
-         ("C-c g" . (lambda ()
-                      (interactive)
-                      (consult-ripgrep default-directory)))
+         ("C-c g" . my/consult-ripgrep-here) ;; C-c g again search the project
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s k" . consult-keep-lines)
@@ -157,6 +167,11 @@
   (setq my/notes-grep-function
         (lambda (dir initial)
           (consult-ripgrep dir initial)))
+
+  ;; C-c g within a "search here" session widens to the whole project.
+  (consult-customize my/consult-ripgrep-here
+                     :keymap (define-keymap
+                               "C-c g" #'my/consult-ripgrep-project-again))
   )
 
 

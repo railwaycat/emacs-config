@@ -162,14 +162,16 @@
                             (error "You're not in a project"))))
       (helm-grep-ag project-root nil)))
   (defun helm-grep-ag-projectile-again ()
-    "Search projectile project with ripgrep, within a helm grep session"
+    "Search projectile project with ripgrep, within a helm grep session.
+Keep the current pattern as the input of the new session."
     (interactive)
     (let ((project-root (or (projectile-project-root)
-                            (error "You're not in a project"))))
+                            (error "You're not in a project")))
+          (input helm-pattern))
       (with-helm-alive-p
         (helm-run-after-exit
          (lambda ()
-           (helm-grep-ag project-root nil))))))
+           (helm-grep-ag-1 project-root nil input))))))
   :bind
   ;; ("C-c j". helm-grep-ag-projectile)
   (:map projectile-mode-map
