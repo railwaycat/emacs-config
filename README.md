@@ -17,7 +17,7 @@
 - init-company与init-corfu互斥。我尽可能让二者的手感和偏好一致，虽然总归会有一些微小的差别。
 - init-gui/init-terminal还有init-macos/init-x11部分虽然互斥，但init.el里可以按照逻辑自动判断，不需要手动注释。
 
-init-local是留给各个系统配置一些系统独有，不便放入这个repo里的配置。
+init-local是留给各个系统配置一些系统独有、不便放入这个repo里的配置。
 
 # 详细
 ## init-elpa
@@ -117,7 +117,7 @@ helm全家桶，与init-consult互斥。除helm本体外还有helm-swoop、helm-
 ### 按键绑定
 - M-x / C-x C-f / C-x b / M-y / C-x r b : remap到对应的helm版本（helm-M-x、helm-find-files、helm-mini、helm-show-kill-ring、 helm-filtered-bookmarks）
 - C-c v : helm-resume，恢复上一次helm会话
-- C-c g : helm-do-grep-ag，rg搜索当前目录
+- C-c g : rg搜索当前目录，再按一次搜索整个项目
 - M-g i / M-g I : helm-semantic-or-imenu / helm-imenu-in-all-buffers
 - M-g p / M-g P : helm-browse-project / helm-projects-history
 - M-s d : helm-find
@@ -125,11 +125,10 @@ helm全家桶，与init-consult互斥。除helm本体外还有helm-swoop、helm-
 - C-c ] : helm-toggle-buffers-details（helm的buffer列表内）
 - C-c C-l : helm-minibuffer-history（minibuffer内）
 - C-c G / M-s g : helm-grep-ag-projectile，rg搜索当前项目
-- C-c g : helm-grep-ag-projectile-again（helm grep会话内）
 - C-c SPC : helm-projectile
 
 ### 补充
-helm默认没有一个“搜索整个项目”的功能，这里借助projectile来实现。C-c g设计成默认查找当前目录，在搜索结果里再按一次C-c g就可以直接用当前关键词查找整个项目。
+helm默认没有一个「搜索整个项目」的功能，这里借助projectile来实现。C-c g设计成默认查找当前目录，在搜索结果里再按一次C-c g就可以直接用当前关键词查找整个项目。
 
 ## init-consult
 minibuffer补全全家桶：vertico + consult + embark + marginalia，与init-helm互斥。绑定大部分来自consult README的推荐绑定。同时把init-notes用的my/notes-grep-function设置成consult-ripgrep。
