@@ -122,10 +122,10 @@
           ;; ("i" "Tasks, for Journal"
           ;;  entry (file+olp+datetree ,org-capture-file-inbox)
           ;;  "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
-          ("j" "Journal today"
-           plain (file+olp+datetree ,org-capture-file-journal)
-           "**** 事项列表 [/]\n**** 今天做了什么"
-           :jump-to-captured t)
+          ("j" "Journal entry"
+           entry (file+olp+datetree ,org-capture-file-journal)
+           "* %U :: %?"
+           :tree-type month :jump-to-captured t)
           ("t" "Tasks"
            entry (file ,org-capture-file-tasks)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
@@ -139,17 +139,6 @@
           ;;  entry (file+olp+datetree ,org-capture-log-file)
           ;;  "* %U - %^{heading} %^g\n%?")
           )))
-
-;; home-made org-journal
-(defun org-journal ()
-  "Open the journal file"
-  (interactive)
-  (let ((buffer (find-buffer-visiting (concat org-directory "/journal.org"))))
-    (if buffer
-        (switch-to-buffer buffer)
-      (find-file (concat org-directory "/journal.org"))
-      (goto-char (point-max)))))
-(global-set-key (kbd "C-c j") 'org-journal)
 
 ;; org-agenda
 ;; Changes made from agenda update the underlying Org buffers, but are not
