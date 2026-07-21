@@ -107,32 +107,32 @@
       (org-capture-file-journal "journal.org"))
   (setq org-capture-templates
         `(
-          ("c" "Capture"
+          ("c" "Capture :: 他人语"
            plain (file ,org-capture-file-capture)
            "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
-          ("a" "Capture for Work"
+          ("a" "Capture :: 工作相关"
            plain (file ,org-capture-file-capture-work)
            "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1)
-          ("d" "Diary - timestamp"
+          ("d" "Diary :: 日记"
            entry (file+olp+datetree ,org-capture-file-diary)
            "* %U\n%?" :kill-buffer t)
-          ("b" "笔记 - timestamp"
+          ("b" "笔记 :: 小文"
            entry (file ,org-capture-file-biji)
            "* %U\n%?" :kill-buffer t)
           ;; ("i" "Tasks, for Journal"
           ;;  entry (file+olp+datetree ,org-capture-file-inbox)
           ;;  "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
-          ("j" "Journal entry"
+          ("j" "Journal :: 日志"
            entry (file+olp+datetree ,org-capture-file-journal)
            "* %U :: %?"
            :tree-type month :jump-to-captured t)
-          ("t" "Tasks"
+          ("t" "Tasks :: 跟踪待办"
            entry (file ,org-capture-file-tasks)
            "* TODO %?\n:LOGBOOK:\n- State \"TODO\"       from              %U\n:END:\n")
           ;; ("p" "Public Inbox"
           ;;  plain (file ,org-capture-file-public)
           ;;  "%U\\\\\n%?%i" :kill-buffer t :empty-lines 1 :prepend t)
-          ("i" "Tasks into Journal Inbox"
+          ("i" "inbox :: 收集想法"
            plain (file ,org-capture-file-inbox)
            "- %U :: %i%?" :kill-buffer t)
           ;; ("w" "Lifelog - timestamp"
