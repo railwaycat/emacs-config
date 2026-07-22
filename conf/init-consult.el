@@ -35,6 +35,7 @@
 (use-package embark
   :bind
   (("C-." . embark-act)               ;; act on the thing at point in any buffer
+   ("C-c ." . embark-act)             ;; terminals cannot encode C-., org-mode shadows this on purpose
    ("C-h B" . embark-bindings)        ;; alternative for `describe-bindings'
    :map vertico-map
    ("C-." . embark-act)               ;; same key inside the minibuffer
