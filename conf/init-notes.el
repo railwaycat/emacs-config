@@ -22,9 +22,22 @@
   (interactive)
   (if my/notes-find-function
       (funcall my/notes-find-function my/notes-directory)
-    (let ((default-directory my/notes-directory))
-      (find-file (read-file-name "Find Notes: ")))))
-
+    (let* ((default-directory my/notes-directory)
+           (files (seq-remove
+                   (lambda (f)
+                     (string= (file-name-nondirectory f) ".DS_Store"))
+                   (mapcar #'file-relative-name
+                           (directory-files-recursively
+                            default-directory "" nil
+                            (lambda (dir)
+                              (not (string= (file-name-nondirectory dir)
+                                            ".git"))))))))
+      (find-file
+       (completing-read "Find Notes: "
+                        (lambda (string pred action)
+                          (if (eq action 'metadata)
+                              '(metadata (category . file))
+                            (complete-with-action action files string pred))))))))
 
 (defun notes-grep (&optional initial)
   "Search my notes."
