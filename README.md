@@ -13,6 +13,7 @@
 各个配置部分按照松散的名字归类，从文件名上可以直接看出内涵。绝大部分的部分可以自由选择要不要`require`，只有下面几个例外：
 
 - 包管理的部分，init-elpa与init-straight是互斥的，只可以启用一个。不过二者都提供了相同的兼容函数供配置的其他部分使用。见详细说明。
+- init-flymake与init-flycheck互斥，分别使用内置Flymake或Flycheck显示和导航diagnostics。
 - init-helm与init-consult互斥。我尽可能在二者都使用相同的按键绑定，这样除了操作逻辑和界面的差别之外，肌肉记忆大致上保持一致。
 - init-company与init-corfu互斥。我尽可能让二者的手感和偏好一致，虽然总归会有一些微小的差别。
 - init-gui/init-terminal还有init-macos/init-x11部分虽然互斥，但init.el里可以按照逻辑自动判断，不需要手动注释。
@@ -70,7 +71,6 @@ orderless也放在这里配置，因为consult和corfu都会用到，放这里�
 - C-c h : symbol-overlay-put
 - \<f4\> : symbol-overlay-jump-next
 - M-c : capitalize-dwim
-- M-n / M-p : flymake-goto-next-error / flymake-goto-prev-error（flymake-mode下）
 - C-\<return\> : 在下方新开一行并跳过去，org-mode之外自动缩进
 - C-x t v / C-x t b / C-x t l : tab-next / tab-previous / tab-list
 - M-g d : dogears-go
@@ -105,6 +105,18 @@ orderless也放在这里配置，因为consult和corfu都会用到，放这里�
 我希望保持一个轻量化的查找，所以默认状态下可以直接用etags文件，使用emacs内置；或者可以用gtags或者ctags，用`citre-global-toggle`打开citre-mode，使用citre的跳转和peek功能；或者可以打开eglot，使用LSP。
 
 citre是全局手工开关；eglot是按项目手工开关。
+
+## init-flymake
+使用Emacs内置Flymake，在text-mode和prog-mode中启用。与init-flycheck互斥。
+
+### 按键绑定
+- M-n / M-p : flymake-goto-next-error / flymake-goto-prev-error
+
+## init-flycheck
+使用Flycheck作为diagnostics frontend，并启用内置Eglot bridge。Eglot仍负责LSP功能，Flycheck负责显示和导航diagnostics；不启用Flycheck的diagnostics-only native LSP或inline annotations。与init-flymake互斥。
+
+### 按键绑定
+- M-n / M-p : flycheck-next-error / flycheck-previous-error
 
 ## init-helm
 helm全家桶，与init-consult互斥。除helm本体外还有helm-swoop、helm-ag、 wgrep-helm、helm-ls-git、helm-xref、flyspell-correct-helm、 helm-projectile。同时把init-notes用的my/notes-grep-function和my/notes-find-function设置成helm的实现。
@@ -152,7 +164,7 @@ consult部分：
 - C-c M-x / C-c m / C-c i : consult-mode-command / consult-man / consult-info
 - C-x M-: : consult-complex-command
 - M-g g（M-g M-g）: consult-goto-line
-- M-g e / M-g f : consult-compile-error / consult-flymake
+- M-g e / M-g f : consult-compile-error / consult-flymake或consult-flycheck（按启用的diagnostics模块选择）
 - M-g o / M-g m / M-g k : consult-outline / consult-mark / consult-global-mark
 - M-g i / M-g I : consult-imenu / consult-imenu-multi
 - M-s f : consult-fd
@@ -195,7 +207,7 @@ buffer内补全，与init-company互斥。搭配cape补充dabbrev/文件名/keyw
 - C-s : corfu-insert-separator，输入orderless分隔符（补全菜单内）
 
 ## init-modes
-各种major mode的杂项配置：markdown-mode、dockerfile-mode、yaml-mode、 go-mode、beancount，以及text-mode/prog-mode的公共hook（visual-line、 flyspell、flymake、显示行尾空格）。还有CJK相关的word-wrap-by-category和把中文句号等算进sentence-end。
+各种major mode的杂项配置：markdown-mode、dockerfile-mode、yaml-mode、 go-mode、beancount，以及text-mode/prog-mode的公共hook（visual-line、 flyspell、显示行尾空格）。还有CJK相关的word-wrap-by-category和把中文句号等算进sentence-end。
 
 ## init-yasnippet
 yasnippet加yasnippet-snippets词库，after-init时全局启用。

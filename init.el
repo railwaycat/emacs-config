@@ -55,6 +55,7 @@
 (require 'init-editor)
 (require 'init-utils)
 (require 'init-symbols)
+(require 'init-flymake)
 ;; (require 'init-helm)
 (require 'init-consult)
 ;; (require 'init-company)

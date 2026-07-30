@@ -99,7 +99,6 @@ Keep the current input as the input of the new session."
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ;; M-g bindings in `goto-map'
          ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
          ("M-g g" . consult-goto-line)             ;; orig. goto-line
          ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
          ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
@@ -174,6 +173,16 @@ Keep the current input as the input of the new session."
                      :keymap (define-keymap
                                "C-c g" #'my/consult-ripgrep-project-again))
   )
+
+
+(cond
+ ((featurep 'init-flycheck)
+  (ensure-package 'consult-flycheck)
+  (use-package consult-flycheck
+    :defer t
+    :bind ("M-g f" . consult-flycheck)))
+ ((featurep 'init-flymake)
+  (define-key global-map (kbd "M-g f") #'consult-flymake)))
 
 
 (ensure-package 'embark-consult)

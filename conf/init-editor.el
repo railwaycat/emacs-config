@@ -169,11 +169,6 @@
 (define-key global-map (kbd "M-c") #'capitalize-dwim)
 
 
-(with-eval-after-load 'flymake
-  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
-
-
 (define-key global-map (kbd "C-<return>")
             (lambda (arg)
               "Move to the end of line, open ARG lines below, and move to the
