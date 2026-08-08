@@ -21,9 +21,11 @@
             (visual-line-mode)
             (flyspell-mode)
             (setq show-trailing-whitespace t)))
-;; better word wrapping for CJK characters
+;; for wrap: visual line breaking of CJK text.
 (setq-default word-wrap-by-category t)
-;; paragraphs
+(require 'kinsoku)
+
+;; for fill: hard line breaking and sentence motion.
 (setq-default
  sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
  sentence-end-double-space nil)
