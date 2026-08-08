@@ -208,6 +208,22 @@ Keep the current input as the input of the new session."
 (define-key global-map (kbd "C-c SPC") 'consult-projectile)
 
 
+(ensure-package 'consult-dir)
+(use-package consult-dir
+  :defer t
+  :custom
+  ;; Act on the chosen directory by opening Dired; the default is to
+  ;; prompt for a file with `find-file'.
+  (consult-dir-default-command #'consult-dir-dired)
+  (consult-dir-project-list-function #'consult-dir-projectile-dirs)
+  :bind
+  ("C-x C-d" . consult-dir))
+(with-eval-after-load 'vertico
+  (define-key vertico-map (kbd "C-x C-d") 'consult-dir))
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "z") 'consult-dir))
+
+
 (ensure-package 'marginalia)
 (use-package marginalia
   :init

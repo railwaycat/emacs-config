@@ -84,6 +84,9 @@
                                     helm-source-recentf
                                     helm-source-bookmarks
                                     helm-source-buffer-not-found))
+
+  (add-to-list 'savehist-additional-variables 'helm-ff-history)
+
   ;; use with `helm-grep-file-path-style 'basename`', to show filename
   ;; in basename, but with a "popup-tip" at the end of result when
   ;; cursor stops there.
