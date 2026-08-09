@@ -143,7 +143,7 @@ helm全家桶，与init-consult互斥。除helm本体外还有helm-swoop、helm-
 helm默认没有一个「搜索整个项目」的功能，这里借助projectile来实现。C-c g设计成默认查找当前目录，在搜索结果里再按一次C-c g就可以直接用当前关键词查找整个项目。
 
 ## init-consult
-minibuffer补全全家桶：vertico + consult + embark + marginalia，与init-helm互斥。绑定大部分来自consult README的推荐绑定。同时把init-notes用的my/notes-grep-function设置成consult-ripgrep。
+minibuffer补全全家桶：vertico + consult + embark + marginalia + consult-dir，与init-helm互斥。绑定大部分来自consult README的推荐绑定。同时把init-notes用的my/notes-grep-function设置成consult-ripgrep。
 
 consult-line/consult-ripgrep等命令会把光标处的symbol当作初始输入（灰色显示，直接输入新内容会清掉）。
 
@@ -176,6 +176,8 @@ consult部分：
 - M-s e : consult-isearch-history（isearch内M-e也可以）
 - M-s / M-r : consult-history（minibuffer内）
 - C-c SPC : consult-projectile
+- C-x C-d : consult-dir，从bookmark、projectile项目、recentf目录里挑一个打开dired
+- z : consult-dir（dired内）
 
 ### 补充
 C-c g的设计和init-helm对齐。
