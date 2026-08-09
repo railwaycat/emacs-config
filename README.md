@@ -60,7 +60,7 @@ orderless也放在这里配置，因为consult和corfu都会用到，放这里�
 - C-x M-c : save-buffers-kill-emacs
 
 ## init-editor
-编辑行为相关的配置：fill-column 70、缩进用空格且tab-width默认2、 show-paren、electric-pair（补充了几组全角括号引号）、prog-mode显示行号、大文件用so-long和vlf、subword、拼写检查（优先aspell其次hunspell）、hippie-expand代替dabbrev-expand、symbol-overlay高亮、 whole-line-or-region（没有选区时C-w/M-w/M-;等直接作用于当前行）、 separedit、tab-bar、dogears记录光标位置、查词典（macOS用系统词典，其他系统用Bing）、放开narrow相关命令、indent-bars缩进参考线。
+编辑行为相关的配置：fill-column 70、缩进用空格且tab-width默认2、 show-paren、electric-pair（补充了几组全角括号引号）、prog-mode显示行号、大文件用so-long和vlf、subword、拼写检查（优先aspell其次hunspell）、 hippie-expand代替dabbrev-expand、symbol-overlay高亮、whole-line-or-region（没有选区时C-w/M-w/M-;等直接作用于当前行）、separedit、tab-bar、dogears记录光标位置、查词典（macOS用系统词典，其他系统用Bing）、放开narrow相关命令、indent-bars缩进参考线。
 
 ### 函数
 - ffap-vlf : 用VLF打开光标处的文件名，配合大文件使用
@@ -72,11 +72,17 @@ orderless也放在这里配置，因为consult和corfu都会用到，放这里�
 - \<f4\> : symbol-overlay-jump-next
 - M-c : capitalize-dwim
 - C-\<return\> : 在下方新开一行并跳过去，org-mode之外自动缩进
-- C-x t v / C-x t b / C-x t l : tab-next / tab-previous / tab-list
 - M-g d : dogears-go
 - M-g M-b / M-g M-f : dogears-back / dogears-forward
 - M-g M-d / M-g M-D : dogears-list / dogears-sidebar
 - C-c d : 查词典，macOS是osx-dictionary-search-word-at-point，其他系统是bing-dict-brief
+
+Tab-bar:
+- C-c w / C-x t RET : tab-switch，按名字切换tab；输入不存在的名字时创建并命名
+- C-c W : tab-bar-close-tab-by-name，通过补全选择并关闭tab
+- C-x t b : 在新tab中选择buffer（consult配置下是consult-buffer-other-tab）
+- C-x t l : tab-list，列出并批量管理当前frame里的tab；q关闭管理用的临时tab并返回
+- C-x t r / C-x t 0 / C-x t u : 重命名 / 关闭 / 恢复关闭的tab
 
 ## init-utils
 各种工具类package：projectile、bm（可视书签）、rg、dashboard（启动页， 末尾加了一段自制的Emacs运行状态）、magit、scratch、vundo、ox-hugo。

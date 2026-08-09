@@ -186,18 +186,26 @@ first newly opened line."
 (setq kill-ring-max 1000)
 
 
-;; tab bar, default prefix: C-x t
-(setq
- tab-bar-show 1 ;; hide tab-bar when only one tab
- tab-bar-new-tab-choice #'ibuffer
- tab-bar-close-button-show nil
- tab-bar-tab-hints t
- ;; tab-bar-separator "┃"
- )
-(define-key tab-prefix-map (kbd "v") #'tab-next)
-(define-key tab-prefix-map (kbd "b") #'tab-previous)
+;; Tab bar, default prefix: C-x t.
+(customize-set-variable 'tab-bar-show nil)
+(setq tab-bar-new-tab-choice #'ibuffer)
+(define-key global-map (kbd "C-c w") #'tab-switch)
+(define-key global-map (kbd "C-c W") #'tab-bar-close-tab-by-name)
+(define-key tab-prefix-map (kbd "v") #'tab-recent)
+(define-key tab-prefix-map (kbd "b") #'switch-to-buffer-other-tab)
 (define-key tab-prefix-map (kbd "l") #'tab-list)
-(set-face-attribute 'tab-bar nil :height 1)
+
+(defun my/tab-switcher-quit ()
+  "Close the temporary tab created by `tab-switcher'."
+  (interactive)
+  (if (> (length (tab-bar-tabs)) 1)
+      (let ((inhibit-message t)
+            (tab-bar-close-tab-select 'recent)
+            tab-bar-closed-tabs)
+        (tab-bar-close-tab))
+    (quit-window)))
+(with-eval-after-load 'tab-bar
+  (define-key tab-switcher-mode-map (kbd "q") #'my/tab-switcher-quit))
 
 
 ;; Dogears, cursor position management
