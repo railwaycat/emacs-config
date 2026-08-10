@@ -194,6 +194,16 @@ first newly opened line."
 (define-key tab-prefix-map (kbd "v") #'tab-recent)
 (define-key tab-prefix-map (kbd "b") #'switch-to-buffer-other-tab)
 (define-key tab-prefix-map (kbd "l") #'tab-list)
+;; display a Tm/n indicator on mode line
+(defun my/mode-line-tab-position ()
+  "Return the current tab position for the selected window."
+  (when (mode-line-window-selected-p)
+    (let ((tabs (tab-bar-tabs)))
+      (when (> (length tabs) 1)
+        (format " T%d/%d"
+                (1+ (tab-bar--current-tab-index tabs))
+                (length tabs))))))
+(add-to-list 'global-mode-string '(:eval (my/mode-line-tab-position)) t)
 
 (defun my/tab-switcher-quit ()
   "Close the temporary tab created by `tab-switcher'."
