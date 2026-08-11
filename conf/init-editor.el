@@ -208,12 +208,12 @@ first newly opened line."
 (defun my/tab-switcher-quit ()
   "Close the temporary tab created by `tab-switcher'."
   (interactive)
-  (if (> (length (tab-bar-tabs)) 1)
-      (let ((inhibit-message t)
-            (tab-bar-close-tab-select 'recent)
-            tab-bar-closed-tabs)
-        (tab-bar-close-tab))
-    (quit-window)))
+  (quit-window t)
+  (when (> (length (tab-bar-tabs)) 1)
+    (let ((inhibit-message t)
+          (tab-bar-close-tab-select 'recent)
+          tab-bar-closed-tabs)
+      (tab-bar-close-tab))))
 (with-eval-after-load 'tab-bar
   (define-key tab-switcher-mode-map (kbd "q") #'my/tab-switcher-quit))
 
