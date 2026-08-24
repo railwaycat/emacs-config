@@ -41,6 +41,7 @@
 ;; suppress warnings
 ; (setq warning-minimum-level :error)
 (setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-async-on-battery-power nil)
 
 
 ;; load each conf

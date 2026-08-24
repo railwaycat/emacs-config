@@ -214,6 +214,8 @@
 
 ;; eldoc
 (diminish 'eldoc-mode)
+(when (boundp 'eldoc-help-at-pt)
+  (customize-set-variable 'eldoc-help-at-pt t))
 
 
 ;; abbrev
