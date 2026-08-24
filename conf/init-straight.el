@@ -65,18 +65,6 @@ This is the Straight version for the unified interface."
 
 
 ;; use-package
-;; Since Emacs 29.1, use-package is a built-in.
-(when (version< emacs-version "29.1")
-  (straight-use-package 'use-package)
-  ;; (eval-and-compile
-    ;; (setq use-package-always-ensure t)
-    ;; (setq use-package-always-defer nil)
-    ;; (setq use-package-always-demand nil)
-    ;; (setq use-package-expand-minimally nil)
-    ;; (setq use-package-enable-imenu-support t))
-  (eval-when-compile
-    (require 'use-package)))
-
 ;; (setq use-package-always-ensure t)
 (setq use-package-enable-imenu-support t)
 (setq straight-use-package-by-default t)

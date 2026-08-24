@@ -51,9 +51,7 @@
 
 
 ;; always use y/n
-(if (>= emacs-major-version 28)
-    (setq use-short-answers t)
-  (fset 'yes-or-no-p 'y-or-n-p))
+(setq use-short-answers t)
 
 
 ;; tramp

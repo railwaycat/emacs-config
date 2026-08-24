@@ -6,8 +6,7 @@
 
 (setq read-process-output-max (* 1024 1024))
 
-(when (version< emacs-version "29.1")
-  (ensure-package 'eglot))
+;; eglot
 (require 'eglot)
 
 

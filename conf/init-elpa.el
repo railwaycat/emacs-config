@@ -7,9 +7,6 @@
 
 (setq package-enable-at-startup nil)
 
-(when (< emacs-major-version 27)
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-
 
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s"
@@ -18,10 +15,7 @@
 
 (with-eval-after-load 'package
   (add-to-list 'package-archives
-               '( "melpa" . "https://melpa.org/packages/") t)
-  (when (< emacs-major-version 28)
-    (add-to-list 'package-archives
-                 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))))
+               '( "melpa" . "https://melpa.org/packages/") t))
 
 ;; (setq package-archives
 ;;       '(("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
@@ -39,21 +33,6 @@ This is the ELPA version for the unified interface."
 
 
 ;; use-package
-;; Since Emacs 29.1, use-package is a built-in.
-(when (version< emacs-version "29.1")
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (eval-and-compile
-    ;; (setq use-package-always-ensure t)
-    ;; (setq use-package-always-defer nil)
-    ;; (setq use-package-always-demand nil)
-    ;; (setq use-package-expand-minimally nil)
-    ;; (setq use-package-enable-imenu-support t)
-    )
-  (eval-when-compile
-    (require 'use-package)))
-
 ;; (setq use-package-always-ensure t)
 (setq use-package-enable-imenu-support t)
 
