@@ -35,7 +35,7 @@
      ))
   (helm-grep-file-path-style 'basename)
   (helm-display-header-line t)
-  (helm-ff-file-name-history-use-hierarchical-display nil)
+  (helm-completion-style 'helm-fuzzy)
   :bind
   ([remap execute-extended-command] . helm-M-x)
   ([remap yank-pop] . helm-show-kill-ring)
@@ -78,9 +78,8 @@
   ;;       helm-display-buffer-default-height 23
   ;;       helm-default-display-buffer-functions '(display-buffer-in-side-window))
 
-  (setq helm-mode-fuzzy-match t
-        ;; helm-split-window-in-side-p t
-        helm-mini-default-sources '(helm-source-buffers-list
+  ;; (setq helm-split-window-in-side-p t)
+  (setq helm-mini-default-sources '(helm-source-buffers-list
                                     helm-source-recentf
                                     helm-source-bookmarks
                                     helm-source-buffer-not-found))

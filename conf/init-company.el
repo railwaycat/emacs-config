@@ -20,8 +20,6 @@
    ("C-s" . company-filter-candidates)
    ("<tab>" . company-complete-common-or-cycle)
    ("TAB" . company-complete-common-or-cycle)
-   ("M-n" . company-show-next-doc)
-   ("M-p" . company-show-prev-doc)
    ("C-h" . company-show-doc-buffer)
    :map company-search-map
    ("C-n" . company-select-next)
@@ -67,7 +65,6 @@
           company-dabbrev))
   :custom
   (company-idle-delay 0.2)
-  (company-show-numbers t)
   ;; cancel selections by typing non-matching characters
   (company-require-match 'never)
 
