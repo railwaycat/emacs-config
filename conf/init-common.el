@@ -5,21 +5,26 @@
 ;;; Code:
 
 
-;; do backup and temp files to user-emacs-directory
-(let ((saves-dir (expand-file-name "tmp/" user-emacs-directory)))
-  (my/ensure-dir-exists saves-dir)
+;; manage backups, auto-saves and locks under xdg-state-home instead
+;; of along with the file
+(require 'xdg)
+(let* ((state-dir (expand-file-name "emacs/" (xdg-state-home)))
+       (backup-dir
+        (my/ensure-dir-exists (expand-file-name "backups/" state-dir)))
+       (auto-save-dir
+        (my/ensure-dir-exists (expand-file-name "auto-saves/" state-dir)))
+       (lock-dir
+        (my/ensure-dir-exists (expand-file-name "locks/" state-dir))))
   (setq backup-by-copying t      ; don't clobber symlinks
-        backup-directory-alist `(("." . ,saves-dir))
+        backup-directory-alist `(("." . ,backup-dir))
         delete-old-versions t
         kept-new-versions 6
         kept-old-versions 2
-        version-control t))
-(let ((tmp-dir (expand-file-name "tmp/" user-emacs-directory)))
-  (my/ensure-dir-exists tmp-dir)
-  (setq auto-save-file-name-transforms
-      `((".*" ,tmp-dir t)))
-  (setq lock-file-name-transforms
-        `((".*" ,tmp-dir t))))
+        version-control t
+        auto-save-file-name-transforms
+        `((".*" ,auto-save-dir t))
+        lock-file-name-transforms
+        `((".*" ,lock-dir t))))
 
 
 ;; disable lock files

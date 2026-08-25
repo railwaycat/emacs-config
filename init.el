@@ -29,8 +29,9 @@
   file)
 
 (defun my/ensure-dir-exists (dir)
-  (when (not (file-exists-p dir))
-    (with-temp-buffer (make-directory dir)))
+  "Ensure DIR exists, creating parent directories as needed."
+  (unless (file-directory-p dir)
+    (make-directory dir t))
   dir)
 
 

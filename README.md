@@ -47,7 +47,7 @@ PATH="$(brew --prefix)/opt/texinfo/bin:$PATH" emacs --batch -l ~/.emacs.d/init.e
 GUI下用exec-path-from-shell把shell里的PATH等环境变量同步进Emacs。
 
 ## init-common
-基础的杂项配置，大致包括：备份/自动保存/lock文件统一放到`user-emacs-directory`下的tmp目录、visible bell（mode-line-bell）、 y/n代替yes/no、tramp默认ssh、滚动行为、global-auto-revert、dired的ls参数按系统区分、bookmark（有Dropbox的机器用`~/Dropbox/dropbox.bmk`）、 macOS下删除进回收站、ibuffer（ibuffer-vc按repo分组）、savehist、 save-place、recentf、uniquify，还有让minibuffer继承调用处buffer的输入法。
+基础的杂项配置，大致包括：备份/自动保存/lock文件分别放到`xdg-state-home`下的Emacs state目录、visible bell（mode-line-bell）、 y/n代替yes/no、tramp默认ssh、滚动行为、global-auto-revert、dired的ls参数按系统区分、bookmark（有Dropbox的机器用`~/Dropbox/dropbox.bmk`）、 macOS下删除进回收站、ibuffer（ibuffer-vc按repo分组）、savehist、 save-place、recentf、uniquify，还有让minibuffer继承调用处buffer的输入法。
 
 orderless也放在这里配置，因为consult和corfu都会用到，放这里减少重复。
 
