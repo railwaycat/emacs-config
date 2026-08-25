@@ -110,6 +110,13 @@
 (setq load-prefer-newer t)
 
 
+(when (boundp 'trusted-content)
+  (customize-set-variable
+   'trusted-content
+   (list (file-name-as-directory
+          (abbreviate-file-name (file-truename user-emacs-directory))))))
+
+
 ;; ibuffer
 (ensure-package 'ibuffer-vc)
 (require 'ibuffer-vc)
