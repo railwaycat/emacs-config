@@ -222,6 +222,12 @@
 (setq uniquify-ignore-buffers-re "^\\*")
 
 
+;; which-key mode, display keybinding helper automatically in
+;; minibuffer.
+(when (fboundp 'which-key-mode)
+  (add-hook 'after-init-hook 'which-key-mode))
+
+
 ;; eldoc
 (diminish 'eldoc-mode)
 (when (boundp 'eldoc-help-at-pt)
