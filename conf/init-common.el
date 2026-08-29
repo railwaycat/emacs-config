@@ -225,6 +225,10 @@
 ;; which-key mode, display keybinding helper automatically in
 ;; minibuffer.
 (when (fboundp 'which-key-mode)
+  ;; no mode line indicator
+  (setq which-key-lighter "")
+  ;; show "n/total keys" on mode line
+  ;; (setq which-key-show-remaining-keys t)
   (add-hook 'after-init-hook 'which-key-mode))
 
 
