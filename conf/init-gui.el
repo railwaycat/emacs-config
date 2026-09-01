@@ -37,6 +37,15 @@
 (add-to-list 'default-frame-alist '(width . 90))
 
 
+;; resize by pixel instead of character
+(setq frame-resize-pixelwise t
+      window-resize-pixelwise t)
+
+
+;; don't recompute the frame size when the font or a bar changes.
+(setq frame-inhibit-implied-resize t)
+
+
 ;; show bookmark instead of startup message when has Dropbox
 ;; disable this setting, switch to Dashboard
 ;; (when user-with-dropbox

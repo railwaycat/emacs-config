@@ -69,6 +69,10 @@
       scroll-conservatively 100)
 
 
+;; right click for context menu
+(context-menu-mode 1)
+
+
 ;; Update buffer whenever file changes
 ;; Also revert dired buffer.
 (add-hook 'after-init-hook 'global-auto-revert-mode)
@@ -86,6 +90,10 @@
   (customize-set-variable 'dired-listing-switches "-alh"))
 (when (eq system-type 'gnu/linux)
   (customize-set-variable 'dired-listing-switches "-alFh"))
+
+;; drag files from dired to other programs
+(when (fboundp 'x-begin-drag)
+  (customize-set-variable 'dired-mouse-drag-files t))
 
 
 ;; bookmarks
@@ -242,11 +250,31 @@
 (diminish 'abbrev-mode)
 
 
+;; imenu
+(customize-set-variable 'imenu-auto-rescan t)
+
+
+;; follow symlinks to version controlled files instead of asking
+(customize-set-variable 'vc-follow-symlinks t)
+
+
+;; show the current directory when prompting for a shell command
+(setq shell-command-prompt-show-cwd t)
+
+
+;; scroll compilation output, but stop at the first error
+(setq compilation-scroll-output 'first-error)
+
+
 (define-key global-map (kbd "<f5>") 'goto-line)
 (define-key global-map (kbd "<f6>") 'display-line-numbers-mode)
 (define-key global-map (kbd "<f8>") 'rename-buffer)
 (define-key global-map (kbd "<f12>") 'bookmark-bmenu-list)
 (define-key global-map (kbd "C-x M-c") 'save-buffers-kill-emacs)
+
+
+;; tab indent first and then for completion
+(setq tab-always-indent 'complete)
 
 
 ;; Orderless may needed by consult and corfu. Leave the config here to

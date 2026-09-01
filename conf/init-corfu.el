@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(setq tab-always-indent 'complete)
-
 
 (ensure-package 'corfu)
 (use-package corfu
