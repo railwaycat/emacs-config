@@ -134,8 +134,16 @@
 
 (ensure-package 'magit)
 (use-package magit
+  :preface
+  (defun my/magit-display-buffer (buffer)
+    "Display Magit status buffers in a window other than the selected one."
+    (if (with-current-buffer buffer
+          (derived-mode-p 'magit-status-mode))
+        (display-buffer buffer '(display-buffer-use-least-recent-window))
+      (magit-display-buffer-traditional buffer)))
   :custom
   (magit-process-connection-type nil)
+  (magit-display-buffer-function #'my/magit-display-buffer)
   :bind
   ("C-x g" . magit-status-quick))
 
