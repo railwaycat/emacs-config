@@ -79,16 +79,16 @@
 
 
 ;; auto pair by electric mode
-(electric-pair-mode 1)
-;; add more automatic for electric pair
+(require 'elec-pair)
+;; 不自动补全弯引号（包括中文和英文）
 (customize-set-variable
- 'electric-pair-pairs '(
-                        (?\" . ?\")
+ 'electric-pair-pairs '((?\" . ?\")
                         (?\{ . ?\})
                         (?\「 . ?\」)
-                        (?\“ . ?\”)
-                        (?\‘ . ?\’)
-                        ))
+                        (?\『 . ?\』)))
+(customize-set-variable
+ 'electric-pair-text-pairs '((?\" . ?\")))
+(electric-pair-mode 1)
 
 
 ;; line number

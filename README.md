@@ -60,7 +60,7 @@ orderless也放在这里配置，因为consult和corfu都会用到，放这里�
 - C-x M-c : save-buffers-kill-emacs
 
 ## init-editor
-编辑行为相关的配置：fill-column 70、缩进用空格且tab-width默认2、 show-paren、electric-pair（补充了几组全角括号引号）、prog-mode显示行号、大文件用so-long和vlf、subword、拼写检查（优先aspell其次hunspell）、 hippie-expand代替dabbrev-expand、symbol-overlay高亮、whole-line-or-region（没有选区时C-w/M-w/M-;等直接作用于当前行）、separedit、tab-bar、dogears记录光标位置、查词典（macOS用系统词典，其他系统用Bing）、放开narrow相关命令、indent-bars缩进参考线。
+编辑行为相关的配置：fill-column 70、缩进用空格且tab-width默认2、 show-paren、electric-pair（补充`{}`、`「」`、`『』`，弯引号交给输入法处理）、prog-mode显示行号、大文件用so-long和vlf、subword、拼写检查（优先aspell其次hunspell）、 hippie-expand代替dabbrev-expand、symbol-overlay高亮、whole-line-or-region（没有选区时C-w/M-w/M-;等直接作用于当前行）、separedit、tab-bar、dogears记录光标位置、查词典（macOS用系统词典，其他系统用Bing）、放开narrow相关命令、indent-bars缩进参考线。
 
 ### 函数
 - ffap-vlf : 用VLF打开光标处的文件名，配合大文件使用
