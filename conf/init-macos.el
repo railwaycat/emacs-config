@@ -76,14 +76,14 @@
      (cjk-misc . "Source Han Serif SC")
      (symbol   . "Source Han Serif SC")
      (bopomofo . "Source Han Serif SC")
-     (kana     . "YuMincho")
+     (kana     . "Source Han Serif")
      (hangul   . "Source Han Serif K"))
     (SourceHanSans ;; 思源黑体
      (han      . "Source Han Sans SC")
      (cjk-misc . "Source Han Sans SC")
      (symbol   . "Source Han Sans SC")
      (bopomofo . "Source Han Sans SC")
-     (kana     . "YuGothic")
+     (kana     . "Source Han Sans")
      (hangul   . "Source Han Sans K"))
     (NotoSans ;; Noto 黑体
      (han      . "Noto Sans CJK SC")
@@ -106,6 +106,13 @@
      (bopomofo . "PingFang SC")
      (kana     . "YuGothic")
      (hangul   . "Apple SD Gothic Neo"))
+    (Hiragino ;; 冬青黑体，简体优先
+     (han      . "Hiragino Sans GB")
+     (cjk-misc . "Hiragino Sans GB")
+     (symbol   . "Hiragino Sans GB")
+     (bopomofo . "Hiragino Sans CNS")
+     (kana     . "Hiragino Kaku Gothic ProN")
+     (hangul   . "Apple SD Gothic Neo"))
     (Xinshusong ;; 新书宋
      (han      . "FZNewShuSong-Z10")
      (cjk-misc . "FZNewShuSong-Z10")
@@ -113,33 +120,28 @@
      (bopomofo . "FZNewShuSong-Z10")
      (kana     . "YuMincho")
      (hangul   . "AppleMyungjo"))
-    (STZhongsong ;; 华文中宋
-     (han      . "STZhongsong")
-     (cjk-misc . "STZhongsong")
-     (symbol   . "STZhongsong")
-     (bopomofo . "STZhongsong")
-     (kana     . "Hiragino Mincho ProN")
-     (hangul   . "AppleMyungjo"))
-    (BeiweiKaishu ;; 方正北魏楷书
-     (han      . "FZBeiWeiKaiShu-S19")
-     (cjk-misc . "FZBeiWeiKaiShu-S19")
-     (symbol   . "FZBeiWeiKaiShu-S19")
-     (bopomofo . "FZBeiWeiKaiShu-S19")
-     (kana     . "YuKyokasho")
-     (hangul   . "GungSeo"))
     )
   "An alist of CJK font profiles for different character sets.")
 
-(defun my/apply-cjk-font-profile (profile-name size)
+(defun my/apply-cjk-font-profile (profile-name size &optional fontset)
   "Set all CJK fonts based on a profile defined in `my-cjk-font-profiles`.
-PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
+PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans.
+SIZE is a point size, or nil to follow the face's size.
+FONTSET is a fontset name; nil or t means the default fontset."
   (let ((profile-data (cdr (assoc profile-name my-cjk-font-profiles))))
     (if profile-data
         (dolist (charset-font-pair profile-data)
           (let ((charset (car charset-font-pair))
                 (font-family (cdr charset-font-pair)))
-            (set-fontset-font t charset (font-spec :family font-family :size size))))
+            (set-fontset-font (or fontset t) charset
+                              (font-spec :family font-family :size size))))
       (warn "Font profile '%s' not found." profile-name))))
+
+;; Serif CJK fonts, including punctuation, for `variable-pitch-mode'.
+(require 'fontset)
+(let ((fontset (or (query-fontset "fontset-serif")
+                   (create-fontset-from-ascii-font "Charter" nil "serif"))))
+  (my/apply-cjk-font-profile 'Xinshusong nil fontset))
 
 (defun my/set-font-normal ()
   "Using normal size font"
@@ -149,7 +151,8 @@ PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
   (set-face-attribute 'fixed-pitch nil
                       :font (font-spec :name "PragmataPro Mono" :size 12))
   (set-face-attribute 'variable-pitch nil
-                      :font (font-spec :name "Charter" :size 13))
+                      :font (font-spec :name "Charter" :size 13)
+                      :fontset "fontset-serif")
   (my/apply-cjk-font-profile 'Pingfang 12))
 
 (defun my/set-font-large ()
@@ -160,8 +163,9 @@ PROFILE-NAME is a symbol like 'SourceHanSerif or 'NotoSans."
   (set-face-attribute 'fixed-pitch nil
                       :font (font-spec :name "PragmataPro Mono" :size 14))
   (set-face-attribute 'variable-pitch nil
-                      :font (font-spec :name "Charter" :size 14))
-  (my/apply-cjk-font-profile 'Xinshusong 14))
+                      :font (font-spec :name "Charter" :size 15)
+                      :fontset "fontset-serif")
+  (my/apply-cjk-font-profile 'Hiragino 14))
 
 
 ;; Emoji

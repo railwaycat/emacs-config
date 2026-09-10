@@ -302,7 +302,7 @@ GUI下的通用配置，与init-terminal互斥。保留menu-bar，关掉tool-bar
 ## init-macos
 macOS下的配置（mac/ns port）。option作为meta，command作为hyper，然后给hyper绑一套接近macOS习惯的快捷键。NS port有单独一段调整（滚动、透明标题栏等）。mac port下启用mac-auto-operator-composition-mode（连字）和mac-auto-ascii-mode（按下prefix key后自动把输入法切回ascii）。
 
-字体部分：英文用PragmataPro Mono，CJK定义了一组字体profile（思源宋/黑、Noto宋/黑、苹方、新书宋、华文中宋、北魏楷书），每个profile按charset（han/kana/hangul等）成套设置，切换字体就是换一个profile。启动时应用normal字号。
+字体部分：英文用PragmataPro Mono，CJK定义了一组字体profile（思源宋/黑、Noto宋/黑、苹方、冬青黑体、新书宋），每个profile按charset（han/kana/hangul等）成套设置，切换字体就是换一个profile。启动时应用normal字号。
 
 ### 函数
 - mac-switch-meta : 在两种modifier布局之间切换（option=meta+ command=hyper，或者option不动+command=meta）
