@@ -10,6 +10,9 @@
 !themes/**
 !site-lisp
 !site-lisp/**
+!local
+!local/.keep
+!sample.init-local.el
 
 # Byte-compiled Emacs Lisp
 *.elc

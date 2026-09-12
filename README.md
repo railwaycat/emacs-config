@@ -18,7 +18,7 @@
 - init-company与init-corfu互斥。我尽可能让二者的手感和偏好一致，虽然总归会有一些微小的差别。
 - init-gui/init-terminal还有init-macos/init-x11部分虽然互斥，但init.el里可以按照逻辑自动判断，不需要手动注释。
 
-init-local是留给各个系统配置一些系统独有、不便放入这个repo里的配置。
+init-local是留给各个系统配置一些系统独有、不便放入这个repo里的配置，放在`local`下。
 
 # 详细
 ## init-elpa
@@ -330,4 +330,6 @@ frame操作：
 X11/pgtk下的配置：设置默认字体（PragmataPro Mono），x下把Alt当作meta（x-alt-keysym），关掉menu-bar。
 
 ## init-local
-不在repo里，留给每台机器放本地私有配置。init.el里用`(require 'init-local nil t)`加载，文件不存在也不会报错。
+留给每台机器放本地私有配置，文件是`local/init-local.el`，不在repo里。init.el里用`(require 'init-local nil t)`加载，文件不存在也不会报错。
+
+repo里只track了空的`local`目录，模板是根目录下的`sample.init-local.el`。
