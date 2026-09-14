@@ -22,14 +22,15 @@
 
 ;; modus theme
 ;; Use the terminal's default background color
-;; (when (not window-system)
-;;   (if (< emacs-major-version 30)
-;;       (setq modus-themes-operandi-color-overrides
-;;             '((bg-main . "unspecified-bg"))
-;;             modus-themes-vivendi-color-overrides
-;;             '((bg-main . "unspecified-bg")))
-;;     (setq modus-themes-common-palette-overrides
-;;           '((bg-main "unspecified-bg")))))
+(when (not window-system)
+  (if (< emacs-major-version 30)
+      (setq modus-themes-operandi-color-overrides
+            '((bg-main . "unspecified-bg"))
+            modus-themes-vivendi-color-overrides
+            '((bg-main . "unspecified-bg")))
+    (setq modus-themes-common-palette-overrides
+          '((bg-main "unspecified-bg")
+            (bg-line-number-inactive bg-main)))))
 
 
 (provide 'init-theme)
