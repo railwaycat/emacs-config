@@ -153,7 +153,7 @@ FONTSET is a fontset name; nil or t means the default fontset."
   (set-face-attribute 'variable-pitch nil
                       :font (font-spec :name "Charter" :size 13)
                       :fontset "fontset-serif")
-  (my/apply-cjk-font-profile 'Pingfang 12))
+  (my/apply-cjk-font-profile 'Hiragino 12))
 
 (defun my/set-font-large ()
   "Using large size font"
