@@ -86,6 +86,11 @@
 
 (load custom-file)
 
+(defun dotemacs ()
+  "Open user emacs directory."
+  (interactive)
+  (find-file user-emacs-directory))
+
 
 (provide 'init)
 ;;; init.el ends here
