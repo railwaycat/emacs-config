@@ -100,10 +100,11 @@ Also apply the toggle immediately to current buffer when it's a `prog-mode'."
 (when (and (fboundp 'treesit-available-p)
            (treesit-available-p))
   (setq treesit-language-source-alist
-        '((python "https://github.com/tree-sitter/tree-sitter-python")
+        `((python "https://github.com/tree-sitter/tree-sitter-python")
           (bash "https://github.com/tree-sitter/tree-sitter-bash")
           (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-          (c "https://github.com/tree-sitter/tree-sitter-c")
+          (c "https://github.com/tree-sitter/tree-sitter-c"
+             ,(when (< (treesit-library-abi-version) 15) "v0.23.4"))
           (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
           (go "https://github.com/tree-sitter/tree-sitter-go")
           (html "https://github.com/tree-sitter/tree-sitter-html")
