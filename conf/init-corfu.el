@@ -55,14 +55,14 @@
   (defun my/corfu-good-candidate-p (cand)
     "补全过滤规则：
 1. 不补全带中文字符的
-2. 不补全全数字的
+2. 不补全4位及以上的纯数字
 3. 不补全长度大于30字符的"
     (let* ((s (if (symbolp cand) (symbol-name cand) cand))
            (len (length s)))
       (cond
        ((>= len 30) nil)
        ((string-match-p "\\cc" s) nil)
-       ((and (>= len 6) (string-match-p "\\`[0-9]+\\'" s)) nil)
+       ((and (>= len 4) (string-match-p "\\`[0-9]+\\'" s)) nil)
        (t t))))
   (add-to-list 'completion-at-point-functions
                (cape-capf-predicate #'cape-dabbrev #'my/corfu-good-candidate-p))
