@@ -111,7 +111,8 @@ Also apply the toggle immediately to current buffer when it's a `prog-mode'."
           (json "https://github.com/tree-sitter/tree-sitter-json")
           (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown")
           (rust "https://github.com/tree-sitter/tree-sitter-rust")
-          (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")
+          (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml"
+                ,(when (< (treesit-library-abi-version) 15) "v0.7.0"))
           (toml "https://github.com/tree-sitter/tree-sitter-toml")
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
           (typescript "https://github.com/tree-sitter/tree-sitter-typescript"))
